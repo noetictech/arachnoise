@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://jodd6yq2hiqv"
+path="res://.godot/imported/OCT1 HarpC#1.wav-fb1caa4a728147098d34a9cdf08c66ee.sample"
+
+[deps]
+
+source_file="res://assets/audio/Notes/Harp/OCT1 HarpC#1.wav"
+dest_files=["res://.godot/imported/OCT1 HarpC#1.wav-fb1caa4a728147098d34a9cdf08c66ee.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

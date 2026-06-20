@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://diidad3uydeau"
+path="res://.godot/imported/OCT2 22 HarpF#2.wav-2794995c6fa670fccf5b9494f1d62b82.sample"
+
+[deps]
+
+source_file="res://assets/audio/Notes/Harp/OCT2 22 HarpF#2.wav"
+dest_files=["res://.godot/imported/OCT2 22 HarpF#2.wav-2794995c6fa670fccf5b9494f1d62b82.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

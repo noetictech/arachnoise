@@ -173,3 +173,5 @@ navigation_polygon = SubResource("NavigationPolygon_t88pq")
 
 [node name="Specular" type="Parallax2D" parent="." unique_id=1039060562]
 scroll_scale = Vector2(1.2, 1.2)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1920634514]
