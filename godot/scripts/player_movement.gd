@@ -34,7 +34,7 @@ func flip_sprite():
 		scale.x = -1 if input_direction.x < 0 else 1
 
 func pick_new_state():
-	var new_state = "run" if input_direction != Vector2.ZERO else "idle1"
+	var new_state = "walk" if input_direction != Vector2.ZERO else "idle"
 	if new_state != current_state:
 		current_state = new_state
 		state_machine.travel(new_state)
