@@ -66,15 +66,24 @@ _data = {
 &"walk": SubResource("Animation_6e28j")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6tvk"]
+animation = &"idle"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vnujn"]
 animation = &"walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s6tvk"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6e28j"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nkwvm"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wr2nf"]
+states/idle/node = SubResource("AnimationNodeAnimation_s6tvk")
+states/idle/position = Vector2(436.85715, 110.28571)
 states/walk/node = SubResource("AnimationNodeAnimation_vnujn")
 states/walk/position = Vector2(319.7143, 104)
-transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_s6tvk")]
+transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_s6tvk"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_6e28j"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_nkwvm")]
 
 [node name="Spidey" type="CharacterBody2D" unique_id=11989907]
 script = ExtResource("1_vnujn")
