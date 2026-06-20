@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_yx171"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="9_yhmtn"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="10_gwjdr"]
+[ext_resource type="PackedScene" uid="uid://b4yvx8smk5w76" path="res://scenes/mosq.tscn" id="11_yhmtn"]
 
 [sub_resource type="Animation" id="Animation_u44n3"]
 length = 0.001
@@ -119,6 +120,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(768, 487, 1105, 278, 16
 script = ExtResource("10_gwjdr")
 
 [node name="Game" type="Node2D" unique_id=1250962292]
+rotation = 0.007981051
 script = ExtResource("1_xkndl")
 
 [node name="Automator" type="AnimationPlayer" parent="." unique_id=1838254672]
@@ -254,8 +256,12 @@ scale = Vector2(2, 2)
 [node name="Camera2D" type="Camera2D" parent="Game/Spidey" unique_id=706635895]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(1010, 748)
+position = Vector2(1003.99805, 756.037)
 zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 2560
+limit_bottom = 1440
 
 [node name="PhantomCameraHost" type="Node" parent="Game/Spidey/Camera2D" unique_id=85242314]
 process_priority = 300
@@ -274,7 +280,7 @@ scroll_scale = Vector2(1.2, 1.2)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." unique_id=1378882844 node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(1010, 748)
+position = Vector2(1003.99805, 756.037)
 script = ExtResource("9_yhmtn")
 follow_mode = 1
 follow_target = NodePath("../Game/Spidey")
@@ -286,3 +292,6 @@ limit_top = 0
 limit_right = 2560
 limit_bottom = 1440
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[node name="Mosquito" parent="." unique_id=486585636 instance=ExtResource("11_yhmtn")]
+position = Vector2(1429, 467)
