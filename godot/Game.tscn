@@ -12,6 +12,18 @@
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="9_yhmtn"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="10_gwjdr"]
 [ext_resource type="PackedScene" uid="uid://b4yvx8smk5w76" path="res://scenes/mosq.tscn" id="11_yhmtn"]
+[ext_resource type="AudioStream" uid="uid://c6k2mrfpx511g" path="res://assets/audio/Pads/Abmaj.wav" id="12_0mevm"]
+[ext_resource type="AudioStream" uid="uid://v1gq0r8xyk4f" path="res://assets/audio/Pads/Amaj.wav" id="13_w2501"]
+[ext_resource type="AudioStream" uid="uid://cjqthqo7dbii6" path="res://assets/audio/Pads/Gbmaj.wav" id="14_jsoai"]
+[ext_resource type="AudioStream" uid="uid://0o7m80uuj07t" path="res://assets/audio/Pads/Gmaj.wav" id="15_bisgb"]
+[ext_resource type="AudioStream" uid="uid://cu81x078d7vyb" path="res://assets/audio/Pads/Bbmaj.wav" id="16_y5ctq"]
+[ext_resource type="AudioStream" uid="uid://db07rlxbugchf" path="res://assets/audio/Pads/Bmaj.wav" id="17_w7ht3"]
+[ext_resource type="AudioStream" uid="uid://cyuyu56l1s0j4" path="res://assets/audio/Pads/Cmaj.wav" id="18_8ktx7"]
+[ext_resource type="AudioStream" uid="uid://cqriq1mfcynud" path="res://assets/audio/Pads/Dbmaj.wav" id="19_hwsgv"]
+[ext_resource type="AudioStream" uid="uid://cavisiqqaj510" path="res://assets/audio/Pads/Dmaj.wav" id="20_gebyw"]
+[ext_resource type="AudioStream" uid="uid://dy7tieg36yrsv" path="res://assets/audio/Pads/Ebmaj.wav" id="21_4my3f"]
+[ext_resource type="AudioStream" uid="uid://g8qwmi3a6lu2" path="res://assets/audio/Pads/Emaj.wav" id="22_aeq37"]
+[ext_resource type="AudioStream" uid="uid://2gaj2mcdriaw" path="res://assets/audio/Pads/Fmaj.wav" id="23_suycs"]
 
 [sub_resource type="Animation" id="Animation_u44n3"]
 length = 0.001
@@ -119,6 +131,21 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(768, 487, 1105, 278, 16
 
 [sub_resource type="Resource" id="Resource_lvtmh"]
 script = ExtResource("10_gwjdr")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_202ut"]
+streams_count = 12
+stream_0/stream = ExtResource("12_0mevm")
+stream_1/stream = ExtResource("13_w2501")
+stream_2/stream = ExtResource("16_y5ctq")
+stream_3/stream = ExtResource("17_w7ht3")
+stream_4/stream = ExtResource("18_8ktx7")
+stream_5/stream = ExtResource("19_hwsgv")
+stream_6/stream = ExtResource("20_gebyw")
+stream_7/stream = ExtResource("21_4my3f")
+stream_8/stream = ExtResource("22_aeq37")
+stream_9/stream = ExtResource("23_suycs")
+stream_10/stream = ExtResource("14_jsoai")
+stream_11/stream = ExtResource("15_bisgb")
 
 [node name="Game" type="Node2D" unique_id=1250962292]
 rotation = 0.007981051
@@ -303,3 +330,7 @@ metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
 
 [node name="Mosquito" parent="." unique_id=486585636 instance=ExtResource("11_yhmtn")]
 position = Vector2(1429, 467)
+
+[node name="Pads" type="AudioStreamPlayer" parent="." unique_id=631962834]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_202ut")
