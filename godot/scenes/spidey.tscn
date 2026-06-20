@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dbcoikmgx1kmt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bcyx4"]
+radius = 31.06445
+
+[node name="Spidey" type="CharacterBody2D" unique_id=11989907]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1653173207]
+shape = SubResource("CircleShape2D_bcyx4")
+
+[node name="Temp" type="TextureRect" parent="." unique_id=348163235]
+offset_right = 40.0
+offset_bottom = 40.0

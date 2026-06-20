@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c5i31pnrjvtkr"]
+
+[ext_resource type="Script" uid="uid://dojk1fnb2a207" path="res://scripts/minor_webline.gd" id="1_hj66i"]
+
+[node name="MinorWebline" type="Node2D" unique_id=1892095486]
+script = ExtResource("1_hj66i")
