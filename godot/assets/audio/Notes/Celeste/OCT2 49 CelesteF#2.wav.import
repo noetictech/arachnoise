@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dbuc3tpr06own"
+path="res://.godot/imported/OCT2 49 CelesteF#2.wav-e7ec8b1f7eb11af2800ea86df7d1290f.sample"
+
+[deps]
+
+source_file="res://assets/audio/Notes/Celeste/OCT2 49 CelesteF#2.wav"
+dest_files=["res://.godot/imported/OCT2 49 CelesteF#2.wav-e7ec8b1f7eb11af2800ea86df7d1290f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

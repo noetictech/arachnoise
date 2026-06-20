@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://dbcoikmgx1kmt"]
 
 [ext_resource type="Texture2D" uid="uid://cmtj86psi8aio" path="res://assets/spider.png" id="1_h1cbf"]
+[ext_resource type="Script" uid="uid://dej0ennxt7r3" path="res://scripts/spidey.gd" id="1_vnujn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bcyx4"]
 radius = 14.142136
 
 [node name="Spidey" type="CharacterBody2D" unique_id=11989907]
+script = ExtResource("1_vnujn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1653173207]
 shape = SubResource("CircleShape2D_bcyx4")
@@ -18,3 +20,6 @@ offset_bottom = 20.0
 texture = ExtResource("1_h1cbf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=390224319]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=246371436]
+debug_enabled = true
