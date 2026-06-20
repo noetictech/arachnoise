@@ -19,8 +19,13 @@ func _physics_process(_delta):
 	
 	if input_direction.x > 0:
 		sprite.flip_h = true
-	elif input_direction.x < 0:
+	elif input_direction.x <= 0:
 		sprite.flip_h = false
+	
+	if input_direction.y >= 0:
+		sprite.flip_v = false
+	elif input_direction.y < 0:
+		sprite.flip_v = true
 	
 	velocity = input_direction * move_speed
 	move_and_slide()
