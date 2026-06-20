@@ -20,46 +20,45 @@ var keys = {
 	"Bb": ["Bb", "Cm",  "Dm",  "Eb", "F",  "Gm",  "Adim"],
 	"F":  ["F",  "Gm",  "Am",  "Bb", "C",  "Dm",  "Edim"]
 }
+# Root notes available as sharp names in your file list
+var sharp_notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 
-# Returns the full asset path for a chord, or empty string if not found.
-func get_chord_asset_path(chord: String) -> String:
-	# 1. Detect the root and quality
+# Flat → sharp root conversion
+var flat_to_sharp = {
+	"Db": "C#",
+	"Eb": "D#",
+	"Gb": "F#",
+	"Ab": "G#",
+	"Bb": "A#",
+	"Cb": "B",    # if needed
+	"Fb": "E",    # if needed
+	"E#": "F",    # just in case
+	"B#": "C"     # just in case
+}
+
+# Returns res:// path to a chord file (defaults to CelesteChord instrument)
+func get_chord_asset_path(chord: String, instrument: String = "CelesteChord") -> String:
+	# 1. Extract root note
 	var root: String
-	var quality: String
-
 	if chord.ends_with("dim"):
 		root = chord.trim_suffix("dim")
-		quality = "dim"
 	elif chord.ends_with("m"):
 		root = chord.trim_suffix("m")
-		quality = "min"
 	else:
 		root = chord
-		quality = "maj"
 
-	# 2. Build the filename we expect
-	var filename = root + quality + ".wav"
+	# 2. Normalise flat roots to sharp
+	if root in flat_to_sharp:
+		root = flat_to_sharp[root]
 
-	# 3. (Optional) Handle common enharmonic fallbacks
-	#    Add more if needed – these map chord names that don't exist
-	#    in your file list to the files you DO have.
-	var enharmonic_fallbacks = {
-		"Abm": "G#min",   # Ab minor = G# minor
-		"Cb":  "Bmaj",    # Cb major = B major
-		"E#dim": "Fdim",  # E# dim = F dim
-		# If you need Abdim as well, but you have Abdim.wav, so it's fine.
-	}
-	if not FileAccess.file_exists("res://assets/audio/Pads/" + filename):
-		var fallback = enharmonic_fallbacks.get(root + quality)
-		if fallback:
-			filename = fallback + ".wav"
+	# 3. Build filename and full path
+	var filename = "/Chords/Chords " + instrument + root + ".wav"
+	var full_path = "res://assets/audio/" + filename
 
-	# 4. Full path
-	var full_path = "res://assets/audio/Pads/" + filename
 	if FileAccess.file_exists(full_path):
 		return full_path
 	else:
-		push_error("Sound file not found: " + full_path)
+		push_error("Missing chord file: " + full_path)
 		return ""
 		
 func _sound_map(note: String) -> void:
@@ -113,27 +112,6 @@ func _play_note(num: int) -> void:
 	#else:
 		## wait?
 		#pass
-
-func _on_ii_area_entered(area: Area2D) -> void:
-	_play_note(2)
-
-func _on_iii_area_entered(area: Area2D) -> void:
-	_play_note(3)
-
-func _on_iv_area_entered(area: Area2D) -> void:
-	_play_note(4)
-
-func _on_v_area_entered(area: Area2D) -> void:
-	_play_note(5)
-
-func _on_vi_area_entered(area: Area2D) -> void:
-	_play_note(6)
-
-func _on_vii_area_entered(area: Area2D) -> void:
-	_play_note(7)
-
-func _on_end_anchor_area_entered(area: Area2D) -> void:
-	_play_end_note()
 
 
 func _on_anchor_body_entered(body: Node2D) -> void:
