@@ -20,10 +20,22 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Game:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_wbfu4"]
 resource_name = "fade_in"
-length = 3.0666666
+length = 5.0333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -36,12 +48,29 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Game:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xkndl"]
 _data = {
 &"RESET": SubResource("Animation_u44n3"),
 &"fade_in": SubResource("Animation_wbfu4")
 }
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_t88pq"]
+vertices = PackedVector2Array(652.71094, 1000.3125, 373.03125, 901.3125, 618.21094, 800.85156, 1857, 771.60156, 741.6172, 1199.0391, 523.4219, 1159.1875, 1109.6406, 286.8828, 1596.9297, 77.90625, 1632.2266, 231.5, 1221.1406, 1294.9531, 810.78125, 1332.4219, 775.6172, 494.03125, 1888.5234, 378.5078, 1619.1719, 1342.4688, 1857, 1090.0234)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 0, 3), PackedInt32Array(6, 7, 8), PackedInt32Array(9, 10, 4, 3), PackedInt32Array(11, 6, 8, 12, 3, 2), PackedInt32Array(13, 9, 3, 14)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(768, 487, 1105, 278, 1604, 64, 1641, 225, 1899, 373, 1867, 772, 1867, 1094, 1623, 1353, 1221, 1305, 805, 1343, 735, 1208, 505, 1166, 636, 1005, 345, 902, 611, 793)])
 
 [node name="Game" type="Node2D" unique_id=1250962292]
 script = ExtResource("1_xkndl")
@@ -59,8 +88,10 @@ offset_bottom = 1440.0
 texture = ExtResource("1_wbfu4")
 
 [node name="Midground" type="Parallax2D" parent="." unique_id=1313288988]
+scroll_scale = Vector2(0.8, 0.8)
 
 [node name="Game" type="Parallax2D" parent="." unique_id=597068333]
+unique_name_in_owner = true
 
 [node name="Web" type="Node2D" parent="Game" unique_id=400274507]
 
@@ -137,4 +168,8 @@ scale = Vector2(1.0969579, 1.0969579)
 position = Vector2(1010, 748)
 scale = Vector2(2, 2)
 
+[node name="WebNav" type="NavigationRegion2D" parent="Game" unique_id=1797785414]
+navigation_polygon = SubResource("NavigationPolygon_t88pq")
+
 [node name="Specular" type="Parallax2D" parent="." unique_id=1039060562]
+scroll_scale = Vector2(1.2, 1.2)
