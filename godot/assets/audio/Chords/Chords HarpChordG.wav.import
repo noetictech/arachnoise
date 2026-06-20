@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://50ktl8bssh2y"
+path="res://.godot/imported/Chords HarpChordG.wav-f11be05f1123a81788d635bc11ad5965.sample"
+
+[deps]
+
+source_file="res://assets/audio/Chords/Chords HarpChordG.wav"
+dest_files=["res://.godot/imported/Chords HarpChordG.wav-f11be05f1123a81788d635bc11ad5965.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

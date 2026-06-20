@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cjq1th6ivk3iu" path="res://scenes/anchor_webline.tscn" id="4_sb48q"]
 [ext_resource type="Texture2D" uid="uid://ctesy3rfpt0uw" path="res://assets/plants1.png" id="5_3mrqo"]
 [ext_resource type="PackedScene" uid="uid://dbcoikmgx1kmt" path="res://scenes/spidey.tscn" id="5_t88pq"]
+[ext_resource type="Texture2D" uid="uid://cr3vr40jwglnw" path="res://assets/midlines.png" id="6_gwjdr"]
 [ext_resource type="Texture2D" uid="uid://ntsie4npnnqe" path="res://assets/plants2.png" id="6_joorw"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_yx171"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="9_yhmtn"]
@@ -162,6 +163,14 @@ modulate = Color(1, 1, 1, 0.5254902)
 offset_right = 2549.0
 offset_bottom = 1442.0
 texture = ExtResource("3_t88pq")
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="FixedLinesMid" type="TextureRect" parent="Game/Web" unique_id=2123949840]
+modulate = Color(1, 1, 1, 0.5254902)
+offset_right = 2549.0
+offset_bottom = 1442.0
+texture = ExtResource("6_gwjdr")
 stretch_mode = 4
 metadata/_edit_use_anchors_ = true
 
