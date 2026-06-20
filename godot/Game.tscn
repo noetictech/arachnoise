@@ -167,66 +167,79 @@ libraries/ = SubResource("AnimationLibrary_joorw")
 position = Vector2(1123, 838)
 rotation = -0.07602821
 scale = Vector2(0.69132775, 0.69132775)
+key = "B"
 
 [node name="2" parent="Game/Web/Anchors" unique_id=958637222 instance=ExtResource("4_sb48q")]
 position = Vector2(1157.0001, 826)
 rotation = -0.6379097
 scale = Vector2(1.4525352, 0.9386376)
+key = "F#"
 
 [node name="3" parent="Game/Web/Anchors" unique_id=137692516 instance=ExtResource("4_sb48q")]
 position = Vector2(1161.0001, 810)
 rotation = -1.1435091
 scale = Vector2(1.0835181, 1.0835181)
+key = "Gb"
 
 [node name="4" parent="Game/Web/Anchors" unique_id=477313117 instance=ExtResource("4_sb48q")]
 position = Vector2(1162.0001, 795)
 rotation = -1.6018195
 scale = Vector2(0.9615322, 0.9615322)
+key = "Db"
 
 [node name="5" parent="Game/Web/Anchors" unique_id=579269807 instance=ExtResource("4_sb48q")]
 position = Vector2(1154, 772.00006)
 rotation = -2.0948813
 scale = Vector2(1.2620218, 1.2620218)
+key = "Ab"
 
 [node name="6" parent="Game/Web/Anchors" unique_id=1715186931 instance=ExtResource("4_sb48q")]
 position = Vector2(1146.0001, 758)
 rotation = -2.4317784
 scale = Vector2(1.0969579, 1.0969579)
+key = "Eb"
 
 [node name="7" parent="Game/Web/Anchors" unique_id=377696943 instance=ExtResource("4_sb48q")]
 position = Vector2(1117.0001, 748)
 rotation = -3.1165166
 scale = Vector2(0.6913277, 0.6913277)
+key = "Bb"
 
 [node name="8" parent="Game/Web/Anchors" unique_id=2040495656 instance=ExtResource("4_sb48q")]
 position = Vector2(1105.0001, 753)
 rotation = 2.75891
 scale = Vector2(0.69132775, 0.69132775)
+key = "F"
 
 [node name="9" parent="Game/Web/Anchors" unique_id=888488986 instance=ExtResource("4_sb48q")]
 position = Vector2(1083, 763.99994)
 rotation = 2.2266035
 scale = Vector2(0.62867135, 0.62867135)
+key = "C"
 
 [node name="10" parent="Game/Web/Anchors" unique_id=905053772 instance=ExtResource("4_sb48q")]
 position = Vector2(1068.0001, 794)
 rotation = 1.6128167
 scale = Vector2(0.6913277, 0.6913277)
+key = "G"
 
 [node name="11" parent="Game/Web/Anchors" unique_id=2050273704 instance=ExtResource("4_sb48q")]
 position = Vector2(1079.0001, 809)
 rotation = 1.2237805
 scale = Vector2(0.74485, 0.74485)
+key = "D"
 
 [node name="12" parent="Game/Web/Anchors" unique_id=424929340 instance=ExtResource("4_sb48q")]
 position = Vector2(1089.0001, 825)
 rotation = 0.74972254
 scale = Vector2(0.7930654, 0.7930654)
+key = "A"
 
 [node name="13" parent="Game/Web/Anchors" unique_id=736292855 instance=ExtResource("4_sb48q")]
 position = Vector2(1103, 842.00006)
 rotation = 0.40026897
 scale = Vector2(0.7978127, 0.7978127)
+key = "E"
 
 [node name="Spidey" parent="Game" unique_id=11989907 instance=ExtResource("5_t88pq")]
 position = Vector2(1010, 748)
