@@ -59,7 +59,7 @@ states/idle/node = SubResource("AnimationNodeAnimation_s6tvk")
 states/idle/position = Vector2(437.4286, 110.28571)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_0jdj5")]
 
-[node name="Mosquito" type="CharacterBody2D" unique_id=11989907]
+[node name="Mosquito" type="CharacterBody2D" unique_id=11989907 groups=["prey"]]
 scale = Vector2(2, 2)
 script = ExtResource("1_1nlms")
 

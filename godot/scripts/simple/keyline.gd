@@ -1,8 +1,8 @@
 extends Node2D
-@onready var line_texture: TextureRect = %LineTexture
+@export var line_texture: Texture2D
 @export var key: String
 
-signal plucked
+signal plucked(key: String, note: int)
 
 # We're going to make use of our 'anchor' lines, 1-12 (main scene),
 # which are representative of the following keys, and progressions -
@@ -71,19 +71,16 @@ func _sound_map(note: String) -> void:
 	var audio_stream = load(path) as AudioStream
 	if audio_stream:
 		var player = %audio
-		if player.playing:
-			%automator.play("fade_out_pad")
-			player.finished.connect(func(): _sound_map(note))
-
 		player.stream = audio_stream
 		player.play()
 
 func _ready() -> void:
-	
-	_randomize()
+	$%LineTexture.texture = line_texture
+	#_randomize()
 
 func _randomize() -> void:
-	line_texture.texture = load("res://assets/line%d-2.png" % randi_range(1,6))
+	#line_texture.texture = load("res://assets/line%d-2.png" % randi_range(1,6))
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -99,7 +96,7 @@ func _play_end_note() -> void:
 func _play_base_note() -> void:
 	var note: String = keys[key][0];
 	_sound_map(note)
-	emit_signal("plucked")
+	emit_signal("plucked", key, 0)
 	
 	#if not %AudioStreamPlayer.playing:
 #
@@ -110,7 +107,7 @@ func _play_base_note() -> void:
 func _play_note(num: int) -> void:
 	#if not %AudioStreamPlayer.playing:
 	var note: String = keys[key][num-1];
-	emit_signal("plucked")
+	emit_signal("plucked", key, num-1)
 	_sound_map(note)
 	#else:
 		## wait?

@@ -41,58 +41,57 @@ func _process(delta: float) -> void:
 	pass
 
 func _buzz_spidey():
-	var prey = _new_prey()
-	$Game/Prey/Container.add_child(prey)
-	$Game/Prey/Automator.play("lurk")
+	if $Game/Prey/Container.get_child_count() == 0:
+		var prey = _new_prey()
+		$Game/Prey/Container.add_child(prey)
+		$Game/Prey/Automator.play_with_capture("lurk", 1.5)
+	else:
+		print("uhm?")
 
 func _new_prey() -> CharacterBody2D: 
 	var prey: = Mozzie.instantiate()
-	prey.global_position = %SpawnLocation.global_position
+	#prey.global_position = $Game/Prey/Container.global_position
 	return prey
 	
+func _drop_prey(): 
+	for i in $Game/Prey/Container.get_child_count():
+		$Game/Prey/Container.get_child(i).queue_free()
+		
 func _on_loitering_state_entered() -> void:
 	# Random timer from 4-7s, mosquito 'appears' - root note chosen, gradient radial blur with note
 	# color and pulse animation near random screen edge. 
 	
 	if $Game/Prey/Container.get_child_count() > 0:
-		$Game/Prey/Automator.play("flee")
-		get_tree().create_timer(2).timeout.connect(func(): $Game/Prey/Container.get_child(0).queue_free() )
+		$Game/Prey/Automator.play_with_capture("flee", 1.5)
+		get_tree().create_timer(2.5).timeout.connect(_drop_prey)
 	
 	var wait_length = randi_range(4,7) * 2
 	get_tree().create_timer(wait_length).timeout.connect(_buzz_spidey)
 
-
 func _on_enticing_state_entered() -> void:
 	pass # Replace with function body.
-
 
 func _on_trapping_state_entered() -> void:
 	pass # Replace with function body.
 
-
 func _on_ensnared_state_entered() -> void:
 	pass # Replace with function body.
-
 
 func _on_phrase_1_state_entered() -> void:
 	pass # Replace with function body.
 
-
 func _on_phrase_2_state_entered() -> void:
 	pass # Replace with function body.
-
 
 func _on_phrase_3_state_entered() -> void:
 	pass # Replace with function body.
 
-
 func _on_success_state_entered() -> void:
 	pass # Replace with function body.
 
-
-func _on__plucked() -> void:
-	$State.send_event("StartlePrey")
-
-
 func _on_prey_startled_taken() -> void:
 	pass # Replace with function body.
+
+func _on__plucked(key: String, note: int) -> void:
+	# Actually check harmony/discord
+	$State.send_event("StartlePrey")

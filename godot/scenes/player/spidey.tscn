@@ -89,7 +89,7 @@ states/walk/node = SubResource("AnimationNodeAnimation_vnujn")
 states/walk/position = Vector2(319.7143, 104)
 transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_s6tvk"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_6e28j"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_nkwvm")]
 
-[node name="Spidey" type="CharacterBody2D" unique_id=11989907 node_paths=PackedStringArray("state_chart")]
+[node name="Spidey" type="CharacterBody2D" unique_id=11989907 node_paths=PackedStringArray("state_chart") groups=["spider"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_vnujn")

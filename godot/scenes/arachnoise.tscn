@@ -8,20 +8,34 @@
 [ext_resource type="PackedScene" uid="uid://dbcoikmgx1kmt" path="res://scenes/player/spidey.tscn" id="5_t88pq"]
 [ext_resource type="Texture2D" uid="uid://cr3vr40jwglnw" path="res://assets/midlines.png" id="6_gwjdr"]
 [ext_resource type="Texture2D" uid="uid://ntsie4npnnqe" path="res://assets/plants2.png" id="6_joorw"]
+[ext_resource type="Texture2D" uid="uid://db1yt70toaxoi" path="res://assets/keylines1.png" id="8_4mxpu"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_yx171"]
+[ext_resource type="Texture2D" uid="uid://cn0soicjxo1k4" path="res://assets/keylines2.png" id="9_cqhyb"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="9_yhmtn"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="10_gwjdr"]
+[ext_resource type="Texture2D" uid="uid://crv7tyyh3ck50" path="res://assets/keylines3.png" id="10_k33hi"]
+[ext_resource type="Texture2D" uid="uid://ce5iflcxraf4k" path="res://assets/keylines4.png" id="11_c8j4q"]
 [ext_resource type="AudioStream" uid="uid://c6k2mrfpx511g" path="res://assets/audio/Pads/Abmaj.wav" id="12_0mevm"]
+[ext_resource type="Texture2D" uid="uid://dtj8brjd2lsfb" path="res://assets/keylines5.png" id="12_hflis"]
+[ext_resource type="Texture2D" uid="uid://14xux7b2lxcs" path="res://assets/keylines6.png" id="13_n13yo"]
 [ext_resource type="AudioStream" uid="uid://v1gq0r8xyk4f" path="res://assets/audio/Pads/Amaj.wav" id="13_w2501"]
 [ext_resource type="AudioStream" uid="uid://cjqthqo7dbii6" path="res://assets/audio/Pads/Gbmaj.wav" id="14_jsoai"]
+[ext_resource type="Texture2D" uid="uid://dlmw2iymik0xr" path="res://assets/keylines7.png" id="14_x52j7"]
 [ext_resource type="AudioStream" uid="uid://0o7m80uuj07t" path="res://assets/audio/Pads/Gmaj.wav" id="15_bisgb"]
+[ext_resource type="Texture2D" uid="uid://cxipheem1kn4u" path="res://assets/keylines8.png" id="15_si8k2"]
+[ext_resource type="Texture2D" uid="uid://doyculbakem6w" path="res://assets/keylines9.png" id="16_4tgpc"]
 [ext_resource type="AudioStream" uid="uid://cu81x078d7vyb" path="res://assets/audio/Pads/Bbmaj.wav" id="16_y5ctq"]
+[ext_resource type="Texture2D" uid="uid://cms0m5jpt4iem" path="res://assets/keylines10.png" id="17_1ojfu"]
 [ext_resource type="AudioStream" uid="uid://db07rlxbugchf" path="res://assets/audio/Pads/Bmaj.wav" id="17_w7ht3"]
+[ext_resource type="Texture2D" uid="uid://c1rc6btyejuw0" path="res://assets/keylines11.png" id="18_4uwls"]
 [ext_resource type="AudioStream" uid="uid://cyuyu56l1s0j4" path="res://assets/audio/Pads/Cmaj.wav" id="18_8ktx7"]
 [ext_resource type="AudioStream" uid="uid://cqriq1mfcynud" path="res://assets/audio/Pads/Dbmaj.wav" id="19_hwsgv"]
+[ext_resource type="Texture2D" uid="uid://dqm0mk28nbnf5" path="res://assets/keylines12.png" id="19_lda8q"]
 [ext_resource type="AudioStream" uid="uid://cavisiqqaj510" path="res://assets/audio/Pads/Dmaj.wav" id="20_gebyw"]
+[ext_resource type="Texture2D" uid="uid://d34eeg3leb63b" path="res://assets/keylines13.png" id="20_p1aix"]
 [ext_resource type="AudioStream" uid="uid://dy7tieg36yrsv" path="res://assets/audio/Pads/Ebmaj.wav" id="21_4my3f"]
 [ext_resource type="AudioStream" uid="uid://g8qwmi3a6lu2" path="res://assets/audio/Pads/Emaj.wav" id="22_aeq37"]
+[ext_resource type="AudioStream" uid="uid://2qwhp3i6ipm5" path="res://assets/audio/SFX/AMBIENCE_Environment_Loop.wav" id="23_cqhyb"]
 [ext_resource type="AudioStream" uid="uid://2gaj2mcdriaw" path="res://assets/audio/Pads/Fmaj.wav" id="23_suycs"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="25_jsoai"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="26_bisgb"]
@@ -112,7 +126,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 2.2, -0.8388889, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.8, -0.8388889, 0, 0, 0),
 "times": PackedFloat32Array(0, 5.0333333)
 }
 tracks/3/type = "bezier"
@@ -123,7 +137,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 2.2, -0.8388889, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.8, -0.8388889, 0, 0, 0),
 "times": PackedFloat32Array(0, 5.0333333)
 }
 
@@ -355,6 +369,10 @@ _data = {
 &"lurk": SubResource("Animation_rqdwu")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k33hi"]
+streams_count = 1
+stream_0/stream = ExtResource("23_cqhyb")
+
 [sub_resource type="Resource" id="Resource_lvtmh"]
 script = ExtResource("10_gwjdr")
 
@@ -437,78 +455,91 @@ libraries/ = SubResource("AnimationLibrary_joorw")
 position = Vector2(1123.9999, 846)
 rotation = -0.07602821
 scale = Vector2(0.69132775, 0.69132775)
+line_texture = ExtResource("8_4mxpu")
 key = "B"
 
 [node name="2" parent="Game/Web/Keylines" unique_id=958637222 instance=ExtResource("4_sb48q")]
 position = Vector2(1153, 838.99994)
 rotation = -0.6379097
 scale = Vector2(0.78526694, 0.9157752)
+line_texture = ExtResource("9_cqhyb")
 key = "F#"
 
 [node name="3" parent="Game/Web/Keylines" unique_id=137692516 instance=ExtResource("4_sb48q")]
 position = Vector2(1163.9999, 821.99994)
 rotation = -1.1435091
 scale = Vector2(1.0835181, 1.0835181)
+line_texture = ExtResource("10_k33hi")
 key = "Gb"
 
 [node name="4" parent="Game/Web/Keylines" unique_id=477313117 instance=ExtResource("4_sb48q")]
 position = Vector2(1167.0001, 799.99994)
 rotation = -1.6018195
 scale = Vector2(0.9615322, 0.9615322)
+line_texture = ExtResource("11_c8j4q")
 key = "Db"
 
 [node name="5" parent="Game/Web/Keylines" unique_id=579269807 instance=ExtResource("4_sb48q")]
 position = Vector2(1161, 776.9999)
 rotation = -2.0948813
 scale = Vector2(1.2620218, 1.2620218)
+line_texture = ExtResource("12_hflis")
 key = "Ab"
 
 [node name="6" parent="Game/Web/Keylines" unique_id=1715186931 instance=ExtResource("4_sb48q")]
 position = Vector2(1145, 757)
 rotation = -2.4317784
 scale = Vector2(1.0969579, 1.0969579)
+line_texture = ExtResource("13_n13yo")
 key = "Eb"
 
 [node name="7" parent="Game/Web/Keylines" unique_id=377696943 instance=ExtResource("4_sb48q")]
 position = Vector2(1120, 755.00006)
 rotation = -3.1165166
 scale = Vector2(0.6913277, 0.6913277)
+line_texture = ExtResource("14_x52j7")
 key = "Bb"
 
 [node name="8" parent="Game/Web/Keylines" unique_id=2040495656 instance=ExtResource("4_sb48q")]
 position = Vector2(1103.0001, 761)
 rotation = 2.75891
 scale = Vector2(0.69132775, 0.69132775)
+line_texture = ExtResource("15_si8k2")
 key = "F"
 
 [node name="9" parent="Game/Web/Keylines" unique_id=888488986 instance=ExtResource("4_sb48q")]
 position = Vector2(1083.9999, 772.99994)
 rotation = 2.2266035
 scale = Vector2(0.62867135, 0.62867135)
+line_texture = ExtResource("16_4tgpc")
 key = "C"
 
 [node name="10" parent="Game/Web/Keylines" unique_id=905053772 instance=ExtResource("4_sb48q")]
 position = Vector2(1069, 802)
 rotation = 1.6128167
 scale = Vector2(0.6913277, 0.6913277)
+line_texture = ExtResource("17_1ojfu")
 key = "G"
 
 [node name="11" parent="Game/Web/Keylines" unique_id=2050273704 instance=ExtResource("4_sb48q")]
 position = Vector2(1080, 817)
 rotation = 1.2237805
 scale = Vector2(0.74485, 0.74485)
+line_texture = ExtResource("18_4uwls")
 key = "D"
 
 [node name="12" parent="Game/Web/Keylines" unique_id=424929340 instance=ExtResource("4_sb48q")]
 position = Vector2(1090, 833)
 rotation = 0.74972254
 scale = Vector2(0.7930654, 0.7930654)
+line_texture = ExtResource("19_lda8q")
 key = "A"
 
 [node name="13" parent="Game/Web/Keylines" unique_id=736292855 instance=ExtResource("4_sb48q")]
 position = Vector2(1103.9999, 850.00006)
 rotation = 0.40026897
 scale = Vector2(0.7978127, 0.7978127)
+line_texture = ExtResource("20_p1aix")
 key = "E"
 
 [node name="Borders" type="StaticBody2D" parent="Game/Web" unique_id=1706141425]
@@ -536,24 +567,25 @@ process_physics_priority = 300
 script = ExtResource("8_yx171")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="SpawnLocation" type="Node2D" parent="Game" unique_id=1534799340]
-unique_name_in_owner = true
-position = Vector2(1.0079651, 0.9920044)
-
 [node name="Prey" type="Node2D" parent="Game" unique_id=251574412]
 unique_name_in_owner = true
 position = Vector2(-192.1488, -268.475)
 
 [node name="Automator" type="AnimationPlayer" parent="Game/Prey" unique_id=1520925992]
 libraries/ = SubResource("AnimationLibrary_i7wek")
-playback_auto_capture_transition_type = 7
+playback_auto_capture_duration = 1.0
+playback_auto_capture_ease_type = 2
+playback_default_blend_time = 0.2
 
 [node name="Container" type="Node2D" parent="Game/Prey" unique_id=786246001]
 
 [node name="Specular" type="Parallax2D" parent="." unique_id=1039060562]
 scroll_scale = Vector2(1.2, 1.2)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1920634514]
+[node name="Ambience" type="AudioStreamPlayer" parent="." unique_id=1920634514]
+stream = SubResource("AudioStreamRandomizer_k33hi")
+volume_db = -6.0
+autoplay = true
 
 [node name="PhantomCamera2D" type="Node2D" parent="." unique_id=1378882844 node_paths=PackedStringArray("follow_target")]
 top_level = true
