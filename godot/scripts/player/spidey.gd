@@ -18,17 +18,20 @@ func _physics_process(_delta):
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	).normalized()
 	
-	if input_direction.x > 0:
-		sprite.flip_h = true
-	elif input_direction.x <= 0:
-		sprite.flip_h = false
-	
-	if input_direction.y >= 0:
-		sprite.flip_v = false
-	elif input_direction.y < 0:
-		sprite.flip_v = true
 	
 	velocity = input_direction * move_speed
+	
+	if not velocity.is_zero_approx():
+		if input_direction.x > 0:
+			sprite.flip_h = true
+		elif input_direction.x < 0:
+			sprite.flip_h = false
+		
+		if input_direction.y > 0:
+			sprite.flip_v = false
+		elif input_direction.y < 0:
+			sprite.flip_v = true
+			
 	move_and_slide()
 	pick_new_state()
 	

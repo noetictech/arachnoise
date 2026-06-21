@@ -27,18 +27,8 @@ const Mozzie = preload("res://scenes/prey/mozzie.tscn")
 
 # This gives us a sequence to follow for each 'prey'
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Automator.play("fade_in")
-	
-func _input(event: InputEvent) -> void:
-	pass
-	#if event.is_action("refresh_random"):
-		#%Pads.play()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _buzz_spidey():
 	if $Game/Prey/Container.get_child_count() == 0:
@@ -50,17 +40,15 @@ func _buzz_spidey():
 
 func _new_prey() -> CharacterBody2D: 
 	var prey: = Mozzie.instantiate()
-	#prey.global_position = $Game/Prey/Container.global_position
 	return prey
 	
-func _drop_prey(): 
+func _drop_prey():
 	for i in $Game/Prey/Container.get_child_count():
 		$Game/Prey/Container.get_child(i).queue_free()
 		
 func _on_loitering_state_entered() -> void:
 	# Random timer from 4-7s, mosquito 'appears' - root note chosen, gradient radial blur with note
 	# color and pulse animation near random screen edge. 
-	
 	if $Game/Prey/Container.get_child_count() > 0:
 		$Game/Prey/Automator.play_with_capture("flee", 1.5)
 		get_tree().create_timer(2.5).timeout.connect(_drop_prey)
@@ -69,7 +57,7 @@ func _on_loitering_state_entered() -> void:
 	get_tree().create_timer(wait_length).timeout.connect(_buzz_spidey)
 
 func _on_enticing_state_entered() -> void:
-	pass # Replace with function body.
+	$BuzzTrack.play()
 
 func _on_trapping_state_entered() -> void:
 	pass # Replace with function body.
