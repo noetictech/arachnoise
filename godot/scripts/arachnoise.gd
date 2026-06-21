@@ -1,6 +1,31 @@
 extends Node2D
 
 const Mozzie = preload("res://scenes/prey/mozzie.tscn")
+const OCT_1_31_CELESTE_C_1 = preload("uid://dqb13ymsy146u")
+const OCT_1_32_CELESTE_D_1 = preload("uid://6ugr75johqiy")
+const OCT_1_33_CELESTE_D_1 = preload("uid://bso0iajl0cgt1")
+const OCT_1_34_CELESTE_E_1 = preload("uid://8thoplqkkpbk")
+const OCT_1_35_CELESTE_F_1 = preload("uid://b0lql3mp865rf")
+const OCT_1_36_CELESTE_F_1 = preload("uid://clnj0ghelpr1f")
+const OCT_1_37_CELESTE_G_1 = preload("uid://c8n7dn317mqk6")
+const OCT_1_38_CELESTE_G_1 = preload("uid://b41n1m1no8oit")
+const OCT_1_39_CELESTE_A_1 = preload("uid://coqr3bncau662")
+const OCT_1_40_CELESTE_A_1 = preload("uid://k1iudb7tv1xc")
+const OCT_1_41_CELESTE_B_1 = preload("uid://82207crsxalv")
+const OCT_1_CELESTE_C_1 = preload("uid://dkjget8ij7k2a")
+const OCT_2_43_CELESTE_C_2 = preload("uid://d1khl1ron3nkb")
+const OCT_2_44_CELESTE_C_2 = preload("uid://cugopm3i1kuvm")
+const OCT_2_45_CELESTE_D_2 = preload("uid://bvt5ql4ypbhvj")
+const OCT_2_46_CELESTE_D_2 = preload("uid://dehcwy81jyk1l")
+const OCT_2_47_CELESTE_E_2 = preload("uid://byv5225wwb6cl")
+const OCT_2_48_CELESTE_F_2 = preload("uid://bevmw4gqd1po6")
+const OCT_2_49_CELESTE_F_2 = preload("uid://dbuc3tpr06own")
+const OCT_2_50_CELESTE_G_2 = preload("uid://cmlsdlgbnxcsm")
+const OCT_2_51_CELESTE_G_2 = preload("uid://mkq8ck68rjnk")
+const OCT_2_52_CELESTE_A_2 = preload("uid://bej0rytceule0")
+const OCT_2_53_CELESTE_A_2 = preload("uid://d01spd7mcl5xf")
+const OCT_2_54_CELESTE_B_2 = preload("uid://bc6fwd15f616m")
+const OCT_2_55_CELESTE_C_3 = preload("uid://b82ipfy2krl2r")
 
 @onready var automator: AnimationPlayer = $Automator
 @onready var game: Parallax2D = %Game
@@ -58,8 +83,12 @@ func _on_loitering_state_entered() -> void:
 	get_tree().create_timer(wait_length).timeout.connect(_buzz_spidey)
 
 func _on_enticing_state_entered() -> void:
-	#$BuzzTrack.play()
-	pass
+	var player = AudioStreamPlayer2D.new()
+	add_child(player)
+	player.stream = OCT_2_48_CELESTE_F_2
+	player.global_position = $Game/Prey/Container.get_child(0).global_position
+	player.finished.connect(player.queue_free)
+	player.play()
 
 func _on_trapping_state_entered() -> void:
 	pass # Replace with function body.
