@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Spidey
 
-@export var move_speed: float = 100
+@export var move_speed: float = 120
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
 @onready var anim_player = $AnimationPlayer
@@ -651,6 +651,7 @@ func _jump():
 		velocity.y = -jumpMagnitude
 		jumpCount += -1
 		jumpWasPressed = false
+		$AnimationPlayer.play_with_capture("jump_shadow_%d" % (jumps - jumpCount), 0.1)
 		
 func _wallJump():
 	var horizontalWallKick = abs(jumpMagnitude * cos(wallKickAngle * (PI / 180)))
@@ -728,11 +729,13 @@ func _on_web_state_input(event: InputEvent) -> void:
 
 func _on_web_state_entered() -> void:
 	$Sprite2D.show()
+	$AnimationPlayer.play_with_capture("RESET")
 	$AnimatedSprite2D.hide()
 	collision_layer = 1
 
 
 func _on_jumping_state_entered() -> void:
+	$AnimationPlayer.play_with_capture("jump_shadow", 0)
 	$AnimatedSprite2D.show()
 	$Sprite2D.hide()
 	collision_layer = 2

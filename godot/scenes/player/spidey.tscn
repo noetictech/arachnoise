@@ -38,6 +38,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShadowNode/Shadow:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32, -32)]
+}
 
 [sub_resource type="Animation" id="Animation_vnujn"]
 resource_name = "idle"
@@ -55,6 +67,54 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2i(0, 1), Vector2i(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1oeeq"]
+resource_name = "jump_shadow_1"
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShadowNode/Shadow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.22613235, 0.4363024, 0.65711397),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-32, -32), Vector2(-28, -16), Vector2(-24, 0), Vector2(-20, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_my27l"]
+resource_name = "jump_shadow_2"
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShadowNode/Shadow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.22613235, 0.4363024, 0.65711397),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-32, -32), Vector2(-28, -16), Vector2(-24, 0), Vector2(-20, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_371o6"]
+resource_name = "jump_shadow_3"
+step = 0.16666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShadowNode/Shadow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.22613235, 0.4363024, 0.65711397),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-32, -32), Vector2(-28, -16), Vector2(-24, 0), Vector2(-20, 16)]
 }
 
 [sub_resource type="Animation" id="Animation_6e28j"]
@@ -79,6 +139,9 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_s6tvk"),
 &"idle": SubResource("Animation_vnujn"),
+&"jump_shadow_1": SubResource("Animation_1oeeq"),
+&"jump_shadow_2": SubResource("Animation_my27l"),
+&"jump_shadow_3": SubResource("Animation_371o6"),
 &"walk": SubResource("Animation_6e28j")
 }
 
@@ -101,6 +164,10 @@ states/walk/node = SubResource("AnimationNodeAnimation_vnujn")
 states/walk/position = Vector2(319.7143, 104)
 transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_s6tvk"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_6e28j"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_nkwvm")]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7t86"]
+atlas = ExtResource("8_1oeeq")
+region = Rect2(0, 106, 32, 53)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_my27l"]
 atlas = ExtResource("2_vnujn")
 region = Rect2(0, 32, 32, 32)
@@ -108,10 +175,6 @@ region = Rect2(0, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_371o6"]
 atlas = ExtResource("2_vnujn")
 region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f7j1b"]
-atlas = ExtResource("8_1oeeq")
-region = Rect2(0, 106, 32, 53)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_caf5e"]
 atlas = ExtResource("8_1oeeq")
@@ -138,6 +201,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_s7t86")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_my27l")
 }, {
 "duration": 1.0,
@@ -148,9 +219,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f7j1b")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_caf5e")
 }],
@@ -179,6 +247,7 @@ script = ExtResource("1_vnujn")
 state_chart = NodePath("Gestalt")
 PlayerSprite = NodePath("AnimatedSprite2D")
 PlayerCollider = NodePath("CollisionShape2D2")
+maxSpeed = 240.0
 jumpHeight = 4.0
 jumps = 3
 gravityScale = 12.0
@@ -192,25 +261,28 @@ groundPound = true
 jump = true
 idle = true
 walk = true
+falling = true
 
 [node name="Halo" type="TextureRect" parent="." unique_id=335311381]
 modulate = Color(1, 1, 1, 0.827451)
 self_modulate = Color(0.875407, 0.69987595, 0.3548132, 0.29411766)
-offset_left = 17.763817
-offset_top = 8.675724
-offset_right = 81.76382
-offset_bottom = 72.67572
-scale = Vector2(2.8088095, 2.8088095)
+offset_left = 61.0
+offset_top = 30.0
+offset_right = 125.0
+offset_bottom = 94.0
+scale = Vector2(4, 4)
 pivot_offset = Vector2(64, 54)
 texture = SubResource("GradientTexture2D_woxmh")
 
-[node name="Shadow" type="TextureRect" parent="." unique_id=1688990588]
+[node name="ShadowNode" type="Node2D" parent="." unique_id=734367337]
+
+[node name="Shadow" type="TextureRect" parent="ShadowNode" unique_id=1688990588]
 modulate = Color(1, 1, 1, 0.9254902)
 self_modulate = Color(0.324789, 0.21909785, 0.1184719, 0.5921569)
-offset_left = -31.0
-offset_top = -30.0
-offset_right = 33.0
-offset_bottom = 34.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 scale = Vector2(0.9502735, 0.9502735)
 pivot_offset = Vector2(64, 54)
 texture = SubResource("GradientTexture2D_woxmh")
@@ -230,6 +302,7 @@ shape = SubResource("CircleShape2D_bcyx4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1122754271]
 libraries/ = SubResource("AnimationLibrary_nkwvm")
+playback_auto_capture_duration = 1.0
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1641555617]
 tree_root = SubResource("AnimationNodeStateMachine_wr2nf")

@@ -132,10 +132,22 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PhantomCamera2D/CanvasLayer/Vignette:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_wbfu4"]
 resource_name = "fade_in"
-length = 15.066667
+length = 20.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -231,6 +243,18 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("PhantomCamera2D/CanvasLayer/Vignette:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(14.685099, 19.362354),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.6509804)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xkndl"]
@@ -594,6 +618,17 @@ script = ExtResource("10_gwjdr")
 duration = 3.0
 transition = 7
 
+[sub_resource type="Gradient" id="Gradient_si8k2"]
+colors = PackedColorArray(0, 0, 0, 0, 0.122595735, 0.12259575, 0.122595705, 0.654902)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4tgpc"]
+gradient = SubResource("Gradient_si8k2")
+width = 640
+height = 640
+fill = 1
+fill_from = Vector2(0.5130041, 0.53941303)
+fill_to = Vector2(0.5246561, 0.10954193)
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_202ut"]
 streams_count = 12
 stream_0/stream = ExtResource("12_0mevm")
@@ -679,7 +714,8 @@ position = Vector2(-1, -1442)
 [node name="Camera2D" type="Camera2D" parent="Game/Title" unique_id=1624204100]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(1280, 720)
+position = Vector2(1318, 731)
+zoom = Vector2(1.8, 1.8)
 limit_left = 0
 limit_top = 0
 limit_right = 2560
@@ -826,7 +862,8 @@ collision_layer = 1
 [node name="Camera" type="Camera2D" parent="Game/Spidey" unique_id=706635895]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(1280, 720)
+position = Vector2(1318, 731)
+zoom = Vector2(1.8, 1.8)
 limit_left = 0
 limit_top = 0
 limit_right = 2560
@@ -874,6 +911,22 @@ limit_top = 0
 limit_right = 2560
 limit_bottom = 1440
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="PhantomCamera2D" unique_id=2000708765]
+
+[node name="Vignette" type="TextureRect" parent="PhantomCamera2D/CanvasLayer" unique_id=1903592498]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -22.0
+offset_right = 12.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("GradientTexture2D_4tgpc")
 
 [node name="TitleCamera2D" type="Node2D" parent="." unique_id=1757548155 node_paths=PackedStringArray("follow_target")]
 top_level = true
