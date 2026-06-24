@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PhantomCameraManager="*uid://duq6jhf6unyis"
 ChimePlayer="*uid://drxvp0xm37c8l"
 MidiInputManager="*uid://slibxftlqvr5"
+MidiMovementController="*uid://4ujadtb5h0oc"
 
 [display]
 

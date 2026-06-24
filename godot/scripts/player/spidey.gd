@@ -10,9 +10,9 @@ class_name Spidey
 @onready var animated_sprite_2d: AnimatedSprite2D = %AnimatedSprite2D
 
 var input_direction: Vector2 = Vector2.ZERO
+var midi_direction: Vector2 = Vector2.ZERO
 var current_state: String = ""
 var mode_switching: bool = false
-
 
 func pick_new_state():
 	var new_state = "walk" if input_direction != Vector2.ZERO else "idle"
@@ -21,150 +21,97 @@ func pick_new_state():
 		state_machine.travel(new_state)
 
 func _on_web_state_physics_processing(delta: float) -> void:
-	
-	input_direction = Vector2(
+	var keyboard_dir := Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	).normalized()
-	
-	
+	)
+
+	# Combine keyboard and MIDI — keyboard is binary 0/1, MIDI carries magnitude
+	# Prefer whichever is non-zero; if both, sum and clamp length to 1
+	var combined := keyboard_dir + midi_direction
+	if combined.length() > 1.0:
+		combined = combined.normalized()
+	input_direction = combined
+
 	velocity = input_direction * move_speed
-	
+
 	if not velocity.is_zero_approx():
 		$AnimatedSprite2D.play("walk")
 		if abs(input_direction.x) > 0.3:
-			if input_direction.x > 0:
-				$AnimatedSprite2D.flip_h = true
-			elif input_direction.x < 0:
-				$AnimatedSprite2D.flip_h = false
-				
+			$AnimatedSprite2D.flip_h = input_direction.x > 0
 		if abs(input_direction.y) > 0.3:
-			if input_direction.y > 0:
-				$AnimatedSprite2D.flip_v = false
-			elif input_direction.y < 0:
-				$AnimatedSprite2D.flip_v = true
+			$AnimatedSprite2D.flip_v = input_direction.y >= 0
 	else:
 		$AnimatedSprite2D.play("idle")
-		
+
 	move_and_slide()
 	pick_new_state()
-	
 
-@export var README: String = "IMPORTANT: MAKE SURE TO ASSIGN 'left' 'right' 'jump' 'dash' 'up' 'down' in the project settings input map. Usage tips. 1. Hover over each toggle and variable to read what it does and to make sure nothing bugs. 2. Animations are very primitive. To make full use of your custom art, you may want to slightly change the code for the animations"
-#INFO READEME 
-#IMPORTANT: MAKE SURE TO ASSIGN 'left' 'right' 'jump' 'dash' 'up' 'down' in the project settings input map. THIS IS REQUIRED
-#Usage tips. 
-#1. Hover over each toggle and variable to read what it does and to make sure nothing bugs. 
-#2. Animations are very primitive. To make full use of your custom art, you may want to slightly change the code for the animations
+
+@export var README: String = "IMPORTANT: MAKE SURE TO ASSIGN 'left' 'right' 'jump' 'dash' 'up' 'down' in the project settings input map."
 
 @export_category("Necesary Child Nodes")
 @export var PlayerSprite: AnimatedSprite2D
 @export var PlayerCollider: CollisionShape2D
 
-#INFO HORIZONTAL MOVEMENT 
 @export_category("L/R Movement")
-##The max speed your player will move
 @export_range(50, 500) var maxSpeed: float = 200.0
-##How fast your player will reach max speed from rest (in seconds)
 @export_range(0, 4) var timeToReachMaxSpeed: float = 0.2
-##How fast your player will reach zero speed from max speed (in seconds)
 @export_range(0, 4) var timeToReachZeroSpeed: float = 0.2
-##If true, player will instantly move and switch directions. Overrides the "timeToReach" variables, setting them to 0.
 @export var directionalSnap: bool = false
-##If enabled, the default movement speed will by 1/2 of the maxSpeed and the player must hold a "run" button to accelerate to max speed. Assign "run" (case sensitive) in the project input settings.
 @export var runningModifier: bool = false
 
-#INFO JUMPING 
 @export_category("Jumping and Gravity")
-##The peak height of your player's jump
 @export_range(0, 20) var jumpHeight: float = 2.0
-##How many jumps your character can do before needing to touch the ground again. Giving more than 1 jump disables jump buffering and coyote time.
 @export_range(0, 4) var jumps: int = 1
-##The strength at which your character will be pulled to the ground.
 @export_range(0, 100) var gravityScale: float = 20.0
-##The fastest your player can fall
 @export_range(0, 1000) var terminalVelocity: float = 500.0
-##Your player will move this amount faster when falling providing a less floaty jump curve.
 @export_range(0.5, 3) var descendingGravityFactor: float = 1.3
-##Enabling this toggle makes it so that when the player releases the jump key while still ascending, their vertical velocity will cut in half, providing variable jump height.
 @export var shortHopAkaVariableJumpHeight: bool = true
-##How much extra time (in seconds) your player will be given to jump after falling off an edge. This is set to 0.2 seconds by default.
 @export_range(0, 0.5) var coyoteTime: float = 0.2
-##The window of time (in seconds) that your player can press the jump button before hitting the ground and still have their input registered as a jump. This is set to 0.2 seconds by default.
 @export_range(0, 0.5) var jumpBuffering: float = 0.2
 
-#INFO EXTRAS
 @export_category("Wall Jumping")
-##Allows your player to jump off of walls. Without a Wall Kick Angle, the player will be able to scale the wall.
 @export var wallJump: bool = false
-##How long the player's movement input will be ignored after wall jumping.
 @export_range(0, 0.5) var inputPauseAfterWallJump: float = 0.1
-##The angle at which your player will jump away from the wall. 0 is straight away from the wall, 90 is straight up. Does not account for gravity
 @export_range(0, 90) var wallKickAngle: float = 60.0
-##The player's gravity will be divided by this number when touch a wall and descending. Set to 1 by default meaning no change will be made to the gravity and there is effectively no wall sliding. THIS IS OVERRIDDED BY WALL LATCH.
 @export_range(1, 20) var wallSliding: float = 1.0
-##If enabled, the player's gravity will be set to 0 when touching a wall and descending. THIS WILL OVERRIDE WALLSLIDING.
 @export var wallLatching: bool = false
-##wall latching must be enabled for this to work. #If enabled, the player must hold down the "latch" key to wall latch. Assign "latch" in the project input settings. The player's input will be ignored when latching.
 @export var wallLatchingModifer: bool = false
+
 @export_category("Dashing")
-##The type of dashes the player can do.
 @export_enum("None", "Horizontal", "Vertical", "Four Way", "Eight Way") var dashType: int
-##How many dashes your player can do before needing to hit the ground.
 @export_range(0, 10) var dashes: int = 1
-##If enabled, pressing the opposite direction of a dash, during a dash, will zero the player's velocity.
 @export var dashCancel: bool = true
-##How far the player will dash. One of the dashing toggles must be on for this to be used.
 @export_range(1.5, 4) var dashLength: float = 2.5
+
 @export_category("Corner Cutting/Jump Correct")
-##If the player's head is blocked by a jump but only by a little, the player will be nudged in the right direction and their jump will execute as intended. NEEDS RAYCASTS TO BE ATTACHED TO THE PLAYER NODE. AND ASSIGNED TO MOUNTING RAYCAST. DISTANCE OF MOUNTING DETERMINED BY PLACEMENT OF RAYCAST.
 @export var cornerCutting: bool = false
-##How many pixels the player will be pushed (per frame) if corner cutting is needed to correct a jump.
 @export_range(1, 5) var correctionAmount: float = 1.5
-##Raycast used for corner cutting calculations. Place above and to the left of the players head point up. ALL ARE NEEDED FOR IT TO WORK.
 @export var leftRaycast: RayCast2D
-##Raycast used for corner cutting calculations. Place above of the players head point up. ALL ARE NEEDED FOR IT TO WORK.
 @export var middleRaycast: RayCast2D
-##Raycast used for corner cutting calculations. Place above and to the right of the players head point up. ALL ARE NEEDED FOR IT TO WORK.
 @export var rightRaycast: RayCast2D
+
 @export_category("Down Input")
-##Holding down will crouch the player. Crouching script may need to be changed depending on how your player's size proportions are. It is built for 32x player's sprites.
 @export var crouch: bool = false
-##Holding down and pressing the input for "roll" will execute a roll if the player is grounded. Assign a "roll" input in project settings input.
 @export var canRoll: bool
 @export_range(1.25, 2) var rollLength: float = 2
-##If enabled, the player will stop all horizontal movement midair, wait (groundPoundPause) seconds, and then slam down into the ground when down is pressed. 
 @export var groundPound: bool
-##The amount of time the player will hover in the air before completing a ground pound (in seconds)
 @export_range(0.05, 0.75) var groundPoundPause: float = 0.25
-##If enabled, pressing up will end the ground pound early
 @export var upToCancel: bool = false
 
 @export_category("Animations (Check Box if has animation)")
-##Animations must be named "run" all lowercase as the check box says
 @export var run: bool
-##Animations must be named "jump" all lowercase as the check box says
 @export var jump: bool
-##Animations must be named "idle" all lowercase as the check box says
 @export var idle: bool
-##Animations must be named "walk" all lowercase as the check box says
 @export var walk: bool
-##Animations must be named "slide" all lowercase as the check box says
 @export var slide: bool
-##Animations must be named "latch" all lowercase as the check box says
 @export var latch: bool
-##Animations must be named "falling" all lowercase as the check box says
 @export var falling: bool
-##Animations must be named "crouch_idle" all lowercase as the check box says
 @export var crouch_idle: bool
-##Animations must be named "crouch_walk" all lowercase as the check box says
 @export var crouch_walk: bool
-##Animations must be named "roll" all lowercase as the check box says
 @export var roll: bool
 
-
-
-#Variables determined by the developer set ones.
 var appliedGravity: float
 var maxSpeedLock: float
 var appliedTerminalVelocity: float
@@ -191,10 +138,9 @@ var eightWayDash
 
 var wasMovingR: bool
 var wasPressingR: bool
-var movementInputMonitoring: Vector2 = Vector2(true, true) #movementInputMonitoring.x addresses right direction while .y addresses left direction
+var movementInputMonitoring: Vector2 = Vector2(true, true)
 
 var gdelta: float = 1
-
 var dset = false
 
 var colliderScaleLockY
@@ -207,9 +153,8 @@ var groundPounding
 
 var anim
 var col
-var animScaleLock : Vector2
+var animScaleLock: Vector2
 
-#Input Variables for the whole script
 var upHold
 var downHold
 var leftHold
@@ -231,25 +176,38 @@ func _ready():
 	wasMovingR = true
 	anim = PlayerSprite
 	col = PlayerCollider
-	
+	MidiMovementController.movement_vector_changed.connect(_on_move)
+	MidiMovementController.mode_changed.connect(_on_mode_change)
+
+	MidiMovementController.build_angles(90.0, -30.0)
+	MidiMovementController.print_angle_table()
+	MidiMovementController.toggle_linear_mode()
+	MidiInputManager.pad_hit.connect(func(idx, _vel):
+		if idx == 1: MidiMovementController.toggle_linear_mode())
 	_updateData()
+
+func _on_mode_change(mode: int):
+	print("Changing modes %s" % mode)
 	
+func _on_move(vec: Vector2):
+	midi_direction = vec * 2
+
 func _updateData():
 	acceleration = maxSpeed / timeToReachMaxSpeed
 	deceleration = -maxSpeed / timeToReachZeroSpeed
-	
+
 	jumpMagnitude = (10.0 * jumpHeight) * gravityScale
 	jumpCount = jumps
-	
+
 	dashMagnitude = maxSpeed * dashLength
 	dashCount = dashes
-	
+
 	maxSpeedLock = maxSpeed
-	
+
 	animScaleLock = abs(anim.scale)
 	colliderScaleLockY = col.scale.y
 	colliderPosLockY = col.position.y
-	
+
 	if timeToReachMaxSpeed == 0:
 		instantAccel = true
 		timeToReachMaxSpeed = 1
@@ -258,7 +216,7 @@ func _updateData():
 		instantAccel = false
 	else:
 		instantAccel = false
-		
+
 	if timeToReachZeroSpeed == 0:
 		instantStop = true
 		timeToReachZeroSpeed = 1
@@ -267,24 +225,21 @@ func _updateData():
 		instantStop = false
 	else:
 		instantStop = false
-		
+
 	if jumps > 1:
 		jumpBuffering = 0
 		coyoteTime = 0
-	
+
 	coyoteTime = abs(coyoteTime)
 	jumpBuffering = abs(jumpBuffering)
-	
+
 	if directionalSnap:
 		instantAccel = true
 		instantStop = true
-	
-	
+
 	twoWayDashHorizontal = false
 	twoWayDashVertical = false
 	eightWayDash = false
-	if dashType == 0:
-		pass
 	if dashType == 1:
 		twoWayDashHorizontal = true
 	elif dashType == 2:
@@ -294,12 +249,9 @@ func _updateData():
 		twoWayDashVertical = true
 	elif dashType == 4:
 		eightWayDash = true
-	
-	
 
-func _on_jumping_state_processing(delta: float) -> void:
-	#INFO animations
-	#directions
+
+func _on_jumping_state_processing(_delta: float) -> void:
 	if is_on_wall() and !_is_on_floor() and latch and wallLatching and ((wallLatchingModifer and latchHold) or !wallLatchingModifer):
 		latched = true
 	else:
@@ -311,8 +263,7 @@ func _on_jumping_state_processing(delta: float) -> void:
 		anim.scale.x = animScaleLock.x * -1
 	if leftHold and !latched:
 		anim.scale.x = animScaleLock.x
-	
-	#run
+
 	if run and idle and !dashing and !crouching:
 		if abs(velocity.x) > 0.1 and _is_on_floor() and !is_on_wall():
 			anim.speed_scale = abs(velocity.x / 150)
@@ -323,65 +274,45 @@ func _on_jumping_state_processing(delta: float) -> void:
 	elif run and idle and walk and !dashing and !crouching:
 		if abs(velocity.x) > 0.1 and _is_on_floor() and !is_on_wall():
 			anim.speed_scale = abs(velocity.x / 150)
-			if abs(velocity.x) < (maxSpeedLock):
-				anim.play("walk")
-			else:
-				anim.play("run")
+			anim.play("walk" if abs(velocity.x) < maxSpeedLock else "run")
 		elif abs(velocity.x) < 0.1 and _is_on_floor():
 			anim.speed_scale = 1
 			anim.play("idle")
-		
-	#jump
+
 	if velocity.y < 0 and jump and !dashing:
 		anim.speed_scale = 1
 		anim.play("jump")
-		$ShadowPlayer.play("player_anims/jump_shadow_%d" % (jumpCount+1))
-		print("Playing ", "player_anims/jump_shadow_%d" % (jumpCount+1))
-		
+		$ShadowPlayer.play("player_anims/jump_shadow_%d" % (jumpCount + 1))
+
 	if velocity.y > 40 and falling and !dashing and !crouching:
 		anim.speed_scale = 1
 		anim.play("falling")
 		$AnimatedSprite2D.flip_v = false
 		$ShadowPlayer.play("player_anims/jump_shadow_1")
-		print("Playing ", "player_anims/jump_shadow_1")
-		
+
 	if latch and slide:
-		#wall slide and latch
 		if latched and !wasLatched:
 			anim.speed_scale = 1
 			anim.play("latch")
 		if is_on_wall() and velocity.y > 0 and slide and anim.animation != "slide" and wallSliding != 1:
 			anim.speed_scale = 1
 			anim.play("slide")
-			
-		#dash
 		if dashing:
 			anim.speed_scale = 1
 			anim.play("dash")
-			
-		#crouch
 		if crouching and !rolling:
-			if abs(velocity.x) > 10:
-				anim.speed_scale = 1
-				anim.play("crouch_walk")
-			else:
-				anim.speed_scale = 1
-				anim.play("crouch_idle")
-		
+			anim.speed_scale = 1
+			anim.play("crouch_walk" if abs(velocity.x) > 10 else "crouch_idle")
 		if rollTap and canRoll and roll:
 			anim.speed_scale = 1
 			anim.play("roll")
-		
-		
-		
+
 
 func _on_jumping_state_physics_processing(delta: float) -> void:
 	if !dset:
 		gdelta = delta
 		dset = true
-		
-	
-	#INFO Input Detectio. Define your inputs from the project settings here.
+
 	leftHold = Input.is_action_pressed("ui_left")
 	rightHold = Input.is_action_pressed("ui_right")
 	upHold = Input.is_action_pressed("ui_up")
@@ -391,19 +322,24 @@ func _on_jumping_state_physics_processing(delta: float) -> void:
 	leftRelease = Input.is_action_just_released("ui_left")
 	rightRelease = Input.is_action_just_released("ui_right")
 	jumpTap = mode_switching or Input.is_action_just_pressed("jump")
-	jumpRelease =  Input.is_action_just_released("jump")
+	jumpRelease = Input.is_action_just_released("jump")
 	runHold = Input.is_action_pressed("run")
 	latchHold = Input.is_action_pressed("latch")
 	dashTap = Input.is_action_just_pressed("dash")
 	rollTap = Input.is_action_just_pressed("roll")
 	downTap = Input.is_action_just_pressed("ui_down")
 	twirlTap = Input.is_action_just_pressed("twirl")
-	
+
 	if Input.is_action_just_pressed("web_mode"):
 		$Gestalt.send_event("WebMode")
 		return
-	#INFO Left and Right Movement
-	
+
+	# Merge MIDI horizontal input with keyboard
+	if midi_direction.x > 0.3:
+		rightHold = true
+	elif midi_direction.x < -0.3:
+		leftHold = true
+
 	if rightHold and leftHold and movementInputMonitoring:
 		if !instantStop:
 			_decelerate(delta, false)
@@ -429,38 +365,37 @@ func _on_jumping_state_physics_processing(delta: float) -> void:
 				_decelerate(delta, false)
 			else:
 				velocity.x = 0.1
-				
+
 	if velocity.x > 0:
 		wasMovingR = true
 	elif velocity.x < 0:
 		wasMovingR = false
-		
+
 	if rightTap:
 		wasPressingR = true
 	if leftTap:
 		wasPressingR = false
-	
+
 	if runningModifier and !runHold:
 		maxSpeed = maxSpeedLock / 2
-	elif _is_on_floor(): 
+	elif _is_on_floor():
 		maxSpeed = maxSpeedLock
-	
+
 	if !(leftHold or rightHold):
 		if !instantStop:
 			_decelerate(delta, false)
 		else:
 			velocity.x = 0
-			
-	#INFO Crouching
+
 	if crouch:
 		if downHold and _is_on_floor():
 			crouching = true
 		elif !downHold and ((runHold and runningModifier) or !runningModifier) and !rolling:
 			crouching = false
-			
+
 	if !_is_on_floor():
 		crouching = false
-			
+
 	if crouching:
 		maxSpeed = maxSpeedLock / 2
 		col.scale.y = colliderScaleLockY / 2
@@ -469,66 +404,60 @@ func _on_jumping_state_physics_processing(delta: float) -> void:
 		maxSpeed = maxSpeedLock
 		col.scale.y = colliderScaleLockY
 		col.position.y = colliderPosLockY
-		
-	#INFO Rolling
+
 	if canRoll and _is_on_floor() and rollTap and crouching:
 		_rollingTime(0.75)
-		if wasPressingR and !(upHold):
+		if wasPressingR and !upHold:
 			velocity.y = 0
 			velocity.x = maxSpeedLock * rollLength
 			dashCount += -1
 			movementInputMonitoring = Vector2(false, false)
 			_inputPauseReset(rollLength * 0.0625)
-		elif !(upHold):
+		elif !upHold:
 			velocity.y = 0
 			velocity.x = -maxSpeedLock * rollLength
 			dashCount += -1
 			movementInputMonitoring = Vector2(false, false)
 			_inputPauseReset(rollLength * 0.0625)
-		
+
 	if canRoll and rolling:
-		#if you want your player to become immune or do something else while rolling, add that here.
 		pass
-			
-	#INFO Jump and Gravity
+
 	if velocity.y > 0:
 		appliedGravity = gravityScale * descendingGravityFactor
 	else:
 		appliedGravity = gravityScale
-	
+
 	if is_on_wall() and !groundPounding:
 		appliedTerminalVelocity = terminalVelocity / wallSliding
 		if wallLatching and ((wallLatchingModifer and latchHold) or !wallLatchingModifer):
 			appliedGravity = 0
-			
 			if velocity.y < 0:
 				velocity.y += 50
 			if velocity.y > 0:
 				velocity.y = 0
-				
 			if wallLatchingModifer and latchHold and movementInputMonitoring == Vector2(true, true):
 				velocity.x = 0
-			
 		elif wallSliding != 1 and velocity.y > 0:
 			appliedGravity = appliedGravity / wallSliding
 	elif !is_on_wall() and !groundPounding:
 		appliedTerminalVelocity = terminalVelocity
-	
+
 	if gravityActive:
 		if velocity.y < appliedTerminalVelocity:
 			velocity.y += appliedGravity
 		elif velocity.y > appliedTerminalVelocity:
-				velocity.y = appliedTerminalVelocity
-		
+			velocity.y = appliedTerminalVelocity
+
 	if shortHopAkaVariableJumpHeight and jumpRelease and velocity.y < 0:
 		velocity.y = velocity.y / 2
-	
+
 	if jumps == 1:
 		if !_is_on_floor() and !is_on_wall():
 			if coyoteTime > 0:
 				coyoteActive = true
 				_coyoteTime()
-				
+
 		if jumpTap and !is_on_wall():
 			if coyoteActive:
 				coyoteActive = false
@@ -537,7 +466,7 @@ func _on_jumping_state_physics_processing(delta: float) -> void:
 				jumpWasPressed = true
 				_bufferJump()
 			elif jumpBuffering == 0 and coyoteTime == 0 and _is_on_floor():
-				_jump()	
+				_jump()
 		elif jumpTap and is_on_wall() and !_is_on_floor():
 			if wallJump and !latched:
 				_wallJump()
@@ -545,9 +474,7 @@ func _on_jumping_state_physics_processing(delta: float) -> void:
 				_wallJump()
 		elif jumpTap and _is_on_floor():
 			_jump()
-		
-		
-			
+
 		if _is_on_floor():
 			jumpCount = jumps
 			coyoteActive = true
@@ -563,24 +490,25 @@ func _on_jumping_state_physics_processing(delta: float) -> void:
 			_endGroundPound()
 		elif jumpTap and is_on_wall() and wallJump:
 			_wallJump()
-			
-	#INFO dashing
+
 	if _is_on_floor():
 		dashCount = dashes
+
 	if eightWayDash and dashTap and dashCount > 0 and !rolling:
-		var input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-		var dTime = 0.0625 * dashLength
+		# Use MIDI direction if active, else keyboard
+		var dash_dir := midi_direction if midi_direction.length() > 0.1 else Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		var dTime := 0.0625 * dashLength
 		_dashingTime(dTime)
 		_pauseGravity(dTime)
-		velocity = dashMagnitude * input_direction
+		velocity = dashMagnitude * dash_dir
 		dashCount += -1
 		movementInputMonitoring = Vector2(false, false)
 		_inputPauseReset(dTime)
-	
+
 	if twoWayDashVertical and dashTap and dashCount > 0 and !rolling:
-		var dTime = 0.0625 * dashLength
+		var dTime := 0.0625 * dashLength
 		if upHold and downHold:
-			_placeHolder()
+			pass
 		elif upHold:
 			_dashingTime(dTime)
 			_pauseGravity(dTime)
@@ -597,9 +525,9 @@ func _on_jumping_state_physics_processing(delta: float) -> void:
 			dashCount += -1
 			movementInputMonitoring = Vector2(false, false)
 			_inputPauseReset(dTime)
-	
+
 	if twoWayDashHorizontal and dashTap and dashCount > 0 and !rolling:
-		var dTime = 0.0625 * dashLength
+		var dTime := 0.0625 * dashLength
 		if wasPressingR and !(upHold or downHold):
 			velocity.y = 0
 			velocity.x = dashMagnitude
@@ -616,20 +544,18 @@ func _on_jumping_state_physics_processing(delta: float) -> void:
 			dashCount += -1
 			movementInputMonitoring = Vector2(false, false)
 			_inputPauseReset(dTime)
-			
+
 	if dashing and velocity.x > 0 and leftTap and dashCancel:
 		velocity.x = 0
 	if dashing and velocity.x < 0 and rightTap and dashCancel:
 		velocity.x = 0
-	
-	#INFO Corner Cutting
+
 	if cornerCutting:
 		if velocity.y < 0 and leftRaycast.is_colliding() and !rightRaycast.is_colliding() and !middleRaycast.is_colliding():
 			position.x += correctionAmount
 		if velocity.y < 0 and !leftRaycast.is_colliding() and rightRaycast.is_colliding() and !middleRaycast.is_colliding():
 			position.x -= correctionAmount
-			
-	#INFO Ground Pound
+
 	if groundPound and downTap and !_is_on_floor() and !is_on_wall():
 		groundPounding = true
 		gravityActive = false
@@ -638,12 +564,14 @@ func _on_jumping_state_physics_processing(delta: float) -> void:
 		_groundPound()
 	if _is_on_floor() and groundPounding:
 		_endGroundPound()
+
 	move_and_slide()
 	mode_switching = false
-	
+
 	if upToCancel and upHold and groundPound:
 		_endGroundPound()
-	
+
+
 func _bufferJump():
 	await get_tree().create_timer(jumpBuffering).timeout
 	jumpWasPressed = false
@@ -653,40 +581,30 @@ func _coyoteTime():
 	coyoteActive = false
 	jumpCount += -1
 
-		
 func _jump():
-	print("Jumpin...")
 	if jumpCount > 0:
 		velocity.y = -jumpMagnitude
 		jumpCount += -1
 		jumpWasPressed = false
-		$AnimationPlayer.play("jump_shadow_%d" % (jumpCount+1))
-		print("Playing ", "jump_shadow_%d" % (jumpCount+1))
-		
+		$AnimationPlayer.play("jump_shadow_%d" % (jumpCount + 1))
+
 func _wallJump():
-	print("wallJumpin...")
 	var horizontalWallKick = abs(jumpMagnitude * cos(wallKickAngle * (PI / 180)))
 	var verticalWallKick = abs(jumpMagnitude * sin(wallKickAngle * (PI / 180)))
 	velocity.y = -verticalWallKick
-	var dir = 1
-	if wallLatchingModifer and latchHold:
-		dir = -1
-	if wasMovingR:
-		velocity.x = -horizontalWallKick  * dir
-	else:
-		velocity.x = horizontalWallKick * dir
+	var dir := -1 if wallLatchingModifer and latchHold else 1
+	velocity.x = -horizontalWallKick * dir if wasMovingR else horizontalWallKick * dir
 	if inputPauseAfterWallJump != 0:
 		movementInputMonitoring = Vector2(false, false)
 		_inputPauseReset(inputPauseAfterWallJump)
-			
+
 func _setLatch(delay, setBool):
 	await get_tree().create_timer(delay).timeout
 	wasLatched = setBool
-			
+
 func _inputPauseReset(time):
 	await get_tree().create_timer(time).timeout
 	movementInputMonitoring = Vector2(true, true)
-	
 
 func _decelerate(delta, vertical):
 	if !vertical:
@@ -696,7 +614,6 @@ func _decelerate(delta, vertical):
 			velocity.x -= deceleration * delta
 	elif vertical and velocity.y > 0:
 		velocity.y += deceleration * delta
-
 
 func _pauseGravity(time):
 	gravityActive = false
@@ -711,48 +628,37 @@ func _dashingTime(time):
 func _rollingTime(time):
 	rolling = true
 	await get_tree().create_timer(time).timeout
-	rolling = false	
+	rolling = false
 
 func _groundPound():
 	appliedTerminalVelocity = terminalVelocity * 10
 	velocity.y = jumpMagnitude * 2
-	
+
 func _endGroundPound():
 	groundPounding = false
 	appliedTerminalVelocity = terminalVelocity
 	gravityActive = true
 
 func _placeHolder():
-	print("")
-
+	pass
 
 func _is_on_floor() -> bool:
-	if not mode_switching:
-		return is_on_floor()
-	else:
-		return true
-	
+	return true if mode_switching else is_on_floor()
+
 func _on_web_state_input(event: InputEvent) -> void:
 	if event.is_action("jump"):
 		mode_switching = true
 		$Gestalt.send_event("Jump")
 
-
 func _on_web_state_entered() -> void:
-	#$Sprite2D.show()
 	$AnimationPlayer.play_with_capture("RESET")
 	$ShadowPlayer.play_with_capture("RESET")
 	$ShadowNode/JumpShadow.hide()
 	$ShadowNode/Shadow.show()
-	#$AnimatedSprite2D.hide()
 	collision_layer = 1
 
-
 func _on_jumping_state_entered() -> void:
-	#$AnimatedSprite2D.show()
 	$ShadowNode/JumpShadow.show()
 	$ShadowNode/Shadow.hide()
-
 	$ShadowPlayer.play_with_capture("jump_shadow_1", 0.2)
-	#$Sprite2D.hide()
 	collision_layer = 2

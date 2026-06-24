@@ -56,6 +56,7 @@ const notes = [
 # This gives us a sequence to follow for each 'prey'
 
 func _ready() -> void:
+	MidiInputManager._ready()
 	$Automator.play("fade_in")
 	$Ambience.finished.connect(func(): $Ambience.play())
 	MidiInputManager.note_on.connect(_on_note_on)
