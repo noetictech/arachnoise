@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="4_wr2nf"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="5_nkwvm"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_woxmh"]
-[ext_resource type="Texture2D" uid="uid://d0axjvynj7har" path="res://assets/spideranimlarge.png" id="8_1oeeq"]
+[ext_resource type="Texture2D" uid="uid://dmbsader58lv2" path="res://assets/sprites/spidey/spider-sprite-sheet-dark.png" id="10_371o6"]
 
 [sub_resource type="Gradient" id="Gradient_kshvn"]
 interpolation_mode = 2
@@ -165,33 +165,33 @@ states/walk/node = SubResource("AnimationNodeAnimation_vnujn")
 states/walk/position = Vector2(319.7143, 104)
 transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_s6tvk"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_6e28j"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_nkwvm")]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s7t86"]
-atlas = ExtResource("8_1oeeq")
-region = Rect2(0, 106, 32, 53)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_my27l"]
-atlas = ExtResource("2_vnujn")
-region = Rect2(0, 32, 32, 32)
+atlas = ExtResource("10_371o6")
+region = Rect2(0, 98, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rr7o"]
+atlas = ExtResource("10_371o6")
+region = Rect2(0, 49, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8rlm"]
+atlas = ExtResource("10_371o6")
+region = Rect2(42, 49, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7j1b"]
+atlas = ExtResource("10_371o6")
+region = Rect2(42, 98, 42, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_371o6"]
-atlas = ExtResource("2_vnujn")
-region = Rect2(32, 32, 32, 32)
+atlas = ExtResource("10_371o6")
+region = Rect2(0, 0, 42, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_caf5e"]
-atlas = ExtResource("8_1oeeq")
-region = Rect2(32, 106, 32, 53)
+atlas = ExtResource("10_371o6")
+region = Rect2(42, 0, 42, 49)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kshvn"]
-atlas = ExtResource("2_vnujn")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_woxmh"]
-atlas = ExtResource("2_vnujn")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1oeeq"]
-atlas = ExtResource("2_vnujn")
-region = Rect2(64, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnyk3"]
+atlas = ExtResource("10_371o6")
+region = Rect2(84, 0, 42, 49)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kshvn"]
 animations = [{
@@ -202,18 +202,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s7t86")
+"texture": SubResource("AtlasTexture_my27l")
 }],
 "loop": true,
 "name": &"falling",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_my27l")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_5rr7o")
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_371o6")
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_b8rlm")
 }],
 "loop": true,
 "name": &"idle",
@@ -221,7 +221,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_caf5e")
+"texture": SubResource("AtlasTexture_f7j1b")
 }],
 "loop": false,
 "name": &"jump",
@@ -229,13 +229,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kshvn")
+"texture": SubResource("AtlasTexture_371o6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_woxmh")
+"texture": SubResource("AtlasTexture_caf5e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1oeeq")
+"texture": SubResource("AtlasTexture_fnyk3")
 }],
 "loop": true,
 "name": &"walk",
@@ -299,6 +299,7 @@ pivot_offset = Vector2(64, 54)
 texture = SubResource("GradientTexture2D_woxmh")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=368742240]
+visible = false
 texture = ExtResource("2_vnujn")
 hframes = 3
 vframes = 3
@@ -367,9 +368,8 @@ metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=123204967]
 unique_name_in_owner = true
-visible = false
 sprite_frames = SubResource("SpriteFrames_kshvn")
-animation = &"jump"
+animation = &"idle"
 
 [node name="ShadowPlayer" type="AnimationPlayer" parent="." unique_id=1290657366]
 libraries/player_anims = ExtResource("3_my27l")

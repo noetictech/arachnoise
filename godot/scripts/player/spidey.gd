@@ -31,18 +31,21 @@ func _on_web_state_physics_processing(delta: float) -> void:
 	velocity = input_direction * move_speed
 	
 	if not velocity.is_zero_approx():
+		$AnimatedSprite2D.play("walk")
 		if abs(input_direction.x) > 0.3:
 			if input_direction.x > 0:
-				$Sprite2D.flip_h = true
+				$AnimatedSprite2D.flip_h = true
 			elif input_direction.x < 0:
-				$Sprite2D.flip_h = false
+				$AnimatedSprite2D.flip_h = false
 				
 		if abs(input_direction.y) > 0.3:
 			if input_direction.y > 0:
-				$Sprite2D.flip_v = false
+				$AnimatedSprite2D.flip_v = false
 			elif input_direction.y < 0:
-				$Sprite2D.flip_v = true
-	
+				$AnimatedSprite2D.flip_v = true
+	else:
+		$AnimatedSprite2D.play("idle")
+		
 	move_and_slide()
 	pick_new_state()
 	
@@ -338,6 +341,7 @@ func _on_jumping_state_processing(delta: float) -> void:
 	if velocity.y > 40 and falling and !dashing and !crouching:
 		anim.speed_scale = 1
 		anim.play("falling")
+		$AnimatedSprite2D.flip_v = false
 		$ShadowPlayer.play("player_anims/jump_shadow_1")
 		print("Playing ", "player_anims/jump_shadow_1")
 		
@@ -735,20 +739,20 @@ func _on_web_state_input(event: InputEvent) -> void:
 
 
 func _on_web_state_entered() -> void:
-	$Sprite2D.show()
+	#$Sprite2D.show()
 	$AnimationPlayer.play_with_capture("RESET")
 	$ShadowPlayer.play_with_capture("RESET")
 	$ShadowNode/JumpShadow.hide()
 	$ShadowNode/Shadow.show()
-	$AnimatedSprite2D.hide()
+	#$AnimatedSprite2D.hide()
 	collision_layer = 1
 
 
 func _on_jumping_state_entered() -> void:
-	$AnimatedSprite2D.show()
+	#$AnimatedSprite2D.show()
 	$ShadowNode/JumpShadow.show()
 	$ShadowNode/Shadow.hide()
 
 	$ShadowPlayer.play_with_capture("jump_shadow_1", 0.2)
-	$Sprite2D.hide()
+	#$Sprite2D.hide()
 	collision_layer = 2
