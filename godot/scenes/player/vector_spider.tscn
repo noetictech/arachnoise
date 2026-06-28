@@ -3,20 +3,44 @@
 [ext_resource type="Script" uid="uid://de3jpss66xjfh" path="res://addons/curved_lines_2d/scalable_vector_shape_2d.gd" id="1_4yd52"]
 [ext_resource type="Script" uid="uid://dlbv4pit17dnu" path="res://addons/curved_lines_2d/scalable_arc.gd" id="2_m8pqf"]
 [ext_resource type="Script" uid="uid://dl1t88tthmwts" path="res://addons/curved_lines_2d/scalable_arc_list.gd" id="3_xtfs4"]
+[ext_resource type="Script" uid="uid://b2shq2gjd4fvt" path="res://addons/ropesim/Rope.gd" id="5_xtfs4"]
+[ext_resource type="Script" uid="uid://dfppmnngy2wx4" path="res://addons/ropesim/RopeRendererLine2D.gd" id="6_cektt"]
+[ext_resource type="Script" uid="uid://bkyn6gsfgjmwm" path="res://addons/simple_shadow_2d_1.0/addons/simple_shadow_2d/shadow_2d.gd" id="6_y6ddq"]
+[ext_resource type="Script" uid="uid://brklaoabvl73l" path="res://addons/ropesim/RopeAnchor.gd" id="7_u8njm"]
+[ext_resource type="Script" uid="uid://1xluodkpnre3" path="res://addons/ropesim/RopeHandle.gd" id="8_y6ddq"]
 
 [sub_resource type="Curve2D" id="Curve2D_cektt"]
 
 [sub_resource type="Resource" id="Resource_u8njm"]
 script = ExtResource("3_xtfs4")
 
-[sub_resource type="Curve2D" id="Curve2D_4yd52"]
+[sub_resource type="Curve2D" id="Curve2D_xtfs4"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 28.373774, 51.373844, 0, 28.373774, 0, -28.373774, 0, 0, 51.373844, 0, 28.373774, 0, -28.373774, -51.373844, 0, -28.373774, 0, 28.373774, 0, 0, -51.373844, 0, -28.373774, 0, 0, 51.373844, 0)
+"points": PackedVector2Array(0, 0, 6.2929077, -5.7894707, 29.32325, 20.747677, -1.5998077, 13.817642, 1.5998077, -13.817642, 42.39778, -5.7281265, 9.2030945, 16.677021, -15.525787, -13.051693, 34.831627, -38.683346, 11.651978, 0.7516403, -11.440463, 1.2951025, 2.1944962, -51.330368, 10.251373, -5.8239937, -11.337764, 11.547501, -27.088493, -42.77202, -3.1361034, -14.582006, 0.25139365, 5.781858, -39.390984, -3.5777588, -4.604299, -7.6951575, 6.8921814, 6.962696, -31.759888, 15.881165, -15.019066, 0.16780853, 0, 0, -1.6184998, 25.851501, -6.712433, 4.5308914, 0, 0, 29.32325, 20.747677)
+}
+point_count = 9
+
+[sub_resource type="Resource" id="Resource_cektt"]
+resource_local_to_scene = true
+script = ExtResource("3_xtfs4")
+
+[sub_resource type="Curve" id="Curve_y6ddq"]
+_data = [Vector2(0, 0.094987154), 0.0, 3.1216388, 0, 1, Vector2(0.13527396, 0.5172636), 0.0, 0.0, 0, 0, Vector2(0.85402393, 0.6840422), 0.0, 0.0, 0, 0, Vector2(1, 0.27868056), -2.776905, 0.0, 1, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_u8njm"]
+_data = [Vector2(0, 0.645068), 0.0, 2.0012417, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_m8pqf"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 10.851481, -0.35971326, -4.1776733, -23.282333, -6.295044, -8.273497, 9.842387, 20.101904, 21.542114, -11.411659, 19.624153, -0.5547447, -28.916153, 2.149643, 4.9234467, 25.106625, 0.21236166, 17.532757, 1.4328716, -16.965422, -35.293243, 2.2576065, -19.310843, 0.061205547, 0, 0, -4.1776733, -23.282333)
 }
 point_count = 5
 
-[sub_resource type="Resource" id="Resource_m8pqf"]
+[sub_resource type="Resource" id="Resource_xtfs4"]
 resource_local_to_scene = true
 script = ExtResource("3_xtfs4")
 
@@ -1470,117 +1494,488 @@ static func set_ellipse_points(curve : Curve2D, size: Vector2, offset := Vector2
 	curve.changed.emit()
 "
 
-[sub_resource type="Curve2D" id="Curve2D_m8pqf"]
-resource_local_to_scene = true
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18.512886, 2.0269585, 0, 0, 0, 0, 22.837059, 2.4323463, 0, 0, 0, 0, 31.620537, 3.5133934, 0, 0, 0, 0, 36.7555, 4.189045, 0, 0, 0, 0, 44.863335, 0.8107834, 0, 0, 0, 0, 51.890114, -0.67565536, 0, 0, 0, 0, 57.16021, -2.0269585, 0, 0, 0, 0, 65.94369, -2.4323502, 0, 0, 0, 0, 70.132744, -2.2972183, 0, 0, 0, 0, 74.99743, -1.6215668, 0, 0, 0, 0, 80.13239, -0.13513184, 0, 0, 0, 0, 84.1863, 0.13512802, 0, 0, 0, 0, 90.67257, 1.7566948, 0, 0, 0, 0, 95.267006, 2.1620865, 0, 0, 0, 0, 99.45606, 3.7836533, 0, 0, 0, 0, 103.104576, 6.0808716, 0, 0, 0, 0, 106.88824, 8.10783)
-}
-point_count = 18
-
-[sub_resource type="Resource" id="Resource_xtfs4"]
-resource_local_to_scene = true
-script = ExtResource("3_xtfs4")
-
 [sub_resource type="Curve2D" id="Curve2D_u8njm"]
+resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 5.3246646, 0.9078932, 0, 0, -5.389571, -0.3434041, 8.149184, -2.2046025, 18.51287, 2.1620865, -8.508728, -1.0315098, 2.8604555, 0.16028857, 47.295677, 0.13512802, -2.8485868, -0.30894846, 0, 0, 57.160194, 0.9459114, 0, 0, 0, 0, 61.34925, 0.5405197, 0, 0, 11.609963, -1.9611866, 72.02456, 2.1620865, -0.32551473, -9.917805, 2.0405238, 6.8938937, 101.48301, 8.242962, 2.0942407, -5.765917, 2.3840358, 12.249693, 109.725975, 29.053055, 10.49006, 2.0656042, -3.2062669, 1.0206814, 97.83448, 52.83603, 3.3630428, 0.08220733, -4.463763, 0.7802631, 86.48353, 54.457596, 4.5299425, 0.54564685, -8.604124, 1.2476987, 70.94352, 54.862984, 8.523021, 1.404108, -2.81663, 0.050451227, 41.349937, 54.592728, 2.8142145, 0.12865813, -3.6339586, 0.6633833, 31.620537, 54.457596, 3.4045923, 1.6018573, -7.1861577, -0.8036784, 19.458794, 52.83603, 7.2037764, -0.4126483, 0, 0, -5.4052277, 52.160378)
+"points": PackedVector2Array(0, 0, 8.048878, -1.696387, -27.129787, 18.450867, -0.6883787, -5.256011, -0.7907931, 2.536316, -13.803867, 23.96936, 1.0071526, -1.6696186, -0.5035763, 0.83481026, -15.160015, 31.798456, 1.358717, -1.2041435, -1.358717, 1.2041473, -19.194593, 35.336006, 0.31204605, -2.7390594, 0, 0, -21.410503, 40.18891, 0.09245682, 7.4197364, 0, 0, -28.06746, 28.885956, 0, 0, 0, 0, -27.904808, 22.885712, 0, 0, 0, 0, -27.129787, 18.450867)
 }
-point_count = 15
+point_count = 8
 
 [sub_resource type="Resource" id="Resource_y6ddq"]
 resource_local_to_scene = true
 script = ExtResource("3_xtfs4")
 
+[sub_resource type="Animation" id="Animation_y6ddq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RFEET/foot1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(125, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_u8njm"]
+resource_name = "new_animation"
+length = 3.0333333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RFEET/foot1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.1926659, 1.49, 2.42),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(125, 2), Vector2(118, -3), Vector2(101, -12), Vector2(128, -8), Vector2(133, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y6ddq"]
+_data = {
+&"RESET": SubResource("Animation_y6ddq"),
+&"new_animation": SubResource("Animation_u8njm")
+}
+
 [node name="VectorSpider" type="Node2D" unique_id=605656563]
 
-[node name="ScalableVectorShape2D" type="Node2D" parent="." unique_id=1654315418]
+[node name="Node2D" type="Node2D" parent="." unique_id=1310144381]
+position = Vector2(5, 1)
+
+[node name="SpirderShapes" type="Node2D" parent="Node2D" unique_id=1654315418]
+position = Vector2(-1, 0)
 script = ExtResource("1_4yd52")
 curve = SubResource("Curve2D_cektt")
 arc_list = SubResource("Resource_u8njm")
 metadata/_custom_type_script = "uid://de3jpss66xjfh"
-metadata/_hover_closest_point_on_curve_ = Object(Object,"script":Resource("res://addons/curved_lines_2d/closest_point_on_curve_meta.gd"),"before_segment":1,"point_position":Vector2(-7.8699036, -63.776287),"local_point_position":Vector2(-7.8699036, -63.776287),"segment_rotation":0.0)
+metadata/_hover_closest_point_on_curve_ = Object(Object,"script":Resource("res://addons/curved_lines_2d/closest_point_on_curve_meta.gd"),"before_segment":1,"point_position":Vector2(4.8969116, 57.170162),"local_point_position":Vector2(4.8969116, 57.170162),"segment_rotation":0.0)
 
 
-[node name="Head" type="Node2D" parent="ScalableVectorShape2D" unique_id=1263912513 node_paths=PackedStringArray("polygon")]
-visible = false
-position = Vector2(0, -4)
-scale = Vector2(1.03727, 0.6681191)
+[node name="BodyBase" type="Node2D" parent="Node2D/SpirderShapes" unique_id=1873339868 node_paths=PackedStringArray("polygon")]
+position = Vector2(-5, 1)
 script = ExtResource("1_4yd52")
-fill_color = Color(0.8906671, 0.7083807, 0.5375053, 0.7764706)
+fill_color = Color(0.42745098, 0.32941177, 0.6627451, 1)
 polygon = NodePath("Fill")
-curve = SubResource("Curve2D_4yd52")
+curve = SubResource("Curve2D_xtfs4")
 update_curve_at_runtime = true
-arc_list = SubResource("Resource_m8pqf")
-shape_type = 2
-size = Vector2(102.74769, 102.74769)
-rx = 51.373844
-ry = 51.373844
-
-[node name="Fill" type="Polygon2D" parent="ScalableVectorShape2D/Head" unique_id=680699529]
-color = Color(0.8906671, 0.7083807, 0.5375053, 0.7764706)
-polygon = PackedVector2Array(51.373844, 0, 51.108612, 5.2528057, 50.330143, 10.353847, 49.064247, 15.277301, 47.336742, 19.99735, 45.17346, 24.48817, 42.6002, 28.72395, 39.642807, 32.67886, 36.327087, 36.327087, 32.67886, 39.642807, 28.723948, 42.600204, 24.48817, 45.173454, 19.997349, 47.336742, 15.277301, 49.064247, 10.353847, 50.330143, 5.252806, 51.108612, 0, 51.373844, -5.2528057, 51.108612, -10.353847, 50.330143, -15.277301, 49.064247, -19.99735, 47.336742, -24.48817, 45.17346, -28.72395, 42.6002, -32.67886, 39.642807, -36.327087, 36.327087, -39.642807, 32.67886, -42.600204, 28.723948, -45.173454, 24.48817, -47.336742, 19.997349, -49.064247, 15.277301, -50.330143, 10.353847, -51.108612, 5.252806, -51.373844, 0, -51.108612, -5.2528057, -50.330143, -10.353847, -49.064247, -15.277301, -47.336742, -19.99735, -45.17346, -24.48817, -42.6002, -28.72395, -39.642807, -32.67886, -36.327087, -36.327087, -32.67886, -39.642807, -28.723948, -42.600204, -24.48817, -45.173454, -19.997349, -47.336742, -15.277301, -49.064247, -10.353847, -50.330143, -5.252806, -51.108612, 0, -51.373844, 5.2528057, -51.108612, 10.353847, -50.330143, 15.277301, -49.064247, 19.99735, -47.336742, 24.48817, -45.17346, 28.72395, -42.6002, 32.67886, -39.642807, 36.327087, -36.327087, 39.642807, -32.67886, 42.600204, -28.723948, 45.173454, -24.48817, 47.336742, -19.997349, 49.064247, -15.277301, 50.330143, -10.353847, 51.108612, -5.252806)
-metadata/_edit_lock_ = true
-
-[node name="Eyes" type="Node2D" parent="ScalableVectorShape2D" unique_id=36448928]
-
-[node name="Ellipse2" type="Node2D" parent="ScalableVectorShape2D/Eyes" unique_id=1237431280]
-position = Vector2(17, 0)
-script = SubResource("GDScript_4yd52")
+arc_list = SubResource("Resource_cektt")
 metadata/_select_hint_ = true
 
-[node name="Fill" type="Polygon2D" parent="ScalableVectorShape2D/Eyes/Ellipse2" unique_id=297140962]
-polygon = PackedVector2Array(15.18465, 0, 15.1062565, 1.5525804, 14.876162, 3.0603032, 14.501998, 4.515537, 13.991397, 5.910649, 13.351991, 7.2380085, 12.591412, 8.489984, 11.717289, 9.658944, 10.737256, 10.737255, 9.658944, 11.717289, 8.4899845, 12.591412, 7.2380085, 13.351991, 5.910649, 13.991398, 4.5155363, 14.501998, 3.0603032, 14.876162, 1.5525804, 15.1062565, 0, 15.18465, -1.5525804, 15.1062565, -3.0603032, 14.876162, -4.515537, 14.501998, -5.910649, 13.991397, -7.2380085, 13.351991, -8.489984, 12.591412, -9.658944, 11.717289, -10.737255, 10.737256, -11.717289, 9.658944, -12.591412, 8.4899845, -13.351991, 7.2380085, -13.991398, 5.910649, -14.501998, 4.5155363, -14.876162, 3.0603032, -15.1062565, 1.5525804, -15.18465, 0, -15.1062565, -1.5525804, -14.876162, -3.0603032, -14.501998, -4.515537, -13.991397, -5.910649, -13.351991, -7.2380085, -12.591412, -8.489984, -11.717289, -9.658944, -10.737256, -10.737255, -9.658944, -11.717289, -8.4899845, -12.591412, -7.2380085, -13.351991, -5.910649, -13.991398, -4.5155363, -14.501998, -3.0603032, -14.876162, -1.5525804, -15.1062565, 0, -15.18465, 1.5525804, -15.1062565, 3.0603032, -14.876162, 4.515537, -14.501998, 5.910649, -13.991397, 7.2380085, -13.351991, 8.489984, -12.591412, 9.658944, -11.717289, 10.737255, -10.737256, 11.717289, -9.658944, 12.591412, -8.4899845, 13.351991, -7.2380085, 13.991398, -5.910649, 14.501998, -4.5155363, 14.876162, -3.0603032, 15.1062565, -1.5525804)
+[node name="Fill" type="Polygon2D" parent="Node2D/SpirderShapes/BodyBase" unique_id=1041292798]
+color = Color(0.42745098, 0.32941177, 0.6627451, 1)
+polygon = PackedVector2Array(29.32325, 20.747677, 33.795994, 16.111506, 35.80373, 13.46969, 37.62043, 10.52034, 39.21714, 7.1946683, 40.564907, 3.423891, 41.634773, -0.86077857, 42.39778, -5.7281265, 43.184673, -14.361492, 43.13344, -17.830307, 42.66579, -21.133469, 41.691757, -24.570663, 40.12137, -28.44158, 34.831627, -38.683346, 29.449566, -42.943203, 24.820694, -46.059925, 20.754477, -48.222363, 17.060383, -49.619377, 13.5478735, -50.43982, 10.026412, -50.872566, 2.1944962, -51.330368, -5.765817, -50.265755, -12.892907, -48.749527, -19.797043, -46.384132, -27.088493, -42.77202, -31.000923, -38.370586, -34.234894, -33.826912, -36.790398, -29.140991, -38.667442, -24.312828, -39.86602, -19.342424, -40.38614, -14.229778, -40.22779, -8.97489, -39.390984, -3.5777588, -39.179756, -1.3972293, -38.740044, 0.81978774, -38.080006, 3.0910249, -37.207775, 5.4342155, -34.859333, 10.407387, -31.759888, 15.881165, -29.101955, 18.315516, -26.254713, 20.400017, -23.154276, 22.139866, -19.736774, 23.540272, -15.938324, 24.606436, -11.695047, 25.34356, -1.6184998, 25.851501, 11.335213, 24.998674, 21.656794, 23.45662, 26.06652, 22.267843, 27.869585, 21.551662, 28.643913, 21.160957)
 metadata/_edit_lock_ = true
 
-[node name="Ellipse3" type="Node2D" parent="ScalableVectorShape2D/Eyes" unique_id=838721440]
-position = Vector2(41, -3)
-scale = Vector2(0.46435118, 0.46435118)
-script = SubResource("GDScript_4yd52")
-metadata/_select_hint_ = true
+[node name="RopeAnchor" type="Marker2D" parent="Node2D/SpirderShapes" unique_id=921527059]
+position = Vector2(32, -35)
+script = ExtResource("7_u8njm")
+rope_position = 0.0
+metadata/_custom_type_script = "uid://brklaoabvl73l"
 
-[node name="Fill" type="Polygon2D" parent="ScalableVectorShape2D/Eyes/Ellipse3" unique_id=1741792609]
-polygon = PackedVector2Array(15.18465, 0, 15.1062565, 1.5525804, 14.876162, 3.0603032, 14.501998, 4.515537, 13.991397, 5.910649, 13.351991, 7.2380085, 12.591412, 8.489984, 11.717289, 9.658944, 10.737256, 10.737255, 9.658944, 11.717289, 8.4899845, 12.591412, 7.2380085, 13.351991, 5.910649, 13.991398, 4.5155363, 14.501998, 3.0603032, 14.876162, 1.5525804, 15.1062565, 0, 15.18465, -1.5525804, 15.1062565, -3.0603032, 14.876162, -4.515537, 14.501998, -5.910649, 13.991397, -7.2380085, 13.351991, -8.489984, 12.591412, -9.658944, 11.717289, -10.737255, 10.737256, -11.717289, 9.658944, -12.591412, 8.4899845, -13.351991, 7.2380085, -13.991398, 5.910649, -14.501998, 4.5155363, -14.876162, 3.0603032, -15.1062565, 1.5525804, -15.18465, 0, -15.1062565, -1.5525804, -14.876162, -3.0603032, -14.501998, -4.515537, -13.991397, -5.910649, -13.351991, -7.2380085, -12.591412, -8.489984, -11.717289, -9.658944, -10.737256, -10.737255, -9.658944, -11.717289, -8.4899845, -12.591412, -7.2380085, -13.351991, -5.910649, -13.991398, -4.5155363, -14.501998, -3.0603032, -14.876162, -1.5525804, -15.1062565, 0, -15.18465, 1.5525804, -15.1062565, 3.0603032, -14.876162, 4.515537, -14.501998, 5.910649, -13.991397, 7.2380085, -13.351991, 8.489984, -12.591412, 9.658944, -11.717289, 10.737255, -10.737256, 11.717289, -9.658944, 12.591412, -8.4899845, 13.351991, -7.2380085, 13.991398, -5.910649, 14.501998, -4.5155363, 14.876162, -3.0603032, 15.1062565, -1.5525804)
-metadata/_edit_lock_ = true
+[node name="RopeHandle" type="Marker2D" parent="Node2D/SpirderShapes/RopeAnchor" unique_id=1496477354]
+script = ExtResource("8_y6ddq")
+rope_path = NodePath("../../../Legs/RLEGS/Leg1/Rope")
+rope_position = 0.0
+metadata/_custom_type_script = "uid://1xluodkpnre3"
 
-[node name="Ellipse4" type="Node2D" parent="ScalableVectorShape2D/Eyes" unique_id=1792623466]
-position = Vector2(-18, 0)
-script = SubResource("GDScript_4yd52")
-metadata/_select_hint_ = true
+[node name="Shadow2D" type="Node2D" parent="Node2D/SpirderShapes" unique_id=852294112]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(-5, 28)
+script = ExtResource("6_y6ddq")
+width = 72.0
+height = 24.0
+color = Color(0.09803922, 0.09803922, 0.09803922, 0.3137255)
+shadow_steps = 3
+metadata/_custom_type_script = "uid://bkyn6gsfgjmwm"
 
-[node name="Fill" type="Polygon2D" parent="ScalableVectorShape2D/Eyes/Ellipse4" unique_id=419791868]
-polygon = PackedVector2Array(15.18465, 0, 15.1062565, 1.5525804, 14.876162, 3.0603032, 14.501998, 4.515537, 13.991397, 5.910649, 13.351991, 7.2380085, 12.591412, 8.489984, 11.717289, 9.658944, 10.737256, 10.737255, 9.658944, 11.717289, 8.4899845, 12.591412, 7.2380085, 13.351991, 5.910649, 13.991398, 4.5155363, 14.501998, 3.0603032, 14.876162, 1.5525804, 15.1062565, 0, 15.18465, -1.5525804, 15.1062565, -3.0603032, 14.876162, -4.515537, 14.501998, -5.910649, 13.991397, -7.2380085, 13.351991, -8.489984, 12.591412, -9.658944, 11.717289, -10.737255, 10.737256, -11.717289, 9.658944, -12.591412, 8.4899845, -13.351991, 7.2380085, -13.991398, 5.910649, -14.501998, 4.5155363, -14.876162, 3.0603032, -15.1062565, 1.5525804, -15.18465, 0, -15.1062565, -1.5525804, -14.876162, -3.0603032, -14.501998, -4.515537, -13.991397, -5.910649, -13.351991, -7.2380085, -12.591412, -8.489984, -11.717289, -9.658944, -10.737256, -10.737255, -9.658944, -11.717289, -8.4899845, -12.591412, -7.2380085, -13.351991, -5.910649, -13.991398, -4.5155363, -14.501998, -3.0603032, -14.876162, -1.5525804, -15.1062565, 0, -15.18465, 1.5525804, -15.1062565, 3.0603032, -14.876162, 4.515537, -14.501998, 5.910649, -13.991397, 7.2380085, -13.351991, 8.489984, -12.591412, 9.658944, -11.717289, 10.737255, -10.737256, 11.717289, -9.658944, 12.591412, -8.4899845, 13.351991, -7.2380085, 13.991398, -5.910649, 14.501998, -4.5155363, 14.876162, -3.0603032, 15.1062565, -1.5525804)
-metadata/_edit_lock_ = true
+[node name="Legs" type="Node2D" parent="Node2D" unique_id=1329462272]
+position = Vector2(-2, -1)
 
-[node name="Ellipse5" type="Node2D" parent="ScalableVectorShape2D/Eyes" unique_id=411101751]
-position = Vector2(-42, -3)
-scale = Vector2(0.46435118, 0.46435118)
-script = SubResource("GDScript_4yd52")
-metadata/_select_hint_ = true
+[node name="RLEGS" type="Node2D" parent="Node2D/Legs" unique_id=1736836376]
 
-[node name="Fill" type="Polygon2D" parent="ScalableVectorShape2D/Eyes/Ellipse5" unique_id=2094509848]
-polygon = PackedVector2Array(15.18465, 0, 15.1062565, 1.5525804, 14.876162, 3.0603032, 14.501998, 4.515537, 13.991397, 5.910649, 13.351991, 7.2380085, 12.591412, 8.489984, 11.717289, 9.658944, 10.737256, 10.737255, 9.658944, 11.717289, 8.4899845, 12.591412, 7.2380085, 13.351991, 5.910649, 13.991398, 4.5155363, 14.501998, 3.0603032, 14.876162, 1.5525804, 15.1062565, 0, 15.18465, -1.5525804, 15.1062565, -3.0603032, 14.876162, -4.515537, 14.501998, -5.910649, 13.991397, -7.2380085, 13.351991, -8.489984, 12.591412, -9.658944, 11.717289, -10.737255, 10.737256, -11.717289, 9.658944, -12.591412, 8.4899845, -13.351991, 7.2380085, -13.991398, 5.910649, -14.501998, 4.5155363, -14.876162, 3.0603032, -15.1062565, 1.5525804, -15.18465, 0, -15.1062565, -1.5525804, -14.876162, -3.0603032, -14.501998, -4.515537, -13.991397, -5.910649, -13.351991, -7.2380085, -12.591412, -8.489984, -11.717289, -9.658944, -10.737256, -10.737255, -9.658944, -11.717289, -8.4899845, -12.591412, -7.2380085, -13.351991, -5.910649, -13.991398, -4.5155363, -14.501998, -3.0603032, -14.876162, -1.5525804, -15.1062565, 0, -15.18465, 1.5525804, -15.1062565, 3.0603032, -14.876162, 4.515537, -14.501998, 5.910649, -13.991397, 7.2380085, -13.351991, 8.489984, -12.591412, 9.658944, -11.717289, 10.737255, -10.737256, 11.717289, -9.658944, 12.591412, -8.4899845, 13.351991, -7.2380085, 13.991398, -5.910649, 14.501998, -4.5155363, 14.876162, -3.0603032, 15.1062565, -1.5525804)
-metadata/_edit_lock_ = true
+[node name="Leg1" type="Node2D" parent="Node2D/Legs/RLEGS" unique_id=535259402]
+position = Vector2(-43, 5)
 
-[node name="PencilDrawing" type="Node2D" parent="ScalableVectorShape2D" unique_id=1109958054 node_paths=PackedStringArray("polygon")]
-position = Vector2(-53.814278, -27.426178)
+[node name="Rope" type="Node2D" parent="Node2D/Legs/RLEGS/Leg1" unique_id=729620765]
+position = Vector2(74, -39)
+script = ExtResource("5_xtfs4")
+num_segments = 4
+rope_length = 50.0
+segment_length_distribution = SubResource("Curve_y6ddq")
+stiffness = 3.0
+gravity_direction = Vector2(0, -2)
+render_line = false
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Node2D/Legs/RLEGS/Leg1/Rope" unique_id=1157752801]
+points = PackedVector2Array(0, 0, 11.901501, -4.5518684, 26.387909, -4.0549126, 38.50506, 6.7350464, 41.013466, 12.931408)
+width = 8.0
+width_curve = SubResource("Curve_u8njm")
+default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
+joint_mode = 2
+begin_cap_mode = 2
+script = ExtResource("6_cektt")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Leg2" type="Node2D" parent="Node2D/Legs/RLEGS" unique_id=617669821]
+position = Vector2(-39, 24)
+
+[node name="Rope" type="Node2D" parent="Node2D/Legs/RLEGS/Leg2" unique_id=1419629516]
+position = Vector2(73, -40)
+script = ExtResource("5_xtfs4")
+num_segments = 4
+rope_length = 60.0
+segment_length_distribution = SubResource("Curve_y6ddq")
+stiffness = 3.0
+gravity_direction = Vector2(0, -2)
+render_line = false
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Node2D/Legs/RLEGS/Leg2/Rope" unique_id=148454519]
+points = PackedVector2Array(0, 0, 15.017559, -2.6948547, 29.685783, 6.6497564, 36.35971, 24.944523, 37.016876, 32.93936)
+width = 8.0
+width_curve = SubResource("Curve_u8njm")
+default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
+joint_mode = 2
+begin_cap_mode = 2
+script = ExtResource("6_cektt")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Leg3" type="Node2D" parent="Node2D/Legs/RLEGS" unique_id=1437294771]
+position = Vector2(-37, 43)
+
+[node name="Rope" type="Node2D" parent="Node2D/Legs/RLEGS/Leg3" unique_id=1616884471]
+position = Vector2(72, -40)
+script = ExtResource("5_xtfs4")
+num_segments = 4
+rope_length = 50.0
+segment_length_distribution = SubResource("Curve_y6ddq")
+stiffness = 3.0
+gravity_direction = Vector2(0, -2)
+damping = 20.0
+render_line = false
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Node2D/Legs/RLEGS/Leg3/Rope" unique_id=307659669]
+points = PackedVector2Array(0, 0, 12.735565, 0.7748599, 21.538101, 12.409783, 25.979939, 28.116772, 27.016495, 34.720753)
+width = 9.0
+width_curve = SubResource("Curve_u8njm")
+default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
+joint_mode = 2
+begin_cap_mode = 2
+script = ExtResource("6_cektt")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Leg4" type="Node2D" parent="Node2D/Legs/RLEGS" unique_id=204978775]
+position = Vector2(-48, 61)
+
+[node name="Rope" type="Node2D" parent="Node2D/Legs/RLEGS/Leg4" unique_id=1988793406]
+position = Vector2(72, -40)
+script = ExtResource("5_xtfs4")
+num_segments = 4
+rope_length = 40.0
+segment_length_distribution = SubResource("Curve_y6ddq")
+stiffness = 3.0
+gravity_direction = Vector2(0, -2)
+damping = 20.0
+render_line = false
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Node2D/Legs/RLEGS/Leg4/Rope" unique_id=1345140934]
+points = PackedVector2Array(0, 0, 8.7307625, 5.9908485, 15.280548, 16.106823, 20.251026, 28.584778, 21.94299, 33.65794)
+width = 9.0
+width_curve = SubResource("Curve_u8njm")
+default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
+joint_mode = 2
+begin_cap_mode = 2
+script = ExtResource("6_cektt")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="LLEGS" type="Node2D" parent="Node2D/Legs" unique_id=476231948]
+position = Vector2(-73, 3)
+
+[node name="Leg1" type="Node2D" parent="Node2D/Legs/LLEGS" unique_id=126759761]
+position = Vector2(-36, 5)
+
+[node name="Rope" type="Node2D" parent="Node2D/Legs/LLEGS/Leg1" unique_id=1189761797]
+position = Vector2(74, -39)
+script = ExtResource("5_xtfs4")
+num_segments = 4
+rope_length = 50.0
+segment_length_distribution = SubResource("Curve_y6ddq")
+stiffness = 3.0
+gravity_direction = Vector2(0, -2)
+render_line = false
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Node2D/Legs/LLEGS/Leg1/Rope" unique_id=1283417588]
+points = PackedVector2Array(0, 0, -12.057014, -4.003521, -25.805481, 0.51633835, -32.533104, 15.26045, -33.026985, 21.927017)
+width = 8.0
+width_curve = SubResource("Curve_u8njm")
+default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
+joint_mode = 2
+begin_cap_mode = 2
+script = ExtResource("6_cektt")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Leg2" type="Node2D" parent="Node2D/Legs/LLEGS" unique_id=373385318]
+position = Vector2(-41, 24)
+
+[node name="Rope" type="Node2D" parent="Node2D/Legs/LLEGS/Leg2" unique_id=1269104254]
+position = Vector2(73, -40)
+script = ExtResource("5_xtfs4")
+num_segments = 4
+rope_length = 60.0
+segment_length_distribution = SubResource("Curve_y6ddq")
+stiffness = 3.0
+gravity_direction = Vector2(0, -2)
+render_line = false
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Node2D/Legs/LLEGS/Leg2/Rope" unique_id=1045781717]
+points = PackedVector2Array(0, 0, -14.982304, -2.89052, -30.00682, 5.86747, -37.212036, 23.95826, -38.016335, 31.939638)
+width = 8.0
+width_curve = SubResource("Curve_u8njm")
+default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
+joint_mode = 2
+begin_cap_mode = 2
+script = ExtResource("6_cektt")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Leg3" type="Node2D" parent="Node2D/Legs/LLEGS" unique_id=884119015]
+position = Vector2(-37, 43)
+
+[node name="Rope" type="Node2D" parent="Node2D/Legs/LLEGS/Leg3" unique_id=953504878]
+position = Vector2(72, -40)
+script = ExtResource("5_xtfs4")
+num_segments = 4
+rope_length = 50.0
+segment_length_distribution = SubResource("Curve_y6ddq")
+stiffness = 3.0
+gravity_direction = Vector2(0, -2)
+damping = 20.0
+render_line = false
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Node2D/Legs/LLEGS/Leg3/Rope" unique_id=830706382]
+points = PackedVector2Array(0, 0, -12.785873, 1.376112, -23.868496, 10.993988, -31.618118, 25.457712, -33.972168, 31.714348)
+width = 9.0
+width_curve = SubResource("Curve_u8njm")
+default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
+joint_mode = 2
+begin_cap_mode = 2
+script = ExtResource("6_cektt")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Leg4" type="Node2D" parent="Node2D/Legs/LLEGS" unique_id=2057722380]
+position = Vector2(-25, 58)
+
+[node name="Rope" type="Node2D" parent="Node2D/Legs/LLEGS/Leg4" unique_id=1423618595]
+position = Vector2(72, -40)
+script = ExtResource("5_xtfs4")
+num_segments = 4
+rope_length = 40.0
+segment_length_distribution = SubResource("Curve_y6ddq")
+stiffness = 3.0
+gravity_direction = Vector2(0, -2)
+damping = 20.0
+render_line = false
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Node2D/Legs/LLEGS/Leg4/Rope" unique_id=1753901374]
+points = PackedVector2Array(0, 0, -8.696165, 6.5560055, -16.553303, 16.042435, -23.448357, 27.8722, -25.891552, 32.62935)
+width = 9.0
+width_curve = SubResource("Curve_u8njm")
+default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
+joint_mode = 2
+begin_cap_mode = 2
+script = ExtResource("6_cektt")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Head" type="Node2D" parent="Node2D" unique_id=145452657]
+position = Vector2(-1, 0)
 script = ExtResource("1_4yd52")
+curve = SubResource("Curve2D_cektt")
+arc_list = SubResource("Resource_u8njm")
+metadata/_custom_type_script = "uid://de3jpss66xjfh"
+metadata/_hover_closest_point_on_curve_ = Object(Object,"script":Resource("res://addons/curved_lines_2d/closest_point_on_curve_meta.gd"),"before_segment":1,"point_position":Vector2(-64.64079, -62.078327),"local_point_position":Vector2(-68.64079, -63.078327),"segment_rotation":0.0)
+
+
+[node name="HeadBase" type="Node2D" parent="Node2D/Head" unique_id=1819846524 node_paths=PackedStringArray("polygon")]
+script = ExtResource("1_4yd52")
+fill_color = Color(0.5019608, 0.5019608, 0.7529412, 1)
 polygon = NodePath("Fill")
 curve = SubResource("Curve2D_m8pqf")
 update_curve_at_runtime = true
 arc_list = SubResource("Resource_xtfs4")
 
-[node name="Fill" type="Polygon2D" parent="ScalableVectorShape2D/PencilDrawing" unique_id=1669104962]
-polygon = PackedVector2Array(0, 0, 18.512886, 2.0269585, 22.837059, 2.4323463, 31.620537, 3.5133934, 36.7555, 4.189045, 44.863335, 0.8107834, 51.890114, -0.67565536, 57.16021, -2.0269585, 65.94369, -2.4323502, 70.132744, -2.2972183, 74.99743, -1.6215668, 80.13239, -0.13513184, 84.1863, 0.13512802, 90.67257, 1.7566948, 95.267006, 2.1620865, 99.45606, 3.7836533, 103.104576, 6.0808716, 106.88824, 8.10783)
+[node name="Fill" type="Polygon2D" parent="Node2D/Head/HeadBase" unique_id=1500960114]
+color = Color(0.5019608, 0.5019608, 0.7529412, 1)
+polygon = PackedVector2Array(-4.1776733, -23.282333, -0.21515918, -23.214886, 3.5337718, -22.742754, 7.0691195, -21.865944, 10.390884, -20.58445, 13.499066, -18.898273, 16.393665, -16.807419, 19.07468, -14.31188, 21.542114, -11.411659, 23.19305, -7.6949453, 24.45877, -4.093823, 25.344969, -0.6245034, 25.857351, 2.6968024, 26.00162, 5.8538833, 25.783468, 8.830528, 25.208609, 11.610525, 24.78919, 12.921717, 24.282732, 14.177668, 23.689949, 15.37635, 23.011549, 16.51574, 22.248247, 17.593811, 21.400751, 18.608534, 20.469786, 19.557884, 19.45605, 20.439838, 18.360264, 21.252365, 17.18314, 21.993439, 15.925386, 22.661037, 14.587722, 23.25313, 11.6755, 24.2027, 8.452174, 24.825935, 4.9234467, 25.106625, -5.0980024, 25.461132, -13.529551, 24.90889, -17.174572, 24.291088, -20.452667, 23.444614, -23.37402, 22.368809, -25.94882, 21.063015, -28.187248, 19.526566, -29.183504, 18.67164, -30.099483, 17.758804, -30.936466, 16.787973, -31.69572, 15.759066, -32.378517, 14.671999, -32.98613, 13.5266905, -33.980904, 11.061018, -34.690224, 8.361388, -35.124275, 5.4271374, -35.293243, 2.2576065, -34.919823, -0.8243619, -34.336903, -3.708234, -33.544468, -6.39401, -32.542534, -8.881689, -31.331087, -11.171273, -29.910126, -13.26276, -28.279667, -15.15615, -26.439697, -16.851444, -24.390223, -18.348642, -22.131237, -19.647745, -19.662745, -20.74875, -16.984745, -21.651659, -14.097238, -22.356472, -11.000224, -22.86319)
 metadata/_edit_lock_ = true
 
-[node name="PencilDrawing2" type="Node2D" parent="ScalableVectorShape2D" unique_id=568554970 node_paths=PackedStringArray("polygon")]
-position = Vector2(-51.652184, -27.426178)
+[node name="Eyes" type="Node2D" parent="Node2D/Head/HeadBase" unique_id=1796231662]
+position = Vector2(-4.000001, 6.0000005)
+scale = Vector2(0.6539513, 0.6539513)
+
+[node name="RLarge" type="Node2D" parent="Node2D/Head/HeadBase/Eyes" unique_id=1211773954]
+position = Vector2(17, 0)
+script = SubResource("GDScript_4yd52")
+metadata/_select_hint_ = true
+
+[node name="Fill" type="Polygon2D" parent="Node2D/Head/HeadBase/Eyes/RLarge" unique_id=700657956]
+color = Color(0.14758757, 0.19006658, 0.34096703, 1)
+polygon = PackedVector2Array(15.18465, 0, 15.1062565, 1.5525804, 14.876162, 3.0603032, 14.501998, 4.515537, 13.991397, 5.910649, 13.351991, 7.2380085, 12.591412, 8.489984, 11.717289, 9.658944, 10.737256, 10.737255, 9.658944, 11.717289, 8.4899845, 12.591412, 7.2380085, 13.351991, 5.910649, 13.991398, 4.5155363, 14.501998, 3.0603032, 14.876162, 1.5525804, 15.1062565, 0, 15.18465, -1.5525804, 15.1062565, -3.0603032, 14.876162, -4.515537, 14.501998, -5.910649, 13.991397, -7.2380085, 13.351991, -8.489984, 12.591412, -9.658944, 11.717289, -10.737255, 10.737256, -11.717289, 9.658944, -12.591412, 8.4899845, -13.351991, 7.2380085, -13.991398, 5.910649, -14.501998, 4.5155363, -14.876162, 3.0603032, -15.1062565, 1.5525804, -15.18465, 0, -15.1062565, -1.5525804, -14.876162, -3.0603032, -14.501998, -4.515537, -13.991397, -5.910649, -13.351991, -7.2380085, -12.591412, -8.489984, -11.717289, -9.658944, -10.737256, -10.737255, -9.658944, -11.717289, -8.4899845, -12.591412, -7.2380085, -13.351991, -5.910649, -13.991398, -4.5155363, -14.501998, -3.0603032, -14.876162, -1.5525804, -15.1062565, 0, -15.18465, 1.5525804, -15.1062565, 3.0603032, -14.876162, 4.515537, -14.501998, 5.910649, -13.991397, 7.2380085, -13.351991, 8.489984, -12.591412, 9.658944, -11.717289, 10.737255, -10.737256, 11.717289, -9.658944, 12.591412, -8.4899845, 13.351991, -7.2380085, 13.991398, -5.910649, 14.501998, -4.5155363, 14.876162, -3.0603032, 15.1062565, -1.5525804)
+metadata/_edit_lock_ = true
+
+[node name="RSmall" type="Node2D" parent="Node2D/Head/HeadBase/Eyes" unique_id=1849969509]
+position = Vector2(39.75831, -7.64583)
+scale = Vector2(0.46435118, 0.46435118)
+script = SubResource("GDScript_4yd52")
+metadata/_select_hint_ = true
+
+[node name="Fill" type="Polygon2D" parent="Node2D/Head/HeadBase/Eyes/RSmall" unique_id=1566698341]
+color = Color(0.1404, 0.17064004, 0.27, 1)
+polygon = PackedVector2Array(15.18465, 0, 15.1062565, 1.5525804, 14.876162, 3.0603032, 14.501998, 4.515537, 13.991397, 5.910649, 13.351991, 7.2380085, 12.591412, 8.489984, 11.717289, 9.658944, 10.737256, 10.737255, 9.658944, 11.717289, 8.4899845, 12.591412, 7.2380085, 13.351991, 5.910649, 13.991398, 4.5155363, 14.501998, 3.0603032, 14.876162, 1.5525804, 15.1062565, 0, 15.18465, -1.5525804, 15.1062565, -3.0603032, 14.876162, -4.515537, 14.501998, -5.910649, 13.991397, -7.2380085, 13.351991, -8.489984, 12.591412, -9.658944, 11.717289, -10.737255, 10.737256, -11.717289, 9.658944, -12.591412, 8.4899845, -13.351991, 7.2380085, -13.991398, 5.910649, -14.501998, 4.5155363, -14.876162, 3.0603032, -15.1062565, 1.5525804, -15.18465, 0, -15.1062565, -1.5525804, -14.876162, -3.0603032, -14.501998, -4.515537, -13.991397, -5.910649, -13.351991, -7.2380085, -12.591412, -8.489984, -11.717289, -9.658944, -10.737256, -10.737255, -9.658944, -11.717289, -8.4899845, -12.591412, -7.2380085, -13.351991, -5.910649, -13.991398, -4.5155363, -14.501998, -3.0603032, -14.876162, -1.5525804, -15.1062565, 0, -15.18465, 1.5525804, -15.1062565, 3.0603032, -14.876162, 4.515537, -14.501998, 5.910649, -13.991397, 7.2380085, -13.351991, 8.489984, -12.591412, 9.658944, -11.717289, 10.737255, -10.737256, 11.717289, -9.658944, 12.591412, -8.4899845, 13.351991, -7.2380085, 13.991398, -5.910649, 14.501998, -4.5155363, 14.876162, -3.0603032, 15.1062565, -1.5525804)
+metadata/_edit_lock_ = true
+
+[node name="LLarge" type="Node2D" parent="Node2D/Head/HeadBase/Eyes" unique_id=949585678]
+position = Vector2(-18, 0)
+script = SubResource("GDScript_4yd52")
+metadata/_select_hint_ = true
+
+[node name="Fill" type="Polygon2D" parent="Node2D/Head/HeadBase/Eyes/LLarge" unique_id=1016201948]
+color = Color(0.14758757, 0.19006658, 0.34096703, 1)
+polygon = PackedVector2Array(15.18465, 0, 15.1062565, 1.5525804, 14.876162, 3.0603032, 14.501998, 4.515537, 13.991397, 5.910649, 13.351991, 7.2380085, 12.591412, 8.489984, 11.717289, 9.658944, 10.737256, 10.737255, 9.658944, 11.717289, 8.4899845, 12.591412, 7.2380085, 13.351991, 5.910649, 13.991398, 4.5155363, 14.501998, 3.0603032, 14.876162, 1.5525804, 15.1062565, 0, 15.18465, -1.5525804, 15.1062565, -3.0603032, 14.876162, -4.515537, 14.501998, -5.910649, 13.991397, -7.2380085, 13.351991, -8.489984, 12.591412, -9.658944, 11.717289, -10.737255, 10.737256, -11.717289, 9.658944, -12.591412, 8.4899845, -13.351991, 7.2380085, -13.991398, 5.910649, -14.501998, 4.5155363, -14.876162, 3.0603032, -15.1062565, 1.5525804, -15.18465, 0, -15.1062565, -1.5525804, -14.876162, -3.0603032, -14.501998, -4.515537, -13.991397, -5.910649, -13.351991, -7.2380085, -12.591412, -8.489984, -11.717289, -9.658944, -10.737256, -10.737255, -9.658944, -11.717289, -8.4899845, -12.591412, -7.2380085, -13.351991, -5.910649, -13.991398, -4.5155363, -14.501998, -3.0603032, -14.876162, -1.5525804, -15.1062565, 0, -15.18465, 1.5525804, -15.1062565, 3.0603032, -14.876162, 4.515537, -14.501998, 5.910649, -13.991397, 7.2380085, -13.351991, 8.489984, -12.591412, 9.658944, -11.717289, 10.737255, -10.737256, 11.717289, -9.658944, 12.591412, -8.4899845, 13.351991, -7.2380085, 13.991398, -5.910649, 14.501998, -4.5155363, 14.876162, -3.0603032, 15.1062565, -1.5525804)
+metadata/_edit_lock_ = true
+
+[node name="LSmall" type="Node2D" parent="Node2D/Head/HeadBase/Eyes" unique_id=471944195]
+position = Vector2(-41.287468, -6.116665)
+scale = Vector2(0.46435118, 0.46435118)
+script = SubResource("GDScript_4yd52")
+metadata/_select_hint_ = true
+
+[node name="Fill" type="Polygon2D" parent="Node2D/Head/HeadBase/Eyes/LSmall" unique_id=1046162827]
+color = Color(0.1404, 0.17064004, 0.27, 1)
+polygon = PackedVector2Array(15.18465, 0, 15.1062565, 1.5525804, 14.876162, 3.0603032, 14.501998, 4.515537, 13.991397, 5.910649, 13.351991, 7.2380085, 12.591412, 8.489984, 11.717289, 9.658944, 10.737256, 10.737255, 9.658944, 11.717289, 8.4899845, 12.591412, 7.2380085, 13.351991, 5.910649, 13.991398, 4.5155363, 14.501998, 3.0603032, 14.876162, 1.5525804, 15.1062565, 0, 15.18465, -1.5525804, 15.1062565, -3.0603032, 14.876162, -4.515537, 14.501998, -5.910649, 13.991397, -7.2380085, 13.351991, -8.489984, 12.591412, -9.658944, 11.717289, -10.737255, 10.737256, -11.717289, 9.658944, -12.591412, 8.4899845, -13.351991, 7.2380085, -13.991398, 5.910649, -14.501998, 4.5155363, -14.876162, 3.0603032, -15.1062565, 1.5525804, -15.18465, 0, -15.1062565, -1.5525804, -14.876162, -3.0603032, -14.501998, -4.515537, -13.991397, -5.910649, -13.351991, -7.2380085, -12.591412, -8.489984, -11.717289, -9.658944, -10.737256, -10.737255, -9.658944, -11.717289, -8.4899845, -12.591412, -7.2380085, -13.351991, -5.910649, -13.991398, -4.5155363, -14.501998, -3.0603032, -14.876162, -1.5525804, -15.1062565, 0, -15.18465, 1.5525804, -15.1062565, 3.0603032, -14.876162, 4.515537, -14.501998, 5.910649, -13.991397, 7.2380085, -13.351991, 8.489984, -12.591412, 9.658944, -11.717289, 10.737255, -10.737256, 11.717289, -9.658944, 12.591412, -8.4899845, 13.351991, -7.2380085, 13.991398, -5.910649, 14.501998, -4.5155363, 14.876162, -3.0603032, 15.1062565, -1.5525804)
+metadata/_edit_lock_ = true
+
+[node name="mand1" type="Node2D" parent="Node2D/Head" unique_id=1021613149 node_paths=PackedStringArray("polygon")]
+position = Vector2(7, 0)
 script = ExtResource("1_4yd52")
+fill_color = Color(0.25490198, 0.31764707, 0.5372549, 1)
 polygon = NodePath("Fill")
 curve = SubResource("Curve2D_u8njm")
 update_curve_at_runtime = true
 arc_list = SubResource("Resource_y6ddq")
 
-[node name="Fill" type="Polygon2D" parent="ScalableVectorShape2D/PencilDrawing2" unique_id=1737765803]
-polygon = PackedVector2Array(0, 0, 18.51287, 2.1620865, 25.251581, 0.7702515, 32.769447, -0.06493482, 40.35472, -0.2933501, 47.295677, 0.13512802, 57.160194, 0.9459114, 61.34925, 0.5405197, 72.02456, 2.1620865, 81.479614, 0.8901563, 86.3616, 0.60921764, 90.98546, 0.7479024, 93.11595, 1.0174799, 95.08034, 1.4434149, 96.8448, 2.0428576, 97.641464, 2.4130044, 98.37544, 2.8329592, 99.04253, 3.3048668, 99.63846, 3.83087, 100.15901, 4.413113, 100.599945, 5.0537405, 100.95705, 5.7548947, 101.22608, 6.5187206, 101.40281, 7.347362, 101.48301, 8.242962, 101.93485, 9.549402, 102.50896, 10.879954, 103.92632, 13.592069, 107.15503, 19.071, 108.576195, 21.752487, 109.15314, 23.06007, 109.60847, 24.338436, 109.9178, 25.58225, 110.01009, 26.189533, 110.05675, 26.78618, 110.05472, 27.371521, 110.00094, 27.944893, 109.89238, 28.505627, 109.725975, 29.053055, 110.32975, 33.676704, 110.348854, 38.22746, 110.13721, 40.413197, 109.77704, 42.505943, 109.26757, 44.48078, 108.60802, 46.31278, 107.7976, 47.97702, 106.83552, 49.448586, 106.29736, 50.104324, 105.721, 50.702545, 105.10634, 51.240135, 104.45328, 51.713978, 103.76171, 52.120964, 103.03154, 52.45797, 102.26268, 52.72188, 101.45502, 52.909588, 100.608475, 53.017967, 99.72293, 53.043915, 98.798294, 52.984306, 97.83448, 52.83603, 95.18118, 53.53156, 92.2178, 54.060394, 89.22501, 54.38244, 86.48353, 54.457596, 82.80927, 54.926846, 78.73834, 55.157505, 74.655, 55.13956, 70.94352, 54.862984, 63.888206, 55.544582, 56.116314, 55.722282, 48.359627, 55.40277, 41.349937, 54.592728, 31.620537, 54.457596, 30.19426, 54.64408, 28.665958, 54.70935, 25.453651, 54.49628, 22.284353, 53.85847, 20.80981, 53.392822, 19.458794, 52.83603, 7.03339, 52.04208, -5.4052277, 52.160378)
+[node name="Fill" type="Polygon2D" parent="Node2D/Head/mand1" unique_id=569797195]
+color = Color(0.25490198, 0.31764707, 0.5372549, 1)
+polygon = PackedVector2Array(-27.129787, 18.450867, -24.274515, 17.985365, -21.748795, 17.858341, -20.611128, 17.920452, -19.557783, 18.065607, -18.589407, 18.293287, -17.70664, 18.602964, -16.91013, 18.994114, -16.20052, 19.466213, -15.878504, 19.732456, -15.578453, 20.018738, -15.300452, 20.324995, -15.044578, 20.651161, -14.810913, 20.997171, -14.599537, 21.36296, -14.243976, 22.153608, -13.978537, 23.022585, -13.803867, 23.96936, -14.047874, 24.965485, -14.20775, 26.027874, -14.63443, 30.227459, -14.845015, 31.086714, -14.987499, 31.463251, -15.160015, 31.798456, -15.273385, 31.962528, -15.422229, 32.14075, -15.811794, 32.53405, -16.856627, 33.42873, -19.194593, 35.336006, -19.667109, 35.77791, -20.070156, 36.21709, -20.410538, 36.67845, -20.695051, 37.186867, -20.930502, 37.767235, -21.123692, 38.444435, -21.410503, 40.18891, -22.437653, 39.466225, -23.492428, 38.56896, -24.70431, 37.319836, -25.920527, 35.722908, -26.48252, 34.795288, -26.988304, 33.78224, -27.418789, 32.68428, -27.754873, 31.501905, -27.97746, 30.235628, -28.06746, 28.885956, -27.904808, 22.885712)
 metadata/_edit_lock_ = true
+
+[node name="mand2" type="Node2D" parent="Node2D/Head" unique_id=32095164 node_paths=PackedStringArray("polygon")]
+position = Vector2(-17, 0)
+scale = Vector2(-1, 1)
+script = ExtResource("1_4yd52")
+fill_color = Color(0.25490198, 0.31764707, 0.5372549, 1)
+polygon = NodePath("Fill")
+curve = SubResource("Curve2D_u8njm")
+update_curve_at_runtime = true
+arc_list = SubResource("Resource_y6ddq")
+
+[node name="Fill" type="Polygon2D" parent="Node2D/Head/mand2" unique_id=1044516532]
+color = Color(0.25490198, 0.31764707, 0.5372549, 1)
+polygon = PackedVector2Array(-27.129787, 18.450867, -24.274515, 17.985365, -21.748795, 17.858341, -20.611128, 17.920452, -19.557783, 18.065607, -18.589407, 18.293287, -17.70664, 18.602964, -16.91013, 18.994114, -16.20052, 19.466213, -15.878504, 19.732456, -15.578453, 20.018738, -15.300452, 20.324995, -15.044578, 20.651161, -14.810913, 20.997171, -14.599537, 21.36296, -14.243976, 22.153608, -13.978537, 23.022585, -13.803867, 23.96936, -14.047874, 24.965485, -14.20775, 26.027874, -14.63443, 30.227459, -14.845015, 31.086714, -14.987499, 31.463251, -15.160015, 31.798456, -15.273385, 31.962528, -15.422229, 32.14075, -15.811794, 32.53405, -16.856627, 33.42873, -19.194593, 35.336006, -19.667109, 35.77791, -20.070156, 36.21709, -20.410538, 36.67845, -20.695051, 37.186867, -20.930502, 37.767235, -21.123692, 38.444435, -21.410503, 40.18891, -22.437653, 39.466225, -23.492428, 38.56896, -24.70431, 37.319836, -25.920527, 35.722908, -26.48252, 34.795288, -26.988304, 33.78224, -27.418789, 32.68428, -27.754873, 31.501905, -27.97746, 30.235628, -28.06746, 28.885956, -27.904808, 22.885712)
+metadata/_edit_lock_ = true
+
+[node name="RopeAnchor" type="Marker2D" parent="Node2D/Head" unique_id=1020099503]
+position = Vector2(32, -35)
+script = ExtResource("7_u8njm")
+rope_position = 0.0
+metadata/_custom_type_script = "uid://brklaoabvl73l"
+
+[node name="RopeHandle" type="Marker2D" parent="Node2D/Head/RopeAnchor" unique_id=1831200753]
+script = ExtResource("8_y6ddq")
+rope_path = NodePath("../../../Legs/RLEGS/Leg1/Rope")
+rope_position = 0.0
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="RFEET" type="Node2D" parent="." unique_id=317700538]
+
+[node name="foot1" type="Marker2D" parent="RFEET" unique_id=1099932000]
+position = Vector2(125, 2)
+script = ExtResource("8_y6ddq")
+strength = 0.986
+rope_path = NodePath("../../Node2D/Legs/RLEGS/Leg1/Rope")
+precise = true
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="foot2" type="Marker2D" parent="RFEET" unique_id=2080115828]
+position = Vector2(74, 17)
+script = ExtResource("8_y6ddq")
+strength = 0.989
+rope_path = NodePath("../../Node2D/Legs/RLEGS/Leg2/Rope")
+precise = true
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="foot3" type="Marker2D" parent="RFEET" unique_id=191571464]
+position = Vector2(65, 38)
+script = ExtResource("8_y6ddq")
+strength = 0.958
+rope_path = NodePath("../../Node2D/Legs/RLEGS/Leg3/Rope")
+precise = true
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="foot4" type="Marker2D" parent="RFEET" unique_id=183219831]
+position = Vector2(49, 55)
+script = ExtResource("8_y6ddq")
+strength = 0.958
+rope_path = NodePath("../../Node2D/Legs/RLEGS/Leg4/Rope")
+precise = true
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="LFEET" type="Node2D" parent="." unique_id=461253435]
+position = Vector2(-15, -6)
+
+[node name="foot1" type="Marker2D" parent="LFEET" unique_id=1644205663]
+position = Vector2(-50, -3)
+script = ExtResource("8_y6ddq")
+strength = 0.986
+rope_path = NodePath("../../Node2D/Legs/LLEGS/Leg1/Rope")
+precise = true
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="foot2" type="Marker2D" parent="LFEET" unique_id=1489951814]
+position = Vector2(-61, 25)
+script = ExtResource("8_y6ddq")
+strength = 0.989
+rope_path = NodePath("../../Node2D/Legs/LLEGS/Leg2/Rope")
+precise = true
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="foot3" type="Marker2D" parent="LFEET" unique_id=1463678971]
+position = Vector2(-54, 44)
+script = ExtResource("8_y6ddq")
+strength = 0.958
+rope_path = NodePath("../../Node2D/Legs/LLEGS/Leg3/Rope")
+precise = true
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="foot4" type="Marker2D" parent="LFEET" unique_id=1295730321]
+position = Vector2(-34, 60)
+script = ExtResource("8_y6ddq")
+strength = 0.958
+rope_path = NodePath("../../Node2D/Legs/LLEGS/Leg4/Rope")
+precise = true
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1012660393]
+libraries/ = SubResource("AnimationLibrary_y6ddq")
