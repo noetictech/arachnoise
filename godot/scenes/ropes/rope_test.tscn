@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://yxrttnlk6q3w"]
 
+[ext_resource type="Script" uid="uid://b3sx1vmq74waq" path="res://scenes/ropes/rope_test.gd" id="1_suw1b"]
 [ext_resource type="Script" uid="uid://b2shq2gjd4fvt" path="res://addons/ropesim/Rope.gd" id="1_yxwbq"]
 [ext_resource type="Script" uid="uid://dfppmnngy2wx4" path="res://addons/ropesim/RopeRendererLine2D.gd" id="3_v1n0m"]
 [ext_resource type="Script" uid="uid://1xluodkpnre3" path="res://addons/ropesim/RopeHandle.gd" id="4_v1n0m"]
 [ext_resource type="Script" uid="uid://brklaoabvl73l" path="res://addons/ropesim/RopeAnchor.gd" id="5_c1c4s"]
-[ext_resource type="PackedScene" uid="uid://dbcoikmgx1kmt" path="res://scenes/player/spidey.tscn" id="5_h8wd1"]
-[ext_resource type="Script" uid="uid://cep2bvkhu72ic" path="res://addons/rope2d/test/mouse.gd" id="5_qsf7i"]
 [ext_resource type="PackedScene" uid="uid://n34p15xh4o7v" path="res://scenes/player/vector_spider.tscn" id="7_c1c4s"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_e6l2p"]
@@ -18,104 +17,115 @@ wind_strength = 0.1
 oscillation_strength = 0.2
 noise = SubResource("FastNoiseLite_e6l2p")
 
+[sub_resource type="Curve" id="Curve_c1c4s"]
+_data = [Vector2(0, 0.7576115), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_h8wd1"]
 _limits = [0.0, 0.49798107, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.5458955, 0, 0, Vector2(0.18396577, 0.12178925), 0.5778395, 0.52870196, 0, 0, Vector2(0.49837387, 0.22424886), -0.031247612, -0.031247612, 0, 0, Vector2(0.76609373, 0.13995054), -0.5427215, -0.5427215, 0, 0, Vector2(1, 0), -0.4094619, 0.0, 0, 0]
 point_count = 5
 
+[sub_resource type="GDScript" id="GDScript_c1c4s"]
+script/source = "extends StaticBody2D
+
+func _process(delta: float) -> void:
+	global_position = get_global_mouse_position()
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_h8wd1"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h8wd1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e16xp"]
-
 [node name="RopeTest" type="Node2D" unique_id=1674417321]
+script = ExtResource("1_suw1b")
 
-[node name="RopeHandle" type="Marker2D" parent="." unique_id=1809158712 groups=["keyhandles"]]
-position = Vector2(226, 334)
+[node name="RopeHandles" type="Marker2D" parent="." unique_id=1809158712 groups=["keyhandles"]]
+position = Vector2(219, 363)
 script = ExtResource("4_v1n0m")
 strength = 0.75
 rope_path = NodePath("../Rope")
 metadata/_custom_type_script = "uid://1xluodkpnre3"
 
-[node name="RopeHandle2" type="Marker2D" parent="RopeHandle" unique_id=576875012 groups=["keyhandles"]]
+[node name="RopeHandle2" type="Marker2D" parent="RopeHandles" unique_id=576875012 groups=["keyhandles"]]
 position = Vector2(-1, 0)
 script = ExtResource("4_v1n0m")
 strength = 0.75
 rope_path = NodePath("../../Rope2")
 metadata/_custom_type_script = "uid://1xluodkpnre3"
 
-[node name="RopeHandle3" type="Marker2D" parent="RopeHandle" unique_id=1469171657 groups=["keyhandles"]]
+[node name="RopeHandle3" type="Marker2D" parent="RopeHandles" unique_id=1469171657 groups=["keyhandles"]]
 position = Vector2(0, -1)
 script = ExtResource("4_v1n0m")
 strength = 0.75
 rope_path = NodePath("../../Rope3")
 metadata/_custom_type_script = "uid://1xluodkpnre3"
 
-[node name="RopeHandle4" type="Marker2D" parent="RopeHandle" unique_id=72034084 groups=["keyhandles"]]
+[node name="RopeHandle4" type="Marker2D" parent="RopeHandles" unique_id=72034084 groups=["keyhandles"]]
 script = ExtResource("4_v1n0m")
 strength = 0.75
 rope_path = NodePath("../../Rope4")
 metadata/_custom_type_script = "uid://1xluodkpnre3"
 
-[node name="RopeHandle5" type="Marker2D" parent="RopeHandle" unique_id=1582651583 groups=["keyhandles"]]
+[node name="RopeHandle5" type="Marker2D" parent="RopeHandles" unique_id=1582651583 groups=["keyhandles"]]
 script = ExtResource("4_v1n0m")
 strength = 0.75
 rope_path = NodePath("../../Rope5")
 metadata/_custom_type_script = "uid://1xluodkpnre3"
 
-[node name="RopeHandle6" type="Marker2D" parent="RopeHandle" unique_id=26584062 groups=["keyhandles"]]
+[node name="RopeHandle6" type="Marker2D" parent="RopeHandles" unique_id=26584062 groups=["keyhandles"]]
 script = ExtResource("4_v1n0m")
 strength = 0.75
 rope_path = NodePath("../../Rope6")
 metadata/_custom_type_script = "uid://1xluodkpnre3"
 
-[node name="RopeHandle7" type="Marker2D" parent="RopeHandle" unique_id=2082760444 groups=["keyhandles"]]
+[node name="RopeHandle7" type="Marker2D" parent="RopeHandles" unique_id=2082760444 groups=["keyhandles"]]
 script = ExtResource("4_v1n0m")
 strength = 0.75
 rope_path = NodePath("../../Rope7")
 metadata/_custom_type_script = "uid://1xluodkpnre3"
 
-[node name="RopeHandle8" type="Marker2D" parent="RopeHandle" unique_id=1313693214 groups=["keyhandles"]]
+[node name="RopeHandle8" type="Marker2D" parent="RopeHandles" unique_id=1313693214 groups=["keyhandles"]]
 script = ExtResource("4_v1n0m")
 strength = 0.75
 rope_path = NodePath("../../Rope8")
 metadata/_custom_type_script = "uid://1xluodkpnre3"
 
-[node name="RopeHandle9" type="Marker2D" parent="RopeHandle" unique_id=1811256001 groups=["keyhandles"]]
+[node name="RopeHandle9" type="Marker2D" parent="RopeHandles" unique_id=1811256001 groups=["keyhandles"]]
 script = ExtResource("4_v1n0m")
 strength = 0.75
 rope_path = NodePath("../../Rope9")
 metadata/_custom_type_script = "uid://1xluodkpnre3"
 
-[node name="RopeHandle10" type="Marker2D" parent="RopeHandle" unique_id=360268050 groups=["keyhandles"]]
+[node name="RopeHandle10" type="Marker2D" parent="RopeHandles" unique_id=360268050 groups=["keyhandles"]]
 script = ExtResource("4_v1n0m")
 strength = 0.75
 rope_path = NodePath("../../Rope10")
 metadata/_custom_type_script = "uid://1xluodkpnre3"
 
-[node name="RopeHandle11" type="Marker2D" parent="RopeHandle" unique_id=1687580360 groups=["keyhandles"]]
+[node name="RopeHandle11" type="Marker2D" parent="RopeHandles" unique_id=1687580360 groups=["keyhandles"]]
 script = ExtResource("4_v1n0m")
 strength = 0.75
 rope_path = NodePath("../../Rope11")
 metadata/_custom_type_script = "uid://1xluodkpnre3"
 
-[node name="RopeHandle12" type="Marker2D" parent="RopeHandle" unique_id=1605839701 groups=["keyhandles"]]
+[node name="RopeHandle12" type="Marker2D" parent="RopeHandles" unique_id=1605839701 groups=["keyhandles"]]
 script = ExtResource("4_v1n0m")
 strength = 0.75
 rope_path = NodePath("../../Rope12")
 metadata/_custom_type_script = "uid://1xluodkpnre3"
 
 [node name="Rope" type="Node2D" parent="." unique_id=931018688 groups=["keylines"]]
-modulate = Color(1, 1, 1, 0.49019608)
-position = Vector2(-40, 347)
+modulate = Color(0.83, 0.8056533, 0.6972, 0.49019608)
+position = Vector2(-65, 352)
 script = ExtResource("1_yxwbq")
 num_segments = 30
 rope_length = 170.0
-stiffness = 2.0
-gravity = 20.0
+stiffness = 1.2
+gravity = 15.0
 wind = SubResource("RopeWindParameters_v1n0m")
-damping = 20.0
+damping = 30.0
+damping_curve = SubResource("Curve_c1c4s")
 render_line = false
 line_width = 1.0
 color = Color(1, 1, 1, 0.42745098)
@@ -127,7 +137,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope" unique_id=732769010]
 position = Vector2(2, -1)
-points = PackedVector2Array(-1.873066, 0.98043823, 6.596754, 4.1411743, 15.098148, 7.194458, 23.647188, 10.08429, 32.25201, 12.77356, 40.915154, 15.239044, 49.63597, 17.46585, 58.412216, 19.44336, 67.240814, 21.163177, 76.11816, 22.617767, 85.040115, 23.800262, 94.00204, 24.70456, 102.998726, 25.325378, 112.02463, 25.6586, 121.07404, 25.701294, 130.1413, 25.451752, 139.2207, 24.908936, 148.30591, 24.072815, 157.3888, 22.944275, 166.45792, 21.525818, 175.50732, 19.820374, 184.54369, 17.82785, 193.57965, 15.544342, 202.61621, 12.966248, 211.6266, 10.099304, 220.55138, 6.9687195, 229.30675, 3.6262817, 237.80049, 0.14974976, 245.94847, -3.3650208, 253.68715, -6.815155, 258.85162, -9.147339)
+points = PackedVector2Array(-1.9085388, 1.041626, 7.400326, 3.4454346, 16.720863, 5.7813416, 26.059032, 8.015625, 35.417618, 10.127014, 44.797127, 12.103485, 54.196823, 13.938995, 63.615463, 15.630524, 73.051674, 17.176422, 82.50412, 18.575409, 91.97151, 19.826294, 101.452576, 20.927673, 110.946014, 21.87793, 120.45056, 22.675507, 129.96512, 23.318848, 139.48877, 23.806519, 149.02066, 24.136993, 158.55923, 24.30893, 168.10117, 24.321167, 177.6398, 24.172913, 187.17325, 23.863617, 196.71172, 23.391998, 206.2714, 22.754913, 215.8578, 21.948364, 225.44914, 20.970917, 234.98947, 19.829895, 244.39407, 18.546082, 253.56335, 17.156189, 262.39923, 15.710022, 270.81885, 14.265503, 276.401, 13.290405)
 width = 6.0
 width_curve = SubResource("Curve_h8wd1")
 default_color = Color(1, 1, 1, 0.7058824)
@@ -138,15 +148,16 @@ script = ExtResource("3_v1n0m")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="Rope2" type="Node2D" parent="." unique_id=1570931897 groups=["keylines"]]
-modulate = Color(1, 1, 1, 0.49019608)
+modulate = Color(0.83, 0.8056533, 0.6972, 0.49019608)
 position = Vector2(-42, 206)
 script = ExtResource("1_yxwbq")
 num_segments = 30
 rope_length = 170.0
-stiffness = 2.0
-gravity = 20.0
+stiffness = 1.2
+gravity = 15.0
 wind = SubResource("RopeWindParameters_v1n0m")
-damping = 20.0
+damping = 30.0
+damping_curve = SubResource("Curve_c1c4s")
 render_line = false
 line_width = 1.0
 color = Color(1, 1, 1, 0.42745098)
@@ -156,37 +167,9 @@ resolve_collisions_while_constraining = true
 collision_mask = 3
 metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
-[node name="RopeAnchor" type="Marker2D" parent="Rope2" unique_id=257466993]
-position = Vector2(267.69592, 54.266052)
-script = ExtResource("5_c1c4s")
-rope_path = NodePath("../../Rope4")
-rope_position = 0.7
-metadata/_custom_type_script = "uid://brklaoabvl73l"
-
-[node name="RopeHandle" type="Marker2D" parent="Rope2/RopeAnchor" unique_id=1248636096]
-position = Vector2(-0.61260986, -0.40356445)
-script = ExtResource("4_v1n0m")
-strength = 1.0
-rope_path = NodePath("../../../Rope3/RopeAnchor/Rope")
-metadata/_custom_type_script = "uid://1xluodkpnre3"
-
-[node name="RopeAnchor2" type="Marker2D" parent="Rope2" unique_id=1233728523]
-position = Vector2(267.5564, 45.892715)
-script = ExtResource("5_c1c4s")
-rope_path = NodePath("../../Rope4")
-rope_position = 0.687
-metadata/_custom_type_script = "uid://brklaoabvl73l"
-
-[node name="RopeHandle" type="Marker2D" parent="Rope2/RopeAnchor2" unique_id=727403335]
-position = Vector2(-0.61260986, -0.40356445)
-script = ExtResource("4_v1n0m")
-strength = 1.0
-rope_path = NodePath("../../../Rope3/RopeAnchor2/Rope")
-metadata/_custom_type_script = "uid://1xluodkpnre3"
-
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope2" unique_id=1585961541]
 position = Vector2(2, -1)
-points = PackedVector2Array(-1.9216118, 1.0641632, 6.030754, 7.4547424, 14.017603, 13.783081, 22.056904, 20.01883, 30.159653, 26.141266, 38.331596, 32.137146, 46.575268, 37.998184, 54.89165, 43.718735, 63.281193, 49.29431, 71.74426, 54.720886, 80.28121, 59.994507, 88.89225, 65.11127, 97.57738, 70.06741, 106.33642, 74.85956, 115.16912, 79.48453, 124.07527, 83.939545, 133.0545, 88.221924, 142.10568, 92.32892, 151.22571, 96.257355, 160.40793, 100.003235, 169.6502, 103.56503, 178.96231, 106.945404, 188.36078, 110.14734, 197.85208, 113.168335, 207.41502, 115.997314, 216.9913, 118.61868, 226.48853, 121.020996, 235.79301, 123.204956, 244.78711, 125.18701, 253.3649, 126.99866, 258.91315, 128.151)
+points = PackedVector2Array(-1.9349365, 1.0871582, 6.193451, 7.57782, 14.343109, 14.025955, 22.525146, 20.411469, 30.746078, 26.721085, 39.008873, 32.947083, 47.31427, 39.085403, 55.661884, 45.13423, 64.05097, 51.092804, 72.48076, 56.960693, 80.9506, 62.73767, 89.459885, 68.4234, 98.00809, 74.01752, 106.59479, 79.51962, 115.21989, 84.92932, 123.8836, 90.24603, 132.58633, 95.46918, 141.32806, 100.59747, 150.10718, 105.62872, 158.91895, 110.55911, 167.76292, 115.38751, 176.6497, 120.1185, 185.59604, 124.75891, 194.60942, 129.30942, 203.67204, 133.75806, 212.73213, 138.07962, 221.70651, 142.24182, 230.49182, 146.21384, 238.9799, 149.97308, 247.07225, 153.50922, 252.26907, 155.76846)
 width = 6.0
 width_curve = SubResource("Curve_h8wd1")
 default_color = Color(1, 1, 1, 0.7058824)
@@ -197,15 +180,16 @@ script = ExtResource("3_v1n0m")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="Rope3" type="Node2D" parent="." unique_id=1107608667 groups=["keylines"]]
-modulate = Color(1, 1, 1, 0.49019608)
+modulate = Color(0.83, 0.8056533, 0.6972, 0.49019608)
 position = Vector2(68, 106)
 script = ExtResource("1_yxwbq")
 num_segments = 30
 rope_length = 170.0
-stiffness = 3.0
-gravity = 20.0
+stiffness = 1.2
+gravity = 15.0
 wind = SubResource("RopeWindParameters_v1n0m")
-damping = 25.0
+damping = 30.0
+damping_curve = SubResource("Curve_c1c4s")
 render_line = false
 line_width = 1.0
 color = Color(1, 1, 1, 0.42745098)
@@ -217,7 +201,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope3" unique_id=1844391165]
 position = Vector2(2, -1)
-points = PackedVector2Array(-1.9163971, 1.0551682, 2.2039413, 9.810875, 6.357353, 18.533989, 10.561249, 27.209763, 14.826485, 35.827744, 19.15918, 44.38092, 23.562729, 52.86438, 28.039444, 61.274597, 32.59137, 69.60855, 37.220726, 77.863495, 41.929977, 86.03676, 46.721695, 94.12558, 51.598534, 102.12718, 56.563232, 110.03876, 61.61856, 117.857605, 66.76732, 125.58121, 72.01221, 133.207, 77.35539, 140.73218, 82.7979, 148.1529, 88.33865, 155.46338, 93.97847, 162.6611, 99.7242, 169.75076, 105.586655, 176.73984, 111.57236, 183.62823, 117.67383, 190.39935, 123.86281, 197.0181, 130.08847, 203.4379, 136.28111, 209.61185, 142.35979, 215.50381, 148.24152, 221.09583, 152.36415, 224.98361)
+points = PackedVector2Array(-1.8916931, 1.012558, 2.751068, 10.173378, 7.4058914, 19.314392, 12.079514, 28.427078, 16.776184, 37.50531, 21.498215, 46.54503, 26.246658, 55.54364, 31.021904, 64.49956, 35.824066, 73.41177, 40.65323, 82.27963, 45.509605, 91.102585, 50.39351, 99.88002, 55.30538, 108.611374, 60.245834, 117.296005, 65.21571, 125.933395, 70.216, 134.52318, 75.24776, 143.06505, 80.31169, 151.55829, 85.40753, 160.00095, 90.53328, 168.38837, 95.689026, 176.72003, 100.88069, 185.00458, 106.117645, 193.25522, 111.40459, 201.47672, 116.732834, 209.65262, 122.07541, 217.74048, 127.387115, 225.67654, 132.60986, 233.38684, 137.68033, 240.79974, 142.53804, 247.8562, 145.7568, 252.51996)
 width = 6.0
 width_curve = SubResource("Curve_h8wd1")
 default_color = Color(1, 1, 1, 0.7058824)
@@ -228,7 +212,7 @@ script = ExtResource("3_v1n0m")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="RopeAnchor" type="Marker2D" parent="Rope3" unique_id=38842528]
-position = Vector2(101.7242, 168.75076)
+position = Vector2(102.88069, 184.00458)
 script = ExtResource("5_c1c4s")
 rope_path = NodePath("..")
 rope_position = 0.7
@@ -245,7 +229,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D2" type="Line2D" parent="Rope3/RopeAnchor/Rope" unique_id=899359851]
 position = Vector2(2, -1)
-points = PackedVector2Array(-2.0952454, 1.1053162, -0.18675232, 1.0083008, 1.7222443, 0.8957825, 3.631958, 0.76190186, 5.5425415, 0.60217285, 7.4541626, 0.41326904, 9.366913, 0.1928711, 11.280853, -0.06060791, 13.196045, -0.34814453, 15.112503, -0.67041016, 17.030243, -1.02771, 18.94925, -1.420227, 20.869492, -1.847992, 22.790924, -2.3109741, 24.713531, -2.809021, 26.637238, -3.342041, 28.561981, -3.9099426, 30.487686, -4.512512, 32.414276, -5.1493835, 34.34166, -5.8200073, 36.269745, -6.524109, 38.198425, -7.262085, 40.127594, -8.034851, 42.057114, -8.842834, 43.986877, -9.684753, 45.916824, -10.557068, 47.846893, -11.453918, 49.777023, -12.367676, 51.707184, -13.289917, 53.63736, -14.212158, 53.63736, -14.212158)
+points = PackedVector2Array(-2.0067139, 1.0134888, -0.31010437, 1.0724182, 1.3868408, 1.1160278, 3.0842285, 1.1386108, 4.7821503, 1.1357727, 6.480713, 1.1043091, 8.179932, 1.0419312, 9.879852, 0.94711304, 11.580505, 0.81884766, 13.281876, 0.6565552, 14.983978, 0.45983887, 16.686783, 0.22851563, 18.39029, -0.03753662, 20.094482, -0.33828735, 21.799316, -0.6737671, 23.504791, -1.0439758, 25.210846, -1.4488525, 26.91745, -1.8883667, 28.624573, -2.3622437, 30.332169, -2.8700867, 32.04019, -3.4117126, 33.74861, -3.987732, 35.457367, -4.599243, 37.166443, -5.2467957, 38.875763, -5.9292297, 40.58528, -6.6429443, 42.294952, -7.381958, 44.00473, -8.138458, 45.71457, -8.903687, 47.424408, -9.668884, 47.424408, -9.668884)
 width = 3.0
 width_curve = SubResource("Curve_h8wd1")
 default_color = Color(1, 1, 1, 0.5882353)
@@ -256,7 +240,7 @@ script = ExtResource("3_v1n0m")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="RopeAnchor2" type="Marker2D" parent="Rope3" unique_id=1364339355]
-position = Vector2(84.7979, 147.1529)
+position = Vector2(87.40753, 159.00095)
 script = ExtResource("5_c1c4s")
 rope_path = NodePath("..")
 rope_position = 0.6
@@ -273,7 +257,147 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D2" type="Line2D" parent="Rope3/RopeAnchor2/Rope" unique_id=684758586]
 position = Vector2(2, -1)
-points = PackedVector2Array(-2.0749207, 1.0891876, 0.41708374, 1.4439087, 2.9094238, 1.7832184, 5.4022064, 2.1013641, 7.8955383, 2.3939514, 10.389511, 2.6576843, 12.884186, 2.8903046, 15.379578, 3.0902863, 17.875732, 3.2566223, 20.37265, 3.3887177, 22.87033, 3.4862518, 25.36876, 3.5490723, 27.86792, 3.577179, 30.367798, 3.5705566, 32.868347, 3.5293274, 35.369537, 3.4535522, 37.871338, 3.3433533, 40.373703, 3.1988983, 42.876587, 3.0204773, 45.379913, 2.808609, 47.883636, 2.5635834, 50.387695, 2.284912, 52.892, 1.9716797, 55.396454, 1.6234131, 57.901, 1.241333, 60.40561, 0.828949, 62.910233, 0.39212036, 65.414856, -0.061584473, 67.919495, -0.5237427, 70.42413, -0.9858856, 70.42413, -0.9858856)
+points = PackedVector2Array(-2.003662, 1.011261, 0.23783875, 0.95840454, 2.4796143, 0.8902283, 4.7217712, 0.8010559, 6.9643707, 0.6864624, 9.207489, 0.5432434, 11.451141, 0.36914063, 13.695374, 0.16262817, 15.940186, -0.07727051, 18.185577, -0.35113525, 20.43155, -0.6593933, 22.67807, -1.0022278, 24.925125, -1.3796692, 27.172699, -1.7917175, 29.420746, -2.2383728, 31.66922, -2.719635, 33.91809, -3.235443, 36.167297, -3.785736, 38.416824, -4.37027, 40.666595, -4.9886475, 42.916595, -5.6406555, 45.166763, -6.326996, 47.417084, -7.048706, 49.66751, -7.8063965, 51.91803, -8.598938, 54.16861, -9.42276, 56.41925, -10.271851, 58.669937, -11.138397, 60.92064, -12.013672, 63.17134, -12.888947, 63.17134, -12.888947)
+width = 3.0
+width_curve = SubResource("Curve_h8wd1")
+default_color = Color(1, 1, 1, 0.5882353)
+texture_mode = 2
+joint_mode = 2
+antialiased = true
+script = ExtResource("3_v1n0m")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="RopeAnchor3" type="Marker2D" parent="Rope3" unique_id=220304243]
+position = Vector2(72.216, 133.52318)
+script = ExtResource("5_c1c4s")
+rope_path = NodePath("..")
+rope_position = 0.5
+metadata/_custom_type_script = "uid://brklaoabvl73l"
+
+[node name="Rope" type="Node2D" parent="Rope3/RopeAnchor3" unique_id=1392204859]
+position = Vector2(-0.31536102, 0.32809448)
+script = ExtResource("1_yxwbq")
+num_segments = 30
+rope_length = 0.0
+gravity = 20.0
+render_line = false
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D2" type="Line2D" parent="Rope3/RopeAnchor3/Rope" unique_id=2002198282]
+position = Vector2(2, -1)
+points = PackedVector2Array(-2.0030518, 1.0099945, 0.76937866, 0.8510437, 3.5420074, 0.6768341, 6.3149414, 0.48165894, 9.088242, 0.26116943, 11.861938, 0.012130737, 14.636063, -0.2677002, 17.410614, -0.579834, 20.185608, -0.9252472, 22.96103, -1.3045349, 25.736862, -1.7180481, 28.513092, -2.1659393, 31.289673, -2.648285, 34.06659, -3.1651, 36.84378, -3.7163239, 39.6212, -4.301941, 42.398804, -4.9218903, 45.176575, -5.576111, 47.954437, -6.264374, 50.73236, -6.986267, 53.510315, -7.7416077, 56.28827, -8.531067, 59.066208, -9.355743, 61.844116, -10.216293, 64.62198, -11.111572, 67.39981, -12.038025, 70.17761, -12.989685, 72.95538, -13.958771, 75.733154, -14.936554, 78.510925, -15.914352, 78.510925, -15.914352)
+width = 3.0
+width_curve = SubResource("Curve_h8wd1")
+default_color = Color(1, 1, 1, 0.5882353)
+texture_mode = 2
+joint_mode = 2
+antialiased = true
+script = ExtResource("3_v1n0m")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="RopeAnchor4" type="Marker2D" parent="Rope3" unique_id=1069403535]
+position = Vector2(57.30538, 107.611374)
+script = ExtResource("5_c1c4s")
+rope_path = NodePath("..")
+rope_position = 0.4
+metadata/_custom_type_script = "uid://brklaoabvl73l"
+
+[node name="Rope" type="Node2D" parent="Rope3/RopeAnchor4" unique_id=845314885]
+position = Vector2(-0.31536102, 0.32809448)
+script = ExtResource("1_yxwbq")
+num_segments = 30
+rope_length = 0.0
+gravity = 20.0
+render_line = false
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D2" type="Line2D" parent="Rope3/RopeAnchor4/Rope" unique_id=1171797210]
+position = Vector2(2, -1)
+points = PackedVector2Array(-2.0036697, 1.0092773, 1.285492, 0.74975586, 4.5748444, 0.47503662, 7.8644257, 0.17945862, 11.154282, -0.14131165, 14.4444275, -0.49046326, 17.73491, -0.87023926, 21.025696, -1.2821198, 24.316788, -1.7270813, 27.608185, -2.205719, 30.899826, -2.7183838, 34.191696, -3.2651978, 37.483765, -3.8462524, 40.775986, -4.461548, 44.0683, -5.1110535, 47.360672, -5.7947083, 50.65309, -6.512497, 53.945496, -7.2643433, 57.237854, -8.050034, 60.530136, -8.869141, 63.822342, -9.721527, 67.114426, -10.607849, 70.40639, -11.529221, 73.69824, -12.486267, 76.98999, -13.477905, 80.28163, -14.50061, 83.57321, -15.548431, 86.86473, -16.613586, 90.156235, -17.687408, 93.44774, -18.76123, 93.44774, -18.76123)
+width = 3.0
+width_curve = SubResource("Curve_h8wd1")
+default_color = Color(1, 1, 1, 0.5882353)
+texture_mode = 2
+joint_mode = 2
+antialiased = true
+script = ExtResource("3_v1n0m")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="RopeAnchor5" type="Marker2D" parent="Rope3" unique_id=1419284015]
+position = Vector2(42.65323, 81.27963)
+script = ExtResource("5_c1c4s")
+rope_path = NodePath("..")
+rope_position = 0.3
+metadata/_custom_type_script = "uid://brklaoabvl73l"
+
+[node name="Rope" type="Node2D" parent="Rope3/RopeAnchor5" unique_id=1043365692]
+position = Vector2(-0.31536102, 0.32809448)
+script = ExtResource("1_yxwbq")
+num_segments = 30
+rope_length = 0.0
+gravity = 20.0
+render_line = false
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D2" type="Line2D" parent="Rope3/RopeAnchor5/Rope" unique_id=1261060722]
+position = Vector2(2, -1)
+points = PackedVector2Array(-2.002922, 1.0071411, 1.7901382, 0.65193176, 5.583267, 0.281662, 9.376495, -0.10925293, 13.169838, -0.5251312, 16.963295, -0.96910095, 20.756859, -1.4433899, 24.550545, -1.9494781, 28.344322, -2.4883575, 32.13819, -3.0605927, 35.93212, -3.6665497, 39.72608, -4.3063965, 43.520058, -4.9802094, 47.31402, -5.6880035, 51.107964, -6.4297943, 54.901863, -7.205551, 58.6957, -8.015244, 62.48948, -8.858841, 66.283165, -9.736145, 70.076775, -10.646744, 73.87026, -11.5905, 77.66364, -12.568039, 81.45692, -13.580536, 85.250084, -14.628586, 89.04311, -15.71109, 92.83605, -16.82454, 96.6289, -17.962997, 100.421684, -19.118729, 104.21444, -20.283112, 108.007195, -21.447495, 108.007195, -21.447495)
+width = 3.0
+width_curve = SubResource("Curve_h8wd1")
+default_color = Color(1, 1, 1, 0.5882353)
+texture_mode = 2
+joint_mode = 2
+antialiased = true
+script = ExtResource("3_v1n0m")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="RopeAnchor6" type="Marker2D" parent="Rope3" unique_id=1207870461]
+position = Vector2(28.246658, 54.54364)
+script = ExtResource("5_c1c4s")
+rope_path = NodePath("..")
+rope_position = 0.2
+metadata/_custom_type_script = "uid://brklaoabvl73l"
+
+[node name="Rope" type="Node2D" parent="Rope3/RopeAnchor6" unique_id=845458009]
+position = Vector2(-0.31536102, 0.32809448)
+script = ExtResource("1_yxwbq")
+num_segments = 30
+rope_length = 0.0
+gravity = 20.0
+render_line = false
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D2" type="Line2D" parent="Rope3/RopeAnchor6/Rope" unique_id=68747658]
+position = Vector2(2, -1)
+points = PackedVector2Array(-1.9999924, 1.0032349, 2.2840424, 0.55755615, 6.568016, 0.09703064, 10.851898, -0.38389587, 15.135681, -0.8894806, 19.419342, -1.4228363, 23.702866, -1.986145, 27.98626, -2.580902, 32.26953, -3.208084, 36.55269, -3.8683014, 40.835754, -4.56192, 45.118713, -5.2891693, 49.40161, -6.0501404, 53.68448, -6.8448944, 57.9673, -7.673477, 62.250122, -8.535904, 66.53293, -9.43219, 70.815735, -10.362289, 75.09857, -11.326065, 79.38144, -12.323135, 83.66432, -13.353348, 87.947235, -14.417328, 92.23013, -15.51622, 96.513016, -16.65062, 100.79587, -17.819443, 105.07864, -19.01915, 109.36139, -20.24382, 113.644104, -21.485733, 117.92679, -22.736282, 122.20947, -23.986816, 122.20947, -23.986816)
+width = 3.0
+width_curve = SubResource("Curve_h8wd1")
+default_color = Color(1, 1, 1, 0.5882353)
+texture_mode = 2
+joint_mode = 2
+antialiased = true
+script = ExtResource("3_v1n0m")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="RopeAnchor7" type="Marker2D" parent="Rope3" unique_id=1353677500]
+position = Vector2(14.079514, 27.427078)
+script = ExtResource("5_c1c4s")
+rope_path = NodePath("..")
+rope_position = 0.1
+metadata/_custom_type_script = "uid://brklaoabvl73l"
+
+[node name="Rope" type="Node2D" parent="Rope3/RopeAnchor7" unique_id=352494245]
+position = Vector2(-0.31536102, 0.32809448)
+script = ExtResource("1_yxwbq")
+num_segments = 30
+rope_length = 0.0
+gravity = 20.0
+render_line = false
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D2" type="Line2D" parent="Rope3/RopeAnchor7/Rope" unique_id=737890315]
+position = Vector2(2, -1)
+points = PackedVector2Array(-1.9981384, 1.0001068, 2.7635727, 0.46983337, 7.5251694, -0.075149536, 12.286606, -0.64030457, 17.04786, -1.2298737, 21.808914, -1.8469696, 26.569786, -2.4937897, 31.330482, -3.1717834, 36.091026, -3.8819885, 40.851456, -4.6250305, 45.61181, -5.401291, 50.37214, -6.211029, 55.1325, -7.0543747, 59.892906, -7.931427, 64.65342, -8.842239, 69.414085, -9.786865, 74.17492, -10.76535, 78.935936, -11.777687, 83.69715, -12.82373, 88.45858, -13.903076, 93.22018, -15.015617, 97.98196, -16.161987, 102.74387, -17.343338, 107.50588, -18.560257, 112.26795, -19.811646, 117.03005, -21.093987, 121.79215, -22.401344, 126.55425, -23.725983, 131.31638, -25.05925, 136.07849, -26.392525, 136.07849, -26.392525)
 width = 3.0
 width_curve = SubResource("Curve_h8wd1")
 default_color = Color(1, 1, 1, 0.5882353)
@@ -284,15 +408,16 @@ script = ExtResource("3_v1n0m")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="Rope4" type="Node2D" parent="." unique_id=1533729467 groups=["keylines"]]
-modulate = Color(1, 1, 1, 0.49019608)
+modulate = Color(0.83, 0.8056533, 0.6972, 0.49019608)
 position = Vector2(220, 77)
 script = ExtResource("1_yxwbq")
 num_segments = 30
 rope_length = 170.0
-stiffness = 2.0
-gravity = 20.0
+stiffness = 1.2
+gravity = 15.0
 wind = SubResource("RopeWindParameters_v1n0m")
-damping = 20.0
+damping = 30.0
+damping_curve = SubResource("Curve_c1c4s")
 render_line = false
 line_width = 1.0
 color = Color(1, 1, 1, 0.42745098)
@@ -304,7 +429,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D2" type="Line2D" parent="Rope4" unique_id=280091346]
 position = Vector2(2, -1)
-points = PackedVector2Array(-1.9325714, 1.0830765, -1.5822296, 10.122032, -1.2340088, 19.143959, -0.88920593, 28.14264, -0.5489502, 37.11342, -0.21440125, 46.052933, 0.11332703, 54.958908, 0.43319702, 63.82997, 0.7442322, 72.66527, 1.0457458, 81.46448, 1.3370667, 90.22743, 1.6175385, 98.95418, 1.8864441, 107.644806, 2.1431274, 116.299484, 2.3869934, 124.91852, 2.6176147, 133.5024, 2.8346558, 142.05164, 3.037735, 150.56648, 3.2262878, 159.04622, 3.3995056, 167.48827, 3.5563812, 175.89272, 3.6959076, 184.26605, 3.8169098, 192.6181, 3.9180756, 200.95306, 3.9978638, 209.2602, 4.0549164, 217.51001, 4.088501, 225.65656, 4.099411, 233.64453, 4.09079, 241.41803, 4.0686493, 248.92813, 4.047058, 254.59476)
+points = PackedVector2Array(-1.9125214, 1.0485001, -1.783081, 10.969482, -1.6586609, 20.877037, -1.5415802, 30.76622, -1.4332275, 40.6333, -1.3344269, 50.47564, -1.2457886, 60.29149, -1.1678772, 70.07977, -1.1012573, 79.83983, -1.0465088, 89.571365, -1.0041351, 99.274185, -0.97454834, 108.94815, -0.9580231, 118.593155, -0.9547119, 128.20914, -0.96466064, 137.79619, -0.98786926, 147.35466, -1.0243835, 156.88493, -1.0742798, 166.38693, -1.1376953, 175.8593, -1.2147522, 185.29791, -1.3056488, 194.70258, -1.4108276, 204.0828, -1.530899, 213.45294, -1.6665039, 222.81894, -1.8177338, 232.16467, -1.9837341, 241.44595, -2.1622772, 250.59427, -2.3496094, 259.5273, -2.5409088, 268.16187, -2.730484, 276.42508, -2.8622742, 282.0902)
 width = 6.0
 width_curve = SubResource("Curve_h8wd1")
 default_color = Color(1, 1, 1, 0.7058824)
@@ -314,16 +439,115 @@ antialiased = true
 script = ExtResource("3_v1n0m")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
+[node name="RopeAnchor" type="Marker2D" parent="Rope4" unique_id=339370066]
+position = Vector2(0.58917236, 203.0828)
+script = ExtResource("5_c1c4s")
+rope_path = NodePath("../../Rope4")
+rope_position = 0.7
+metadata/_custom_type_script = "uid://brklaoabvl73l"
+
+[node name="RopeHandle" type="Marker2D" parent="Rope4/RopeAnchor" unique_id=592989772]
+position = Vector2(-0.61260986, -0.40356445)
+script = ExtResource("4_v1n0m")
+strength = 1.0
+rope_path = NodePath("../../../Rope3/RopeAnchor/Rope")
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="RopeAnchor2" type="Marker2D" parent="Rope4" unique_id=1402251597]
+position = Vector2(0.8623047, 174.8593)
+script = ExtResource("5_c1c4s")
+rope_path = NodePath("../../Rope4")
+rope_position = 0.6
+metadata/_custom_type_script = "uid://brklaoabvl73l"
+
+[node name="RopeHandle" type="Marker2D" parent="Rope4/RopeAnchor2" unique_id=2112661992]
+position = Vector2(-0.61260986, -0.40356445)
+script = ExtResource("4_v1n0m")
+strength = 1.0
+rope_path = NodePath("../../../Rope3/RopeAnchor2/Rope")
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="RopeAnchor3" type="Marker2D" parent="Rope4" unique_id=86275370]
+position = Vector2(1.0121307, 146.35466)
+script = ExtResource("5_c1c4s")
+rope_path = NodePath("../../Rope4")
+rope_position = 0.5
+metadata/_custom_type_script = "uid://brklaoabvl73l"
+
+[node name="RopeHandle" type="Marker2D" parent="Rope4/RopeAnchor3" unique_id=1974033182]
+position = Vector2(-0.61260986, -0.40356445)
+script = ExtResource("4_v1n0m")
+strength = 1.0
+rope_path = NodePath("../../../Rope3/RopeAnchor3/Rope")
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="RopeAnchor4" type="Marker2D" parent="Rope4" unique_id=572393886]
+position = Vector2(1.0419769, 117.593155)
+script = ExtResource("5_c1c4s")
+rope_path = NodePath("../../Rope4")
+rope_position = 0.4
+metadata/_custom_type_script = "uid://brklaoabvl73l"
+
+[node name="RopeHandle" type="Marker2D" parent="Rope4/RopeAnchor4" unique_id=302247945]
+position = Vector2(-0.61260986, -0.40356445)
+script = ExtResource("4_v1n0m")
+strength = 1.0
+rope_path = NodePath("../../../Rope3/RopeAnchor4/Rope")
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="RopeAnchor5" type="Marker2D" parent="Rope4" unique_id=580064291]
+position = Vector2(0.9534912, 88.571365)
+script = ExtResource("5_c1c4s")
+rope_path = NodePath("../../Rope4")
+rope_position = 0.3
+metadata/_custom_type_script = "uid://brklaoabvl73l"
+
+[node name="RopeHandle" type="Marker2D" parent="Rope4/RopeAnchor5" unique_id=346989944]
+position = Vector2(-0.61260986, -0.40356445)
+script = ExtResource("4_v1n0m")
+strength = 1.0
+rope_path = NodePath("../../../Rope3/RopeAnchor5/Rope")
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="RopeAnchor6" type="Marker2D" parent="Rope4" unique_id=1846456066]
+position = Vector2(0.7542114, 59.29149)
+script = ExtResource("5_c1c4s")
+rope_path = NodePath("../../Rope4")
+rope_position = 0.2
+metadata/_custom_type_script = "uid://brklaoabvl73l"
+
+[node name="RopeHandle" type="Marker2D" parent="Rope4/RopeAnchor6" unique_id=1336656164]
+position = Vector2(-0.61260986, -0.40356445)
+script = ExtResource("4_v1n0m")
+strength = 1.0
+rope_path = NodePath("../../../Rope3/RopeAnchor6/Rope")
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
+[node name="RopeAnchor7" type="Marker2D" parent="Rope4" unique_id=1887033800]
+position = Vector2(0.4584198, 29.76622)
+script = ExtResource("5_c1c4s")
+rope_path = NodePath("../../Rope4")
+rope_position = 0.1
+metadata/_custom_type_script = "uid://brklaoabvl73l"
+
+[node name="RopeHandle" type="Marker2D" parent="Rope4/RopeAnchor7" unique_id=1844276281]
+position = Vector2(-0.61260986, -0.40356445)
+script = ExtResource("4_v1n0m")
+strength = 1.0
+rope_path = NodePath("../../../Rope3/RopeAnchor7/Rope")
+metadata/_custom_type_script = "uid://1xluodkpnre3"
+
 [node name="Rope5" type="Node2D" parent="." unique_id=2136049464 groups=["keylines"]]
-modulate = Color(1, 1, 1, 0.49019608)
+modulate = Color(0.83, 0.8056533, 0.6972, 0.49019608)
 position = Vector2(367, 98)
 script = ExtResource("1_yxwbq")
 num_segments = 30
 rope_length = 170.0
-stiffness = 2.0
-gravity = 20.0
+stiffness = 1.2
+gravity = 15.0
 wind = SubResource("RopeWindParameters_v1n0m")
-damping = 20.0
+damping = 30.0
+damping_curve = SubResource("Curve_c1c4s")
 render_line = false
 line_width = 1.0
 color = Color(1, 1, 1, 0.42745098)
@@ -335,7 +559,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope5" unique_id=22586527]
 position = Vector2(2, -1)
-points = PackedVector2Array(-1.9381409, 1.0926971, -5.4586487, 9.98011, -9.013855, 18.838509, -12.622253, 27.6549, -16.295776, 36.420074, -20.041504, 45.127808, -23.863617, 53.773865, -27.76474, 62.355286, -31.746857, 70.86983, -35.811737, 79.31554, -39.96106, 87.69069, -44.196533, 95.99344, -48.519928, 104.22194, -52.932953, 112.3743, -57.43744, 120.44856, -62.03537, 128.4429, -66.72867, 136.35538, -71.519226, 144.18365, -76.40802, 151.9241, -81.3945, 159.57101, -86.48004, 167.12198, -91.67139, 174.58218, -96.979004, 181.96024, -102.40936, 189.25693, -107.9559, 196.45581, -113.59273, 203.52039, -119.27292, 210.40039, -124.93161, 217.04291, -130.4931, 223.40381, -135.8791, 229.45572, -139.66206, 233.67477)
+points = PackedVector2Array(-1.9257507, 1.071312, -6.2143555, 10.605125, -10.524261, 20.116745, -14.866638, 29.596474, -19.248535, 39.03743, -23.674072, 48.43495, -28.145264, 57.786057, -32.663177, 67.08879, -37.228333, 76.3419, -41.841034, 85.544556, -46.501617, 94.696075, -51.21042, 103.795944, -55.967712, 112.84361, -60.773865, 121.83864, -65.62927, 130.7807, -70.534515, 139.66972, -75.49017, 148.50562, -80.49649, 157.28778, -85.55289, 166.01413, -90.65704, 174.67972, -95.80881, 183.2839, -101.01453, 191.83609, -106.28424, 200.35059, -111.62326, 208.83234, -117.022415, 217.26352, -122.45203, 225.59827, -127.862, 233.76834, -133.18752, 241.69485, -138.35774, 249.30176, -143.30498, 256.52646, -146.51286, 261.19772)
 width = 6.0
 width_curve = SubResource("Curve_h8wd1")
 default_color = Color(1, 1, 1, 0.7058824)
@@ -346,15 +570,16 @@ script = ExtResource("3_v1n0m")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="Rope6" type="Node2D" parent="." unique_id=93484764 groups=["keylines"]]
-modulate = Color(1, 1, 1, 0.49019608)
+modulate = Color(0.83, 0.8056533, 0.6972, 0.49019608)
 position = Vector2(487, 212)
 script = ExtResource("1_yxwbq")
 num_segments = 30
 rope_length = 170.0
-stiffness = 2.0
-gravity = 20.0
+stiffness = 1.2
+gravity = 15.0
 wind = SubResource("RopeWindParameters_v1n0m")
-damping = 20.0
+damping = 30.0
+damping_curve = SubResource("Curve_c1c4s")
 render_line = false
 line_width = 1.0
 color = Color(1, 1, 1, 0.42745098)
@@ -366,7 +591,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope6" unique_id=1943043195]
 position = Vector2(2, -1)
-points = PackedVector2Array(-1.9264221, 1.0724945, -9.390778, 7.4244843, -16.901947, 13.708221, -24.483734, 19.889694, -32.150665, 25.945969, -39.91028, 31.86258, -47.76599, 37.630615, -55.718872, 43.244263, -63.769196, 48.69931, -71.916595, 53.992218, -80.160675, 59.119812, -88.50064, 64.07901, -96.93573, 68.8667, -105.46506, 73.47974, -114.08789, 77.91513, -122.80365, 82.16992, -131.61172, 86.24121, -140.5108, 90.12604, -149.49753, 93.821014, -158.56488, 97.322235, -167.71048, 100.62842, -176.94434, 103.74237, -186.28342, 106.66699, -195.73419, 109.39963, -205.27417, 111.9299, -214.84232, 114.24411, -224.34256, 116.33441, -233.65717, 118.20645, -242.66496, 119.88223, -251.25755, 121.398926, -256.84143, 122.364105)
+points = PackedVector2Array(-1.9087219, 1.0419312, -10.114777, 7.411606, -18.34906, 13.739044, -26.625366, 20.003738, -34.95227, 26.192245, -43.33423, 32.29637, -51.773193, 38.311493, -60.269745, 44.234955, -68.82388, 50.065155, -77.43524, 55.800873, -86.10339, 61.44113, -94.82773, 66.98483, -103.60751, 72.43085, -112.44211, 77.77786, -121.33096, 83.024506, -130.27396, 88.16928, -139.271, 93.21057, -148.32147, 98.14621, -157.423, 102.973206, -166.56976, 107.687256, -175.76059, 112.286896, -185.00671, 116.77655, -194.3262, 121.16275, -203.72693, 125.44574, -213.18869, 129.61368, -222.6536, 133.64307, -232.02908, 137.50507, -241.20087, 141.17334, -250.05019, 144.63025, -258.46967, 147.87015, -263.76212, 149.8953)
 width = 6.0
 width_curve = SubResource("Curve_h8wd1")
 default_color = Color(1, 1, 1, 0.7058824)
@@ -377,15 +602,16 @@ script = ExtResource("3_v1n0m")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="Rope7" type="Node2D" parent="." unique_id=966465314 groups=["keylines"]]
-modulate = Color(1, 1, 1, 0.49019608)
+modulate = Color(0.83, 0.8056533, 0.6972, 0.49019608)
 position = Vector2(524, 311)
 script = ExtResource("1_yxwbq")
 num_segments = 30
 rope_length = 170.0
-stiffness = 2.0
-gravity = 20.0
+stiffness = 1.2
+gravity = 15.0
 wind = SubResource("RopeWindParameters_v1n0m")
-damping = 20.0
+damping = 30.0
+damping_curve = SubResource("Curve_c1c4s")
 render_line = false
 line_width = 1.0
 color = Color(1, 1, 1, 0.42745098)
@@ -397,7 +623,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope7" unique_id=119006355]
 position = Vector2(2, -1)
-points = PackedVector2Array(-1.9111328, 1.046051, -11.1692505, 4.7724304, -20.461975, 8.403046, -29.806, 11.889984, -39.210632, 15.201508, -48.67978, 18.318237, -58.21411, 21.228912, -67.81262, 23.926788, -77.4733, 26.407745, -87.19394, 28.669006, -96.972015, 30.708344, -106.80496, 32.523956, -116.690125, 34.114136, -126.62482, 35.477448, -136.60654, 36.61261, -146.63312, 37.518707, -156.7024, 38.194763, -166.81146, 38.639862, -176.95523, 38.853333, -187.1242, 38.83542, -197.31537, 38.587463, -207.54114, 38.110077, -217.82187, 37.400665, -228.16388, 36.454895, -238.53839, 35.27246, -248.8728, 33.86667, -259.0583, 32.271973, -268.9675, 30.54486, -278.4755, 28.757477, -287.477, 26.988892, -293.0341, 25.879944)
+points = PackedVector2Array(-1.9116821, 1.0470581, -11.63385, 4.538666, -21.376617, 7.970886, -31.149872, 11.31485, -40.95932, 14.55191, -50.80783, 17.671417, -60.696228, 20.66809, -70.62436, 23.539337, -80.59152, 26.284058, -90.59686, 28.901642, -100.63934, 31.391449, -110.717896, 33.752808, -120.83136, 35.984802, -130.97852, 38.086487, -141.15848, 40.056732, -151.37048, 41.89441, -161.61395, 43.598175, -171.88751, 45.166412, -182.18762, 46.597504, -192.5068, 47.889557, -202.84323, 49.04196, -213.20969, 50.05536, -223.62671, 50.929474, -234.10223, 51.66165, -244.61102, 52.247498, -255.08554, 52.685944, -265.42117, 52.98456, -275.49246, 53.162537, -285.1728, 53.24951, -294.3517, 53.28247, -300.01837, 53.291718)
 width = 6.0
 width_curve = SubResource("Curve_h8wd1")
 default_color = Color(1, 1, 1, 0.7058824)
@@ -408,15 +634,16 @@ script = ExtResource("3_v1n0m")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="Rope8" type="Node2D" parent="." unique_id=1974705011 groups=["keylines"]]
-modulate = Color(1, 1, 1, 0.49019608)
+modulate = Color(0.83, 0.8056533, 0.6972, 0.49019608)
 position = Vector2(502, 427)
 script = ExtResource("1_yxwbq")
 num_segments = 30
 rope_length = 170.0
-stiffness = 2.0
-gravity = 20.0
+stiffness = 1.2
+gravity = 15.0
 wind = SubResource("RopeWindParameters_v1n0m")
-damping = 20.0
+damping = 30.0
+damping_curve = SubResource("Curve_c1c4s")
 render_line = false
 line_width = 1.0
 color = Color(1, 1, 1, 0.42745098)
@@ -428,7 +655,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope8" unique_id=1333386343]
 position = Vector2(2, -1)
-points = PackedVector2Array(-1.9057007, 1.0367126, -11.3914795, 1.546051, -20.887085, 1.9269409, -30.39502, 2.115326, -39.91455, 2.071228, -49.44275, 1.7724304, -58.975525, 1.2073975, -68.50836, 0.37017822, -78.03656, -0.7423706, -87.55521, -2.1321106, -97.05957, -3.7998352, -106.54489, -5.7454224, -116.00644, -7.967987, -125.43994, -10.466187, -134.84131, -13.238373, -144.20715, -16.282928, -153.53415, -19.5979, -162.8186, -23.18097, -172.05475, -27.028412, -181.23318, -31.13388, -190.35117, -35.49286, -199.42084, -40.10904, -208.46039, -44.99298, -217.47388, -50.15091, -226.43335, -55.56903, -235.27502, -61.200012, -243.90988, -66.95932, -252.24057, -72.73352, -260.17847, -78.39624, -267.65613, -83.824554, -272.232, -87.167114)
+points = PackedVector2Array(-1.9099731, 1.0440979, -11.457489, 1.1125793, -21.00943, 1.1018677, -30.56665, 0.97314453, -40.12912, 0.7027283, -49.695923, 0.2779541, -59.265778, -0.30697632, -68.83725, -1.0545349, -78.40869, -1.9656982, -87.978424, -3.040924, -97.54471, -4.2804565, -107.10562, -5.684265, -116.6593, -7.25235, -126.20383, -8.984528, -135.73749, -10.880951, -145.25891, -12.941742, -154.76663, -15.167389, -164.2586, -17.558136, -173.73087, -20.113525, -183.17593, -22.831573, -192.59189, -25.71103, -201.98993, -28.755219, -211.3876, -31.971222, -220.7904, -35.36371, -230.1745, -38.92627, -239.48062, -42.633118, -248.62144, -46.43576, -257.49667, -50.266083, -266.01013, -54.0448, -274.08322, -57.691254, -279.24176, -60.03656)
 width = 6.0
 width_curve = SubResource("Curve_h8wd1")
 default_color = Color(1, 1, 1, 0.7058824)
@@ -439,15 +666,16 @@ script = ExtResource("3_v1n0m")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="Rope9" type="Node2D" parent="." unique_id=1984099716 groups=["keylines"]]
-modulate = Color(1, 1, 1, 0.49019608)
-position = Vector2(432, 519)
+modulate = Color(0.83, 0.8056533, 0.6972, 0.49019608)
+position = Vector2(454, 599)
 script = ExtResource("1_yxwbq")
 num_segments = 30
 rope_length = 170.0
-stiffness = 2.0
-gravity = 20.0
+stiffness = 1.2
+gravity = 15.0
 wind = SubResource("RopeWindParameters_v1n0m")
-damping = 20.0
+damping = 30.0
+damping_curve = SubResource("Curve_c1c4s")
 render_line = false
 line_width = 1.0
 color = Color(1, 1, 1, 0.42745098)
@@ -459,7 +687,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope9" unique_id=755980193]
 position = Vector2(2, -1)
-points = PackedVector2Array(-1.8941345, 1.0167847, -10.403961, -1.2651367, -18.878876, -3.7075806, -27.296936, -6.3895874, -35.641388, -9.356384, -43.89972, -12.629181, -52.06244, -16.215454, -60.121643, -20.115692, -68.07056, -24.327393, -75.90317, -28.846375, -83.61389, -33.667603, -91.197754, -38.785522, -98.65033, -44.19409, -105.967926, -49.887115, -113.14752, -55.85855, -120.18674, -62.102722, -127.08362, -68.61426, -133.83582, -75.38754, -140.43964, -82.41531, -146.889, -89.68646, -153.18335, -97.194916, -159.3323, -104.94833, -165.34866, -112.96332, -171.23425, -121.24628, -176.97049, -129.77072, -182.52042, -138.46368, -187.83934, -147.20691, -192.88661, -155.85248, -197.63399, -164.24503, -202.07042, -172.24219, -204.80444, -177.20569)
+points = PackedVector2Array(-1.9259033, 1.0715942, -10.844238, -4.994507, -19.726807, -11.130249, -28.555267, -17.367859, -37.31775, -23.727844, -46.007538, -30.221375, -54.621216, -36.853577, -63.157043, -43.62628, -71.61435, -50.539368, -79.99249, -57.592285, -88.29111, -64.783875, -96.509674, -72.112976, -104.647766, -79.57825, -112.70514, -87.17816, -120.68167, -94.91159, -128.57764, -102.77762, -136.39325, -110.77551, -144.12796, -118.90399, -151.7797, -127.159454, -159.34311, -135.53427, -166.81848, -144.02585, -174.21799, -152.64618, -181.55853, -161.41602, -188.84485, -170.345, -196.05573, -179.40915, -203.14128, -188.53827, -210.03151, -197.61841, -216.64946, -206.50757, -222.92447, -215.0574, -228.80188, -223.13318, -232.13031, -227.71933)
 width = 6.0
 width_curve = SubResource("Curve_h8wd1")
 default_color = Color(1, 1, 1, 0.7058824)
@@ -470,15 +698,16 @@ script = ExtResource("3_v1n0m")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="Rope10" type="Node2D" parent="." unique_id=1554457762 groups=["keylines"]]
-modulate = Color(1, 1, 1, 0.49019608)
-position = Vector2(342, 598)
+modulate = Color(0.83, 0.8056533, 0.6972, 0.49019608)
+position = Vector2(214, 680)
 script = ExtResource("1_yxwbq")
 num_segments = 30
 rope_length = 170.0
-stiffness = 2.0
-gravity = 20.0
+stiffness = 1.2
+gravity = 15.0
 wind = SubResource("RopeWindParameters_v1n0m")
-damping = 20.0
+damping = 30.0
+damping_curve = SubResource("Curve_c1c4s")
 render_line = false
 line_width = 1.0
 color = Color(1, 1, 1, 0.42745098)
@@ -490,7 +719,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope10" unique_id=1710116163]
 position = Vector2(2, -1)
-points = PackedVector2Array(-1.9164429, 1.0552979, -8.865204, -4.6364746, -15.711731, -10.474243, -22.401001, -16.526428, -28.898071, -22.830261, -35.18277, -29.400513, -41.24405, -36.23944, -47.075653, -43.343323, -52.673798, -50.70569, -58.035828, -58.31903, -63.16031, -66.175415, -68.046265, -74.26648, -72.69385, -82.583984, -77.10376, -91.11975, -81.277435, -99.866486, -85.216675, -108.817505, -88.923355, -117.96698, -92.399, -127.3085, -95.64462, -136.83359, -98.660614, -146.52869, -101.45068, -156.38773, -104.02258, -166.42355, -106.38304, -176.6596, -108.53203, -187.104, -110.46307, -197.72235, -112.17087, -208.42465, -113.66005, -219.07147, -114.94922, -229.49493, -116.0699, -239.52512, -117.0627, -249.01266, -117.63887, -254.64996)
+points = PackedVector2Array(-1.8868713, 1.0042114, 0.66752625, -8.795593, 3.1306763, -18.63153, 5.458069, -28.518799, 7.6220856, -38.466614, 9.608093, -48.479187, 11.409622, -58.557922, 13.024796, -68.70264, 14.453903, -78.91235, 15.698273, -89.18555, 16.759705, -99.52057, 17.640167, -109.91571, 18.341797, -120.36896, 18.86679, -130.87854, 19.217346, -141.44275, 19.3956, -152.06061, 19.403564, -162.73096, 19.243118, -173.45193, 18.91629, -184.21902, 18.42575, -195.02277, 17.774124, -205.86111, 16.962082, -216.75015, 15.987335, -227.71515, 14.846878, -238.76553, 13.543182, -249.87024, 12.091568, -260.94727, 10.52449, -271.8711, 8.889969, -282.4928, 7.2452087, -292.66357, 5.64946, -302.2552, 4.710861, -307.84357)
 width = 6.0
 width_curve = SubResource("Curve_h8wd1")
 default_color = Color(1, 1, 1, 0.7058824)
@@ -501,15 +730,16 @@ script = ExtResource("3_v1n0m")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="Rope11" type="Node2D" parent="." unique_id=879228013]
-modulate = Color(1, 1, 1, 0.49019608)
-position = Vector2(19, 602)
+modulate = Color(0.83, 0.8056533, 0.6972, 0.49019608)
+position = Vector2(-4, 637)
 script = ExtResource("1_yxwbq")
 num_segments = 30
 rope_length = 170.0
-stiffness = 1.0
-gravity = 20.0
+stiffness = 1.2
+gravity = 15.0
 wind = SubResource("RopeWindParameters_v1n0m")
-damping = 20.0
+damping = 30.0
+damping_curve = SubResource("Curve_c1c4s")
 render_line = false
 line_width = 1.0
 color = Color(1, 1, 1, 0.42745098)
@@ -521,7 +751,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope11" unique_id=1140955059]
 position = Vector2(2, -1)
-points = PackedVector2Array(-1.9205894, 1.0623779, 6.3951206, -6.0392456, 14.664112, -13.209656, 22.862823, -20.48114, 30.975845, -27.874146, 38.994095, -35.40045, 46.912735, -43.065796, 54.7293, -50.872803, 62.44261, -58.822327, 70.051956, -66.91437, 77.55684, -75.1485, 84.95672, -83.52405, 92.25106, -92.04013, 99.43941, -100.69571, 106.52156, -109.48984, 113.497635, -118.421936, 120.36772, -127.49133, 127.13136, -136.6965, 133.78645, -146.03342, 140.32822, -155.49316, 146.75668, -165.07285, 153.08197, -174.78625, 159.31752, -184.65683, 165.46565, -194.69498, 171.50682, -204.87231, 177.39948, -215.10791, 183.08868, -225.2721, 188.51749, -235.20465, 193.63687, -244.7396, 198.41252, -253.72754, 201.0644, -258.73538)
+points = PackedVector2Array(-1.9129722, 1.0492554, 6.8791456, -6.3981934, 15.62583, -13.909973, 24.30467, -21.515686, 32.900734, -29.23468, 41.40508, -37.078125, 49.81283, -45.051575, 58.12155, -53.15735, 66.33004, -61.395874, 74.4377, -69.76672, 82.444145, -78.26892, 90.34902, -86.901306, 98.152016, -95.66217, 105.85289, -104.54999, 113.45163, -113.56348, 120.94851, -122.70148, 128.34384, -131.96298, 135.63742, -141.34647, 142.82735, -150.84796, 149.90883, -160.4588, 156.88242, -170.17676, 163.75984, -180.017, 170.55687, -190.00476, 177.27734, -200.15173, 183.90082, -210.42984, 190.38116, -220.75699, 196.65517, -231.00098, 202.65485, -240.99847, 208.31886, -250.58026, 213.60123, -259.5942, 216.46046, -264.48663)
 width = 6.0
 width_curve = SubResource("Curve_h8wd1")
 default_color = Color(1, 1, 1, 0.7058824)
@@ -532,15 +762,16 @@ script = ExtResource("3_v1n0m")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="Rope12" type="Node2D" parent="." unique_id=46529711 groups=["keylines"]]
-modulate = Color(1, 1, 1, 0.49019608)
-position = Vector2(-36, 470)
+modulate = Color(0.83, 0.8056533, 0.6972, 0.49019608)
+position = Vector2(-69, 500)
 script = ExtResource("1_yxwbq")
 num_segments = 30
 rope_length = 170.0
-stiffness = 2.0
-gravity = 20.0
+stiffness = 1.2
+gravity = 15.0
 wind = SubResource("RopeWindParameters_v1n0m")
-damping = 20.0
+damping = 30.0
+damping_curve = SubResource("Curve_c1c4s")
 render_line = false
 line_width = 1.0
 color = Color(1, 1, 1, 0.42745098)
@@ -552,7 +783,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope12" unique_id=2000172521]
 position = Vector2(2, -1)
-points = PackedVector2Array(-1.9326515, 1.0832214, 7.709175, 0.3048401, 17.340477, -0.60876465, 26.95399, -1.7249451, 36.542587, -3.0861206, 46.099518, -4.7160034, 55.61853, -6.6267395, 65.09375, -8.824188, 74.51956, -11.311127, 83.89046, -14.088745, 93.201004, -17.157349, 102.4458, -20.51654, 111.61956, -24.165192, 120.71726, -28.101593, 129.73438, -32.32364, 138.66689, -36.82907, 147.51105, -41.615234, 156.26262, -46.678894, 164.91557, -52.014923, 173.46065, -57.614746, 181.89508, -63.472717, 190.22972, -69.59387, 198.4805, -75.99124, 206.6495, -82.67145, 214.71, -89.6149, 222.60541, -96.7616, 230.26065, -104.00845, 237.59818, -111.22125, 244.55197, -118.253876, 251.07704, -124.96756, 255.01414, -129.04315)
+points = PackedVector2Array(-1.9217072, 1.064331, 8.340141, -1.403717, 18.584923, -3.948578, 28.80365, -6.607422, 38.989838, -9.404053, 49.13906, -12.35199, 59.248306, -15.457794, 69.31544, -18.724213, 79.33878, -22.151886, 89.31689, -25.7406, 99.24835, -29.489716, 109.13175, -33.398285, 118.96561, -37.46524, 128.74854, -41.689453, 138.47949, -46.06967, 148.15771, -50.604797, 157.78271, -55.29373, 167.3534, -60.135223, 176.86656, -65.12683, 186.31538, -70.26404, 195.69897, -75.54526, 205.03041, -80.97778, 214.32898, -86.575195, 223.6005, -92.34531, 232.81961, -98.27533, 241.92468, -104.32089, 250.82631, -110.40497, 259.42346, -116.42633, 267.62036, -122.27426, 275.34015, -127.84332, 279.9297, -131.16708)
 width = 6.0
 width_curve = SubResource("Curve_h8wd1")
 default_color = Color(1, 1, 1, 0.7058824)
@@ -566,14 +797,11 @@ metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 position = Vector2(258, 321)
 zoom = Vector2(2.5, 2.5)
 
-[node name="Spidey" parent="." unique_id=11989907 instance=ExtResource("5_h8wd1")]
-position = Vector2(261, 184)
-
 [node name="Mouse" type="StaticBody2D" parent="." unique_id=1344767916]
 unique_name_in_owner = true
 collision_layer = 17
 collision_mask = 3
-script = ExtResource("5_qsf7i")
+script = SubResource("GDScript_c1c4s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse" unique_id=2090643748]
 shape = SubResource("CircleShape2D_h8wd1")
@@ -583,13 +811,8 @@ position = Vector2(128, 489)
 scale = Vector2(8.824757, 5.7020187)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1599143991]
-position = Vector2(-10, 0)
+position = Vector2(8.612137, 74.18425)
 shape = SubResource("WorldBoundaryShape2D_h8wd1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1471189742]
-position = Vector2(-16, 392)
-scale = Vector2(32.99297, 1)
-shape = SubResource("RectangleShape2D_e16xp")
-
 [node name="VectorSpider" parent="." unique_id=1599693744 instance=ExtResource("7_c1c4s")]
-position = Vector2(-103, 314)
+position = Vector2(161, 149)

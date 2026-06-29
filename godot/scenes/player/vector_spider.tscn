@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://n34p15xh4o7v"]
 
 [ext_resource type="Script" uid="uid://de3jpss66xjfh" path="res://addons/curved_lines_2d/scalable_vector_shape_2d.gd" id="1_4yd52"]
+[ext_resource type="Script" uid="uid://cbwe2fwsop1mw" path="res://scenes/player/vector_spider.gd" id="1_y6ddq"]
 [ext_resource type="Script" uid="uid://dlbv4pit17dnu" path="res://addons/curved_lines_2d/scalable_arc.gd" id="2_m8pqf"]
 [ext_resource type="Script" uid="uid://dl1t88tthmwts" path="res://addons/curved_lines_2d/scalable_arc_list.gd" id="3_xtfs4"]
 [ext_resource type="Script" uid="uid://b2shq2gjd4fvt" path="res://addons/ropesim/Rope.gd" id="5_xtfs4"]
@@ -1618,9 +1619,11 @@ _data = {
 }
 
 [node name="VectorSpider" type="CharacterBody2D" unique_id=1599693744]
+position = Vector2(-50, -9)
+script = ExtResource("1_y6ddq")
 
 [node name="Spider" type="Node2D" parent="." unique_id=1310144381]
-position = Vector2(4, 8)
+position = Vector2(6, 11)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Spider" unique_id=1590019568]
 
@@ -1640,6 +1643,9 @@ stiffness = 40.0
 [node name="ThoraxBdy" type="RigidBody2D" parent="Spider" unique_id=1365440727]
 mass = 0.01
 gravity_scale = 0.0
+inertia = 1.0
+linear_damp = 10.0
+angular_damp = 10.0
 
 [node name="SpiderShapes" type="Node2D" parent="Spider/ThoraxBdy" unique_id=1654315418]
 position = Vector2(-1, 0)
@@ -1657,6 +1663,10 @@ polygon = NodePath("Fill")
 curve = SubResource("Curve2D_xtfs4")
 update_curve_at_runtime = true
 arc_list = SubResource("Resource_cektt")
+metadata/_hover_closest_point_on_gradient_ = Vector2(1011.1092, 364.82617)
+metadata/_hover_closest_point_on_curve_ = Object(Object,"script":Resource("res://addons/curved_lines_2d/closest_point_on_curve_meta.gd"),"before_segment":9,"point_position":Vector2(5.1345997, -12.249748),"local_point_position":Vector2(1.1345997, -22.249748),"segment_rotation":-2.1510906)
+
+metadata/_select_hint_ = true
 
 [node name="Fill" type="Polygon2D" parent="Spider/ThoraxBdy/SpiderShapes/BodyBase" unique_id=1041292798]
 texture = SubResource("GradientTexture2D_lypgq")
@@ -1673,6 +1683,7 @@ width = 72.0
 height = 24.0
 color = Color(0.09803922, 0.09803922, 0.09803922, 0.3137255)
 shadow_steps = 3
+smoothing_amount = 0.4
 metadata/_custom_type_script = "uid://bkyn6gsfgjmwm"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spider/ThoraxBdy" unique_id=1535254907]
@@ -1702,7 +1713,7 @@ render_line = false
 metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Spider/Legs/RLEGS/Leg1/Rope" unique_id=1157752801]
-points = PackedVector2Array(0, 0, 11.479126, -5.401699, 25.596775, -2.2921543, 29.92667, 13.305099, 29.041447, 19.931063)
+points = PackedVector2Array(0, 0, 10.985654, -6.337761, 25.406738, -5.37323, 28.728603, 10.464926, 27.049885, 16.935545)
 width = 8.0
 width_curve = SubResource("Curve_u8njm")
 default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
@@ -1727,7 +1738,7 @@ render_line = false
 metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Spider/Legs/RLEGS/Leg2/Rope" unique_id=148454519]
-points = PackedVector2Array(0, 0, 13.075951, -7.7853336, 30.185143, -4.9427624, 30.921371, 14.462304, 28.043655, 21.950165)
+points = PackedVector2Array(0, 0, 12.641915, -8.470608, 29.96706, -7.6753483, 29.55367, 11.738548, 26.04787, 18.953718)
 width = 8.0
 width_curve = SubResource("Curve_u8njm")
 default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
@@ -1753,7 +1764,7 @@ render_line = false
 metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Spider/Legs/RLEGS/Leg3/Rope" unique_id=307659669]
-points = PackedVector2Array(0, 0, 9.692043, -8.178827, 24.140827, -7.823107, 26.376083, 8.205027, 25.125675, 14.771875)
+points = PackedVector2Array(0, 0, 9.133294, -8.796978, 23.447638, -10.792217, 24.87611, 5.327135, 23.140907, 11.782837)
 width = 9.0
 width_curve = SubResource("Curve_u8njm")
 default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
@@ -1779,7 +1790,7 @@ render_line = false
 metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Spider/Legs/RLEGS/Leg4/Rope" unique_id=1345140934]
-points = PackedVector2Array(0, 0, 8.675232, -5.266945, 19.179794, -0.42189217, 20.71313, 12.442413, 20.108131, 17.75595)
+points = PackedVector2Array(0, 0, 7.9312153, -6.3274155, 19.117752, -3.399414, 19.309647, 9.548136, 18.132278, 14.764793)
 width = 9.0
 width_curve = SubResource("Curve_u8njm")
 default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
@@ -1808,7 +1819,7 @@ render_line = false
 metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Spider/Legs/LLEGS/Leg1/Rope" unique_id=1283417588]
-points = PackedVector2Array(0, 0, -10.479233, -7.1435413, -24.565212, -10.379398, -30.893486, 4.513382, -29.052883, 10.939828)
+points = PackedVector2Array(0, 0, -10.299004, -7.402443, -23.955338, -12.13443, -32.7209, 1.4672852, -31.05172, 7.9403725)
 width = 8.0
 width_curve = SubResource("Curve_u8njm")
 default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
@@ -1833,7 +1844,7 @@ render_line = false
 metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Spider/Legs/LLEGS/Leg2/Rope" unique_id=1045781717]
-points = PackedVector2Array(0, 0, -12.448296, -8.752157, -29.725067, -7.234562, -27.045067, 11.99831, -23.050999, 18.955086)
+points = PackedVector2Array(0, 0, -12.320824, -8.930288, -29.598213, -10.440653, -28.987518, 8.967812, -25.050705, 15.957148)
 width = 8.0
 width_curve = SubResource("Curve_u8njm")
 default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
@@ -1859,7 +1870,7 @@ render_line = false
 metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Spider/Legs/LLEGS/Leg3/Rope" unique_id=830706382]
-points = PackedVector2Array(0, 0, -10.299088, -7.401585, -23.21252, -0.9039793, -22.778889, 15.278475, -21.13375, 21.757713)
+points = PackedVector2Array(0, 0, -10.019768, -7.774786, -23.954796, -3.9357533, -24.581154, 12.237585, -23.129028, 18.762794)
 width = 9.0
 width_curve = SubResource("Curve_u8njm")
 default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
@@ -1885,7 +1896,7 @@ render_line = false
 metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Spider/Legs/LLEGS/Leg4/Rope" unique_id=1753901374]
-points = PackedVector2Array(0, 0, -8.143417, -6.051338, -16.231865, 2.219448, -13.208992, 14.818039, -11.166641, 19.76056)
+points = PackedVector2Array(0, 0, -7.6680527, -6.6432657, -17.709656, -0.9079094, -15.101013, 11.777321, -13.16272, 16.761566)
 width = 9.0
 width_curve = SubResource("Curve_u8njm")
 default_color = Color(0.13725491, 0.16862746, 0.26666668, 1)
@@ -1905,6 +1916,9 @@ node_b = NodePath("../../ThoraxBdy")
 
 [node name="HeadBdy" type="RigidBody2D" parent="Spider" unique_id=795790854]
 mass = 0.01
+inertia = 1.0
+linear_damp = 10.0
+angular_damp = 10.0
 
 [node name="Head" type="Node2D" parent="Spider/HeadBdy" unique_id=145452657]
 position = Vector2(-1, 0)

@@ -98,13 +98,14 @@ func _input(event: InputEvent) -> void:
 
 
 func _poot_web(starting_anchor: Node2D, ending_anchor: Node2D):
-	var rope: Rope2D = Rope2D.new()
-	rope.ending_anchor_mount_point = starting_anchor
-	rope.ready_action = Rope2D.ReadyAction.CREATE_TO_MOUNT
-	ending_anchor.add_child(rope)
-	var drawer := RopeDrawSimpleLine.new(rope)
-	rope.add_child(drawer)
-	#drawers.push_back(drawer)
+	pass
+	#var rope: Rope2D = Rope2D.new()
+	#rope.ending_anchor_mount_point = starting_anchor
+	#rope.ready_action = Rope2D.ReadyAction.CREATE_TO_MOUNT
+	#ending_anchor.add_child(rope)
+	#var drawer := RopeDrawSimpleLine.new(rope)
+	#rope.add_child(drawer)
+	##drawers.push_back(drawer)
 	
 func _new_prey() -> Prey: 
 	var prey: = Mozzie.instantiate()

@@ -566,6 +566,7 @@ _data = {
 
 [node name="Spidey" type="CharacterBody2D" unique_id=11989907 node_paths=PackedStringArray("state_chart", "PlayerSprite", "PlayerCollider") groups=["spider"]]
 collision_layer = 3
+up_direction = Vector2(0, 1)
 script = ExtResource("1_vnujn")
 state_chart = NodePath("Gestalt")
 PlayerSprite = NodePath("AnimatedSprite2D")
